@@ -924,7 +924,7 @@ async function main() {
   }
 
   const grandPL = grandValue - grandCost;
-  const grandROI = ((grandPL / grandCost) * 100).toFixed(1);
+  const grandROI = (grandCost > 0 ? ((grandPL / grandCost) * 100) : 0).toFixed(1);
 
   // Quality totals
   const qualityTotals: Record<string, { qty: number; cost: number; value: number }> = {};
@@ -1225,8 +1225,8 @@ async function main() {
       weightedAvg = denom > 0 ? num / denom : m.avgPaper;
     }
     const portfolioVal = weightedAvg * userTotal;
-    const roi = ((portfolioVal - grandCost) / grandCost) * 100;
-    if (roi > bestROI) bestROI = roi;
+    const roi = grandCost > 0 ? ((portfolioVal - grandCost) / grandCost) * 100 : 0;
+    if (isFinite(roi) && roi > bestROI) bestROI = roi;
     return {
       name: m.name,
       monthsOld: m.monthsOld,
@@ -1294,7 +1294,7 @@ async function main() {
       }
       if (closest && closestDist < 45 * 86400000) { // within 45 days
         tp.actualValue = closest.totalValue;
-        tp.actualROI = ((closest.totalValue - grandCost) / grandCost) * 100;
+        tp.actualROI = grandCost > 0 ? ((closest.totalValue - grandCost) / grandCost) * 100 : 0;
       }
     }
   }
@@ -1442,9 +1442,11 @@ async function main() {
         wr += p.roi * w;
         tw += w;
       }
-      sw.avgROI = wr / tw;
+      sw.avgROI = tw > 0 ? wr / tw : 0;
       sw.majorsInRange = nearby.map(p => p.name);
     }
+    // Ensure avgROI is a valid number
+    if (isNaN(sw.avgROI) || !isFinite(sw.avgROI)) sw.avgROI = 0;
     if (sw.avgROI > 500) sw.recommendation = 'STRONG SELL';
     else if (sw.avgROI > 200) sw.recommendation = 'CONSIDER SELLING';
     else if (sw.avgROI > 50) sw.recommendation = 'HOLD FOR MORE';
