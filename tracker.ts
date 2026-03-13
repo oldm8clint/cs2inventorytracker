@@ -37,7 +37,7 @@ const DEFAULT_CONFIG: TrackerConfig = {
   capsules: { qty: 60, costEach: 0.39 },
   steamProfile: { vanityUrl: "oldm8clint", displayName: "clint", avatarUrl: "https://avatars.akamai.steamstatic.com/596b07e4b11e4821c9a695accd501f7180bc5f99_full.jpg" },
   discord: { enabled: true, webhooks: {} },
-  siteTitle: "Budapest 2025 Sticker Investment Tracker",
+  siteTitle: "CS2 Inventory Tracker — Budapest 2025 Sticker Investment",
   githubPagesUrl: "",
 };
 
