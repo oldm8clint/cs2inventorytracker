@@ -1526,209 +1526,225 @@ async function main() {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #06060a; color: #e0e0e0; padding: 30px 40px; min-height: 100vh; }
-  ::selection { background: rgba(255,215,0,0.3); }
-  h1 { background: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
-  .subtitle { color: #666; font-size: 13px; margin-top: 4px; margin-bottom: 28px; font-weight: 400; }
-  .subtitle span { color: #888; }
-  h3 { color: #fff; margin: 40px 0 16px; font-size: 17px; font-weight: 700; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
-  h3::before { content: ''; display: inline-block; width: 3px; height: 18px; background: linear-gradient(180deg, #ffd700, #ff8c00); border-radius: 2px; }
+  body { font-family: 'Inter', 'Motiva Sans', Arial, Helvetica, sans-serif; background: #1b2838; color: #c6d4df; padding: 0; min-height: 100vh; }
+  ::selection { background: rgba(102,192,244,0.3); }
+  .page-content { max-width: 1200px; margin: 0 auto; padding: 20px 24px 40px; }
+  h1 { color: #fff; font-size: 28px; font-weight: 700; letter-spacing: -0.3px; }
+  .subtitle { color: #8f98a0; font-size: 13px; margin-top: 4px; margin-bottom: 24px; font-weight: 400; }
+  .subtitle span { color: #acb2b8; }
+  h3 { color: #fff; margin: 32px 0 14px; font-size: 16px; font-weight: 600; letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px; }
+  h3::before { content: ''; display: inline-block; width: 3px; height: 16px; background: #66c0f4; border-radius: 2px; }
 
-  /* Cards */
-  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 32px; }
-  .card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 18px 20px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
-  .card:hover { border-color: #2a2a3e; transform: translateY(-1px); }
-  .card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent); }
-  .card-label { color: #555; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-  .card-value { font-size: 26px; font-weight: 800; margin-top: 6px; letter-spacing: -0.5px; }
-  .card-sub { font-size: 11px; color: #555; margin-top: 4px; font-weight: 500; }
-  .positive { color: #22c55e; }
-  .negative { color: #ef4444; }
-  .neutral { color: #ffd700; }
-  .dimmed { color: #888; }
+  /* Steam profile header */
+  .steam-header { background: linear-gradient(180deg, #2a475e 0%, #1b2838 100%); border-bottom: 1px solid #0e1a26; padding: 20px 0; margin-bottom: 0; }
+  .steam-header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 20px; }
+  .steam-avatar { width: 64px; height: 64px; border-radius: 4px; border: 2px solid #66c0f4; }
+  .steam-profile-info { flex: 1; }
+  .steam-profile-name { font-size: 22px; font-weight: 700; color: #fff; }
+  .steam-profile-name a { color: #fff; text-decoration: none; }
+  .steam-profile-name a:hover { color: #66c0f4; }
+  .steam-profile-sub { font-size: 12px; color: #8f98a0; margin-top: 2px; }
+  .steam-profile-sub a { color: #66c0f4; text-decoration: none; }
+  .steam-profile-sub a:hover { text-decoration: underline; }
+  .steam-profile-links { display: flex; gap: 10px; }
+  .steam-link-btn { background: rgba(103,193,245,0.1); border: 1px solid rgba(103,193,245,0.3); color: #67c1f5; padding: 6px 14px; border-radius: 2px; font-size: 11px; font-weight: 600; text-decoration: none; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+  .steam-link-btn:hover { background: rgba(103,193,245,0.2); color: #fff; }
+
+  /* Cards — Steam market style */
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px 18px; position: relative; overflow: hidden; transition: background 0.2s; }
+  .card:hover { background: rgba(103,193,245,0.05); }
+  .card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(102,192,244,0.1), transparent); }
+  .card-label { color: #8f98a0; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+  .card-value { font-size: 24px; font-weight: 700; margin-top: 6px; letter-spacing: -0.5px; }
+  .card-sub { font-size: 11px; color: #8f98a0; margin-top: 4px; font-weight: 500; }
+  .positive { color: #5ba32b; }
+  .negative { color: #c33c3c; }
+  .neutral { color: #66c0f4; }
+  .dimmed { color: #8f98a0; }
 
   /* Break-even progress */
-  .progress-section { margin-bottom: 32px; }
-  .progress-bar-outer { background: #111118; border: 1px solid #1a1a28; border-radius: 10px; height: 32px; overflow: hidden; position: relative; }
-  .progress-bar-inner { height: 100%; border-radius: 10px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-size: 12px; font-weight: 700; min-width: 60px; }
-  .progress-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #555; font-weight: 500; }
+  .progress-section { margin-bottom: 24px; }
+  .progress-bar-outer { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,0,0,0.4); border-radius: 2px; height: 28px; overflow: hidden; position: relative; }
+  .progress-bar-inner { height: 100%; border-radius: 2px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 700; min-width: 60px; }
+  .progress-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: #8f98a0; font-weight: 500; }
 
   /* Charts */
-  .chart-container { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 24px; margin-bottom: 32px; }
+  .chart-container { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 20px; margin-bottom: 24px; }
   canvas { width: 100% !important; max-height: 280px; }
 
   /* Quality cards */
-  .quality-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 32px; }
-  .qs-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 10px; padding: 16px 18px; font-size: 13px; transition: border-color 0.2s; }
-  .qs-card:hover { border-color: #2a2a3e; }
+  .quality-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .qs-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 14px 16px; font-size: 13px; transition: background 0.2s; }
+  .qs-card:hover { background: rgba(103,193,245,0.05); }
   .qs-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-  .qs-stat { font-size: 12px; color: #888; }
+  .qs-stat { font-size: 12px; color: #8f98a0; }
   .qs-val { font-weight: 600; }
 
   /* Snapshot history */
-  .history-table { font-size: 13px; margin-bottom: 32px; border-collapse: separate; border-spacing: 0; }
-  .history-table th { background: #111118; color: #888; padding: 10px 14px; text-align: left; border-bottom: 1px solid #1a1a28; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
-  .history-table td { padding: 10px 14px; border-bottom: 1px solid #0f0f18; }
-  .history-table tr:hover td { background: rgba(255,215,0,0.02); }
+  .history-table { font-size: 13px; margin-bottom: 24px; border-collapse: separate; border-spacing: 0; }
+  .history-table th { background: #1a3a52; color: #8f98a0; padding: 8px 12px; text-align: left; border-bottom: 1px solid #0e1a26; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .history-table td { padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,0.2); }
+  .history-table tr:hover td { background: rgba(103,193,245,0.03); }
 
   /* Filter bar */
   .filter-bar { margin-bottom: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .filter-bar input, .filter-bar select { background: #111118; border: 1px solid #1a1a28; color: #e0e0e0; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-family: inherit; transition: border-color 0.2s; outline: none; }
+  .filter-bar input, .filter-bar select { background: rgba(0,0,0,0.3); border: 1px solid #2a475e; color: #c6d4df; padding: 8px 12px; border-radius: 2px; font-size: 13px; font-family: inherit; transition: border-color 0.2s; outline: none; }
   .filter-bar input { width: 300px; }
-  .filter-bar input:focus, .filter-bar select:focus { border-color: #ffd700; }
+  .filter-bar input:focus, .filter-bar select:focus { border-color: #66c0f4; }
 
-  /* Main table */
+  /* Main table — Steam market style */
   table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
-  thead { position: sticky; top: 0; z-index: 10; }
-  th { background: #0a0a10; color: #666; padding: 11px 10px; text-align: left; border-bottom: 1px solid #1a1a28; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
-  th:hover { color: #ffd700; }
-  td { padding: 9px 10px; border-bottom: 1px solid #0f0f18; font-variant-numeric: tabular-nums; }
+  thead { position: sticky; top: 48px; z-index: 10; }
+  th { background: #1a3a52; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
+  th:hover { color: #66c0f4; }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(0,0,0,0.15); font-variant-numeric: tabular-nums; }
   tbody tr { transition: background 0.15s; }
-  tbody tr:nth-child(even) { background: rgba(255,255,255,0.01); }
-  tbody tr:hover { background: rgba(255,215,0,0.03); }
-  tr.total-row { background: linear-gradient(145deg, #111118, #0d0d14); font-weight: 700; }
-  tr.total-row td { border-top: 2px solid #ffd700; padding: 12px 10px; }
-  a { color: #60a5fa; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-  a:hover { color: #93c5fd; }
+  tbody tr:nth-child(even) { background: rgba(0,0,0,0.1); }
+  tbody tr:hover { background: rgba(103,193,245,0.05); }
+  tr.total-row { background: #1a3a52; font-weight: 700; }
+  tr.total-row td { border-top: 2px solid #66c0f4; padding: 10px 8px; }
+  a { color: #67c1f5; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  a:hover { color: #fff; }
 
-  /* Quality badges */
-  .quality-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
-  .q-normal { background: rgba(255,255,255,0.06); color: #888; }
-  .q-embroidered { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.15); }
-  .q-holo { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.15); }
-  .q-gold { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.15); }
-  .q-champion { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.15); }
-  .q-capsule { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.15); }
+  /* Quality badges — Steam rarity style */
+  .quality-badge { display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; }
+  .q-normal { background: rgba(176,195,217,0.1); color: #b0c3d9; }
+  .q-embroidered { background: rgba(75,105,255,0.15); color: #4b69ff; border: 1px solid rgba(75,105,255,0.2); }
+  .q-holo { background: rgba(136,71,255,0.15); color: #8847ff; border: 1px solid rgba(136,71,255,0.2); }
+  .q-gold { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.2); }
+  .q-champion { background: rgba(235,75,75,0.12); color: #eb4b4b; border: 1px solid rgba(235,75,75,0.2); }
+  .q-capsule { background: rgba(102,192,244,0.12); color: #66c0f4; border: 1px solid rgba(102,192,244,0.2); }
 
   /* ROI bar in table */
   .roi-bar { display: flex; align-items: center; gap: 6px; }
   .roi-fill { height: 4px; border-radius: 2px; min-width: 2px; max-width: 60px; }
 
   /* Top/Bottom tables */
-  .split-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .split-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   @media (max-width: 1200px) { .split-tables { grid-template-columns: 1fr; } }
-  .sub-table { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 20px; }
-  .sub-table h4 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .sub-table { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px; }
+  .sub-table h4 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
   .sub-table table { font-size: 12px; }
 
-  /* Footer */
-  .footer { margin-top: 50px; padding: 24px; text-align: center; border-top: 1px solid #111; }
-  .footer p { color: #444; font-size: 12px; margin: 4px 0; }
-  .footer strong { color: #666; }
+  /* Footer — Steam style */
+  .footer { margin-top: 40px; padding: 20px; text-align: center; border-top: 1px solid rgba(0,0,0,0.3); background: rgba(0,0,0,0.15); }
+  .footer p { color: #8f98a0; font-size: 12px; margin: 4px 0; }
+  .footer strong { color: #acb2b8; }
+  .footer a { color: #67c1f5; }
 
-  .snapshot-count { color: #555; font-size: 13px; margin-bottom: 20px; font-style: italic; }
+  .snapshot-count { color: #8f98a0; font-size: 13px; margin-bottom: 16px; font-style: italic; }
 
   /* Distance badge */
-  .dist-badge { font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; }
-  .dist-pos { background: rgba(34,197,94,0.1); color: #22c55e; }
-  .dist-neg { background: rgba(239,68,68,0.1); color: #ef4444; }
+  .dist-badge { font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 2px; }
+  .dist-pos { background: rgba(91,163,43,0.15); color: #5ba32b; }
+  .dist-neg { background: rgba(195,60,60,0.15); color: #c33c3c; }
 
   /* Time to ROI */
-  .roi-time { font-size: 11px; color: #888; font-weight: 500; }
-  .roi-time.achieved { color: #22c55e; }
-  .roi-time.declining { color: #ef4444; }
+  .roi-time { font-size: 11px; color: #8f98a0; font-weight: 500; }
+  .roi-time.achieved { color: #5ba32b; }
+  .roi-time.declining { color: #c33c3c; }
 
   /* Sticker thumbnails */
-  .sticker-thumb { width: 32px; height: 32px; vertical-align: middle; margin-right: 6px; border-radius: 4px; image-rendering: auto; }
+  .sticker-thumb { width: 32px; height: 32px; vertical-align: middle; margin-right: 6px; border-radius: 2px; image-rendering: auto; }
   .sticker-name-cell { display: flex; align-items: center; gap: 6px; }
 
-  /* Featured stickers */
-  .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .featured-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 14px; padding: 20px; text-align: center; transition: border-color 0.3s, transform 0.2s; position: relative; overflow: hidden; }
-  .featured-card:hover { border-color: #ffd700; transform: translateY(-2px); }
-  .featured-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent); }
-  .featured-card img { width: 128px; height: 128px; margin: 8px auto; display: block; filter: drop-shadow(0 4px 12px rgba(255,215,0,0.15)); }
-  .featured-name { font-size: 15px; font-weight: 700; color: #fff; margin-top: 8px; }
-  .featured-price { font-size: 22px; font-weight: 800; margin-top: 4px; }
-  .featured-roi { font-size: 12px; margin-top: 2px; font-weight: 600; }
-  .featured-rank { position: absolute; top: 12px; left: 14px; font-size: 20px; font-weight: 800; color: rgba(255,215,0,0.3); }
+  /* Featured stickers — Steam item cards */
+  .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .featured-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px; text-align: center; transition: background 0.2s, transform 0.2s; position: relative; overflow: hidden; cursor: pointer; }
+  .featured-card:hover { background: rgba(103,193,245,0.08); transform: translateY(-2px); }
+  .featured-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(102,192,244,0.3), transparent); }
+  .featured-card img { width: 120px; height: 120px; margin: 8px auto; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+  .featured-name { font-size: 14px; font-weight: 600; color: #fff; margin-top: 8px; }
+  .featured-price { font-size: 20px; font-weight: 700; margin-top: 4px; }
+  .featured-roi { font-size: 11px; margin-top: 2px; font-weight: 600; }
+  .featured-rank { position: absolute; top: 10px; left: 12px; font-size: 18px; font-weight: 800; color: rgba(102,192,244,0.3); }
 
   /* Team vs Player */
-  .tvp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .tvp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
   @media (max-width: 800px) { .tvp-grid { grid-template-columns: 1fr; } }
-  .tvp-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 20px 24px; }
-  .tvp-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .tvp-stat { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #0f0f18; font-size: 13px; }
+  .tvp-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px 20px; }
+  .tvp-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .tvp-stat { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.2); font-size: 13px; }
   .tvp-stat:last-child { border-bottom: none; }
-  .tvp-label { color: #888; }
+  .tvp-label { color: #8f98a0; }
   .tvp-val { font-weight: 600; }
 
   /* Donut chart */
-  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   @media (max-width: 1000px) { .chart-row { grid-template-columns: 1fr; } }
-  .chart-box { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 24px; }
+  .chart-box { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 20px; }
   .chart-box canvas { max-height: 300px; }
 
   /* Investment Signal */
-  .signal-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 2px solid; border-radius: 16px; padding: 28px 32px; margin-bottom: 32px; position: relative; overflow: hidden; }
+  .signal-card { background: rgba(0,0,0,0.25); border: 2px solid; border-radius: 4px; padding: 24px 28px; margin-bottom: 24px; position: relative; overflow: hidden; }
   .signal-header { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; }
-  .signal-score { font-size: 52px; font-weight: 900; line-height: 1; }
-  .signal-label { font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-  .signal-sub { font-size: 13px; color: #888; }
-  .signal-factors { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
-  .signal-factor { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 8px; font-size: 12px; }
-  .signal-factor-name { color: #888; }
+  .signal-score { font-size: 48px; font-weight: 900; line-height: 1; }
+  .signal-label { font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+  .signal-sub { font-size: 13px; color: #8f98a0; }
+  .signal-factors { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-top: 14px; }
+  .signal-factor { display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; background: rgba(0,0,0,0.2); border-radius: 2px; font-size: 12px; }
+  .signal-factor-name { color: #8f98a0; }
   .signal-factor-score { font-weight: 700; }
 
   /* Risk cards */
-  .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 32px; }
-  .risk-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 18px 20px; }
-  .risk-badge { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+  .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .risk-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px 18px; }
+  .risk-badge { display: inline-block; padding: 3px 10px; border-radius: 2px; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
 
   /* Sell timing */
-  .sell-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #ffd700; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .sell-card { background: rgba(0,0,0,0.2); border: 1px solid #66c0f4; border-radius: 4px; padding: 18px 22px; margin-bottom: 14px; }
 
   /* Slab table */
-  .slab-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
-
+  .slab-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 16px; }
 
   /* Market cycle */
-  .cycle-callout { background: linear-gradient(145deg, #111118, #0d0d14); border-left: 3px solid #ffd700; border-radius: 0 12px 12px 0; padding: 16px 20px; margin-bottom: 24px; font-size: 13px; color: #aaa; }
-  .cycle-callout strong { color: #ffd700; }
+  .cycle-callout { background: rgba(0,0,0,0.2); border-left: 3px solid #66c0f4; border-radius: 0 4px 4px 0; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: #acb2b8; }
+  .cycle-callout strong { color: #66c0f4; }
 
   /* Iconic sticker in table */
-  .iconic-thumb { width: 40px; height: 40px; vertical-align: middle; border-radius: 4px; }
+  .iconic-thumb { width: 40px; height: 40px; vertical-align: middle; border-radius: 2px; }
 
-  /* Sticky Nav */
-  .sticky-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(6,6,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,215,0,0.15); padding: 0 40px; display: flex; align-items: center; gap: 0; height: 48px; }
-  .sticky-nav a { color: #888; font-size: 12px; font-weight: 600; text-decoration: none; padding: 14px 14px; transition: color 0.2s, border-color 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
-  .sticky-nav a:hover, .sticky-nav a.active { color: #ffd700; border-bottom-color: #ffd700; }
-  body { padding-top: 68px; }
+  /* Sticky Nav — Steam top bar style */
+  .sticky-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #171a21; border-bottom: 1px solid #0e1a26; padding: 0 24px; display: flex; align-items: center; gap: 0; height: 48px; }
+  .sticky-nav a { color: #b8b6b4; font-size: 12px; font-weight: 600; text-decoration: none; padding: 14px 12px; transition: color 0.2s, background 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .sticky-nav a:hover, .sticky-nav a.active { color: #fff; background: rgba(255,255,255,0.05); }
+  body { padding-top: 48px; }
 
   /* Grid view toggle */
   .view-toggle { display: inline-flex; gap: 0; margin-left: 12px; }
-  .view-toggle button { background: #111118; border: 1px solid #1a1a28; color: #888; padding: 8px 16px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; }
-  .view-toggle button:first-child { border-radius: 8px 0 0 8px; }
-  .view-toggle button:last-child { border-radius: 0 8px 8px 0; }
-  .view-toggle button.active { background: rgba(255,215,0,0.1); color: #ffd700; border-color: rgba(255,215,0,0.3); }
+  .view-toggle button { background: rgba(0,0,0,0.3); border: 1px solid #2a475e; color: #8f98a0; padding: 6px 14px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; }
+  .view-toggle button:first-child { border-radius: 2px 0 0 2px; }
+  .view-toggle button:last-child { border-radius: 0 2px 2px 0; }
+  .view-toggle button.active { background: rgba(103,193,245,0.15); color: #67c1f5; border-color: rgba(103,193,245,0.3); }
 
-  /* Sticker grid */
-  .sticker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; display: none; }
+  /* Sticker grid — Steam inventory style */
+  .sticker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; display: none; }
   .sticker-grid.visible { display: grid; }
-  .grid-card { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: border-color 0.3s, transform 0.2s; position: relative; overflow: hidden; }
-  .grid-card:hover { transform: translateY(-2px); border-color: #2a2a3e; }
-  .grid-card.profitable { border-left: 3px solid #22c55e; }
-  .grid-card.losing { border-left: 3px solid #ef4444; }
+  .grid-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 14px; text-align: center; cursor: pointer; transition: background 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .grid-card:hover { transform: translateY(-2px); background: rgba(103,193,245,0.05); }
+  .grid-card.profitable { border-left: 3px solid #5ba32b; }
+  .grid-card.losing { border-left: 3px solid #c33c3c; }
   .grid-card.premium { border-left: 3px solid #ffd700; }
   .grid-card img { width: 80px; height: 80px; margin: 4px auto; display: block; }
   .grid-card-name { font-size: 13px; font-weight: 600; color: #fff; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .grid-card-price { font-size: 18px; font-weight: 800; margin-top: 2px; }
+  .grid-card-price { font-size: 18px; font-weight: 700; margin-top: 2px; }
   .grid-card-roi { font-size: 11px; font-weight: 600; margin-top: 2px; }
 
-  /* Sticker detail modal */
-  .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; animation: fadeIn 0.2s; }
+  /* Sticker detail modal — Steam item inspect */
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); z-index: 2000; justify-content: center; align-items: center; animation: fadeIn 0.2s; }
   .modal-overlay.visible { display: flex; }
-  .modal-content { background: #0d0d14; border: 1px solid #1a1a28; border-radius: 16px; padding: 32px; max-width: 480px; width: 90%; position: relative; animation: slideUp 0.25s; }
-  .modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: #888; font-size: 24px; cursor: pointer; padding: 4px 8px; transition: color 0.2s; }
+  .modal-content { background: #1b2838; border: 1px solid #2a475e; border-radius: 4px; padding: 28px; max-width: 480px; width: 90%; position: relative; animation: slideUp 0.25s; }
+  .modal-close { position: absolute; top: 10px; right: 14px; background: none; border: none; color: #8f98a0; font-size: 22px; cursor: pointer; padding: 4px 8px; transition: color 0.2s; }
   .modal-close:hover { color: #fff; }
-  .modal-img { width: 192px; height: 192px; margin: 0 auto 16px; display: block; }
-  .modal-name { font-size: 22px; font-weight: 800; color: #fff; text-align: center; }
-  .modal-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-  .modal-stat { padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; }
-  .modal-stat-label { font-size: 10px; text-transform: uppercase; color: #555; letter-spacing: 1px; font-weight: 600; }
-  .modal-stat-val { font-size: 16px; font-weight: 700; margin-top: 2px; }
-  .modal-sparkline { margin: 16px 0; }
-  .modal-link { display: block; text-align: center; margin-top: 12px; color: #60a5fa; font-weight: 600; font-size: 14px; }
+  .modal-img { width: 192px; height: 192px; margin: 0 auto 14px; display: block; }
+  .modal-name { font-size: 20px; font-weight: 700; color: #fff; text-align: center; }
+  .modal-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .modal-stat { padding: 8px; background: rgba(0,0,0,0.2); border-radius: 2px; }
+  .modal-stat-label { font-size: 10px; text-transform: uppercase; color: #8f98a0; letter-spacing: 1px; font-weight: 600; }
+  .modal-stat-val { font-size: 15px; font-weight: 700; margin-top: 2px; color: #c6d4df; }
+  .modal-sparkline { margin: 14px 0; }
+  .modal-link { display: block; text-align: center; margin-top: 10px; color: #67c1f5; font-weight: 600; font-size: 14px; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
@@ -1737,39 +1753,43 @@ async function main() {
   .strength-bar { width: 4px; border-radius: 1px; transition: background 0.2s; }
 
   /* Investment grade badge */
-  .grade-badge { display: inline-block; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 6px; font-size: 12px; font-weight: 900; }
+  .grade-badge { display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 2px; font-size: 11px; font-weight: 900; }
 
   /* Scroll to top */
-  .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.3); color: #ffd700; font-size: 20px; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.3s, transform 0.2s; backdrop-filter: blur(8px); }
-  .scroll-top:hover { transform: translateY(-2px); background: rgba(255,215,0,0.25); }
+  .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 40px; height: 40px; border-radius: 2px; background: rgba(103,193,245,0.15); border: 1px solid rgba(103,193,245,0.3); color: #67c1f5; font-size: 18px; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.3s, background 0.2s; }
+  .scroll-top:hover { background: rgba(103,193,245,0.25); color: #fff; }
   .scroll-top.visible { display: flex; }
 
-  /* CSV download button */
-  .btn-download { background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); color: #ffd700; padding: 8px 18px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
-  .btn-download:hover { background: rgba(255,215,0,0.2); }
+  /* CSV download button — Steam green button */
+  .btn-download { background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%); background-position: 25%; background-size: 330% 100%; border: none; color: #fff; padding: 8px 18px; border-radius: 2px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+  .btn-download:hover { background-position: 0%; }
 
-  /* Player/Team accordion */
-  .accordion-group { background: linear-gradient(145deg, #111118, #0d0d14); border: 1px solid #1a1a28; border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
-  .accordion-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; transition: background 0.2s; }
-  .accordion-header:hover { background: rgba(255,215,0,0.02); }
-  .accordion-header img { width: 36px; height: 36px; border-radius: 6px; }
-  .accordion-header-name { font-weight: 700; font-size: 14px; flex: 1; }
-  .accordion-header-stats { display: flex; gap: 16px; font-size: 12px; color: #888; }
+  /* Player/Team accordion — Steam inventory style */
+  .accordion-group { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; margin-bottom: 6px; overflow: hidden; }
+  .accordion-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; transition: background 0.2s; }
+  .accordion-header:hover { background: rgba(103,193,245,0.04); }
+  .accordion-header img { width: 36px; height: 36px; border-radius: 2px; }
+  .accordion-header-name { font-weight: 700; font-size: 14px; flex: 1; color: #fff; }
+  .accordion-header-stats { display: flex; gap: 14px; font-size: 12px; color: #8f98a0; }
   .accordion-header-stats span { font-weight: 600; }
-  .accordion-arrow { color: #555; transition: transform 0.2s; font-size: 14px; }
+  .accordion-arrow { color: #8f98a0; transition: transform 0.2s; font-size: 14px; }
   .accordion-group.open .accordion-arrow { transform: rotate(90deg); }
-  .accordion-body { display: none; padding: 0 18px 14px; }
+  .accordion-body { display: none; padding: 0 16px 12px; }
   .accordion-group.open .accordion-body { display: block; }
   .accordion-body table { font-size: 12px; }
 
   /* Market activity section */
-  .market-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .market-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
   .strength-dist { display: flex; gap: 12px; align-items: flex-end; height: 80px; padding: 12px 0; }
-  .strength-dist-bar { flex: 1; border-radius: 4px 4px 0 0; min-width: 40px; text-align: center; font-size: 10px; font-weight: 700; position: relative; transition: height 0.3s; }
-  .strength-dist-label { position: absolute; bottom: -18px; left: 0; right: 0; font-size: 10px; color: #888; }
+  .strength-dist-bar { flex: 1; border-radius: 2px 2px 0 0; min-width: 40px; text-align: center; font-size: 10px; font-weight: 700; position: relative; transition: height 0.3s; }
+  .strength-dist-label { position: absolute; bottom: -18px; left: 0; right: 0; font-size: 10px; color: #8f98a0; }
 
   /* Animated counter */
   .counter-value { display: inline-block; }
+
+  /* Details/Summary Steam style */
+  details summary { list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -1783,16 +1803,31 @@ async function main() {
   <a href="#market-section">Market Activity</a>
   <a href="#history-section">History</a>
   <a href="#predictions-section">Predictions</a>
-  <a href="#inventory-section">Inventory</a>
   <a href="#browse-section">Browse</a>
+  <a href="#inventory-section">Inventory</a>
 </nav>
 
-<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+<div class="steam-header">
+  <div class="steam-header-inner">
+    <a href="https://steamcommunity.com/id/oldm8clint" target="_blank"><img class="steam-avatar" src="https://avatars.akamai.steamstatic.net/596b07e4b11e4821c9a695accd501f7180bc5f99_full.jpg" alt="clint"></a>
+    <div class="steam-profile-info">
+      <div class="steam-profile-name"><a href="https://steamcommunity.com/id/oldm8clint" target="_blank">clint</a></div>
+      <div class="steam-profile-sub">Budapest 2025 Major Sticker Portfolio &middot; Last updated ${todayFull} &middot; <a href="https://steamcommunity.com/id/oldm8clint/inventory/" target="_blank">${history.entries.length} snapshot${history.entries.length !== 1 ? 's' : ''}</a></div>
+    </div>
+    <div class="steam-profile-links">
+      <a class="steam-link-btn" href="https://steamcommunity.com/id/oldm8clint/inventory/" target="_blank">Inventory</a>
+      <a class="steam-link-btn" href="https://steamcommunity.com/id/oldm8clint" target="_blank">Profile</a>
+      <button class="steam-link-btn" onclick="downloadCSV()" style="cursor:pointer">Download CSV</button>
+    </div>
+  </div>
+</div>
+
+<div class="page-content">
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
   <div>
     <h1>Budapest 2025 Major Sticker Investments</h1>
-<div class="subtitle">Last updated <span>${todayFull}</span> &middot; All prices AUD &middot; Buy price $0.35/ea &middot; <span>${history.entries.length} snapshot${history.entries.length !== 1 ? 's' : ''}</span></div>
+<div class="subtitle">All prices AUD &middot; Buy price $0.35/ea &middot; <span>${data.length} items, ${grandQty} stickers</span></div>
   </div>
-  <button class="btn-download" onclick="downloadCSV()">Download CSV</button>
 </div>
 
 <div id="summary-section"></div>
@@ -2238,7 +2273,7 @@ ${projections.map(p => {
 </div>
 
 <details style="margin-bottom:20px;">
-<summary style="cursor:pointer;color:#ffd700;font-weight:600;font-size:14px;padding:10px 0;">Show Full Prediction Table (${timeProjections.length} intervals)</summary>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;font-size:14px;padding:10px 0;">Show Full Prediction Table (${timeProjections.length} intervals)</summary>
 <table class="history-table" style="max-width: 900px;margin-top:12px;">
 <thead><tr><th>Timeline</th><th>Projected Value</th><th>Est. ROI</th><th>Per Sticker</th><th>Actual Value</th><th>Actual ROI</th><th>Accuracy</th></tr></thead>
 <tbody>
@@ -2285,7 +2320,7 @@ ${timeProjections.filter(t => [0.5, 1, 3, 6, 12, 18, 24, 36, 48, 60, 84, 120, 14
 <h3>Sell Timing Recommendation</h3>
 <div class="sell-card">
   <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-    <div style="font-size:36px;font-weight:900;color:#ffd700;">SELL @ ${bestSellStr}</div>
+    <div style="font-size:36px;font-weight:900;color:#67c1f5;">SELL @ ${bestSellStr}</div>
   </div>
   <p style="color:#aaa;font-size:13px;margin-bottom:12px;">Based on historical major performance (excluding Katowice 2014), the optimal sell window for Budapest 2025 stickers is around <strong style="color:#fff">${peakWindow.label}</strong> after release (~${bestSellStr}), when similar-age majors averaged <span class="positive">+${peakWindow.avgROI.toFixed(0)}%</span> ROI.</p>
   <p style="color:#888;font-size:12px;">Reference majors at that age: ${peakWindow.majorsInRange.join(', ') || 'None'}</p>
@@ -2331,7 +2366,7 @@ ${sellWindows.map(sw => {
 <h3 id="browse-section">Browse by Player / Team (${sortedGroups.length} entities)</h3>
 <p style="color:#888;font-size:13px;margin-bottom:16px;">Click any player/team to expand quality variants. Sorted by total portfolio value.</p>
 <details open>
-<summary style="cursor:pointer;color:#ffd700;font-weight:600;font-size:14px;padding:8px 0;margin-bottom:12px;">Show/Hide Browse (${sortedGroups.length} players & teams)</summary>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;font-size:14px;padding:8px 0;margin-bottom:12px;">Show/Hide Browse (${sortedGroups.length} players & teams)</summary>
 <div id="accordionContainer">
 ${sortedGroups.map((g, gi) => {
   const pl = g.totalValue - g.totalInvested;
@@ -2367,7 +2402,7 @@ ${sortedGroups.map((g, gi) => {
 
 <h3 id="inventory-section">Full Inventory (${data.length} line items)</h3>
 <details>
-<summary style="cursor:pointer;color:#ffd700;font-weight:600;font-size:14px;padding:8px 0;margin-bottom:12px;">Show/Hide Inventory Table & Grid (${data.length} items, ${grandQty} stickers)</summary>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;font-size:14px;padding:8px 0;margin-bottom:12px;">Show/Hide Inventory Table & Grid (${data.length} items, ${grandQty} stickers)</summary>
 <div class="filter-bar">
   <input type="text" id="search" placeholder="Search sticker name..." oninput="filterTable()">
   <select id="qualFilter" onchange="filterTable()">
@@ -2478,9 +2513,10 @@ ${data.map((r, idx) => {
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
 
 <div class="footer">
-  <p>Double-click <strong>Budapest 2025 Spreadsheet.bat</strong> to refresh prices & record a new snapshot.</p>
-  <p>Data stored in D:/Desktop/.budapest2025/</p>
+  <p>Sticker Investment Tracker by <a href="https://steamcommunity.com/id/oldm8clint" target="_blank">clint</a> &middot; Prices updated 6x daily via GitHub Actions</p>
+  <p><a href="https://steamcommunity.com/id/oldm8clint/inventory/" target="_blank">Steam Inventory</a> &middot; <a href="https://steamcommunity.com/id/oldm8clint" target="_blank">Steam Profile</a></p>
 </div>
+</div><!-- end .page-content -->
 
 <script>
 function filterTable() {
@@ -2516,13 +2552,13 @@ new Chart(ctx, {
       {
         label: 'Portfolio Value (AUD)',
         data: ${JSON.stringify(portfolioHistory.map(p => +p.value.toFixed(2)))},
-        borderColor: '#ffd700',
-        backgroundColor: 'rgba(255, 215, 0, 0.05)',
+        borderColor: '#67c1f5',
+        backgroundColor: 'rgba(102, 192, 244, 0.08)',
         fill: true,
         tension: 0.3,
         borderWidth: 2,
         pointRadius: 4,
-        pointBackgroundColor: '#ffd700',
+        pointBackgroundColor: '#67c1f5',
       },
       {
         label: 'Total Cost (AUD)',
@@ -2690,8 +2726,8 @@ new Chart(pCtx, {
       {
         label: 'Projected Portfolio Value',
         data: predValues,
-        borderColor: '#ffd700',
-        backgroundColor: 'rgba(255,215,0,0.05)',
+        borderColor: '#67c1f5',
+        backgroundColor: 'rgba(102,192,244,0.08)',
         fill: true,
         tension: 0.4,
         borderWidth: 2.5,
@@ -2959,7 +2995,7 @@ function openModal(idx) {
     const range = max - min || 1;
     const w = 400, h = 50;
     const pts = prices.map((p, i) => (i / (prices.length - 1)) * w + ',' + (h - ((p - min) / range) * h)).join(' ');
-    spark.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" style="width:100%;height:50px;"><polyline points="' + pts + '" fill="none" stroke="#ffd700" stroke-width="2"/></svg>';
+    spark.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" style="width:100%;height:50px;"><polyline points="' + pts + '" fill="none" stroke="#67c1f5" stroke-width="2"/></svg>';
   } else {
     spark.innerHTML = '<div style="text-align:center;color:#555;font-size:12px;">Not enough data for sparkline</div>';
   }
