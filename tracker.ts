@@ -749,7 +749,7 @@ function getInvestmentGrade(roi: number, volume: number): { grade: string; color
 // ── Main ────────────────────────────────────────────────────────────
 async function main() {
   const now = new Date();
-  const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}-${String(now.getHours()).padStart(2,'0')}`;
   const todayFull = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')} UTC`;
   const history = await loadHistory();
   let imageCache = await fetchStickerImages();
