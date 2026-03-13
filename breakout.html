@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operation Breakout Case Tracker</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>📦</text></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Arial, sans-serif; background: #1b2838; color: #c6d4df; padding: 20px; min-height: 100vh; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  h1 { color: #fff; font-size: 32px; margin-bottom: 8px; }
+  .subtitle { color: #8f98a0; font-size: 14px; margin-bottom: 24px; }
+
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .card { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px; }
+  .card-label { color: #8f98a0; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 8px; }
+  .card-value { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .card-sub { color: #8f98a0; font-size: 12px; }
+
+  .positive { color: #5ba32b; }
+  .negative { color: #c33c3c; }
+  .neutral { color: #66c0f4; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  th { background: #1a3a52; color: #8f98a0; padding: 10px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #0e1a26; }
+  td { padding: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); }
+
+  .timeline { background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; padding: 16px; margin-bottom: 24px; }
+  .timeline-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.2); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { color: #8f98a0; font-size: 12px; min-width: 120px; }
+  .timeline-data { flex: 1; }
+  .timeline-price { font-weight: 700; }
+
+  h2 { color: #fff; font-size: 18px; margin-top: 32px; margin-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.3); padding-bottom: 8px; }
+
+  .footer { text-align: center; color: #8f98a0; font-size: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.3); }
+  a { color: #67c1f5; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📦 Operation Breakout Case Tracker</h1>
+  <p class="subtitle">Tracking investment performance of 19 Operation Breakout Weapon Cases | Updated 2026-03-13 12:55 UTC</p>
+
+  <div class="summary">
+    <div class="card">
+      <div class="card-label">Current Price (AUD)</div>
+      <div class="card-value neutral">$17.40</div>
+      <div class="card-sub">per case</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Portfolio Value</div>
+      <div class="card-value positive">$330.60</div>
+      <div class="card-sub">19 cases × $17.40</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Profit/Loss</div>
+      <div class="card-value positive">$+273.60</div>
+      <div class="card-sub">480.0% ROI</div>
+    </div>
+    <div class="card">
+      <div class="card-label">All-Time High</div>
+      <div class="card-value positive">$17.40</div>
+      <div class="card-sub">2026-03-13-12</div>
+    </div>
+    <div class="card">
+      <div class="card-label">All-Time Low</div>
+      <div class="card-value">$17.40</div>
+      <div class="card-sub">2026-03-13-12</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Snapshots</div>
+      <div class="card-value neutral">1</div>
+      <div class="card-sub">price updates recorded</div>
+    </div>
+  </div>
+
+  <h2>Investment Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Case Name</th>
+        <th>Qty</th>
+        <th>Cost/Unit</th>
+        <th>Total Invested</th>
+        <th>Current Price</th>
+        <th>Portfolio Value</th>
+        <th>Profit/Loss</th>
+        <th>ROI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://steamcommunity.com/market/listings/730/Operation%20Breakout%20Weapon%20Case" target="_blank">Operation Breakout Weapon Case</a></td>
+        <td>19</td>
+        <td>$3.00</td>
+        <td>$57.00</td>
+        <td>$17.40</td>
+        <td class="positive">$330.60</td>
+        <td class="positive">+$273.60</td>
+        <td class="positive">480.0%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="color: #8f98a0;">Run again on a different day to start tracking price history.</p>
+
+  <h2>Investment Analysis</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Value</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cost Basis (Total)</td>
+        <td>$57.00</td>
+        <td>Based on estimated $3 AUD per case from 2018</td>
+      </tr>
+      <tr>
+        <td>Current Value</td>
+        <td class="positive">$330.60</td>
+        <td>${inventory.qty} cases × $${currentPrice.toFixed(2)}</td>
+      </tr>
+      <tr>
+        <td>Unrealized P/L</td>
+        <td class="positive">+$273.60</td>
+        <td>480.0% ROI</td>
+      </tr>
+      <tr>
+        <td>Break-Even Price</td>
+        <td>$3.00</td>
+        <td>Already exceeded 10x profit margin</td>
+      </tr>
+      <tr>
+        <td>Days Held (approx)</td>
+        <td>2992</td>
+        <td>Since case discontinuation (Jan 2018)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Sell Recommendations</h2>
+  <div style="background: rgba(0,0,0,0.2); border-left: 3px solid #66c0f4; border-radius: 0 4px 4px 0; padding: 16px; margin-bottom: 24px;">
+    <p><strong>Conservative Strategy:</strong> Old cases show steady 10-20% annual appreciation. Consider taking profits gradually, especially if price spikes.</p>
+    <p><strong>Target Price Points:</strong></p>
+    <ul style="margin-left: 20px; color: #8f98a0; font-size: 13px;">
+      <li>🎯 $35-40 AUD: Sell 30-40% (take early profits, lock in gains)</li>
+      <li>🎯 $50+ AUD: Sell remaining position (exceptional market conditions)</li>
+      <li>📅 Best Time: November-December (holiday season) or major game updates</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>Operation Breakout Case Tracker • Last updated 2026-03-13 12:55 UTC</p>
+    <p><a href="https://oldm8clint.github.io/budapest2025/">← Back to Budapest 2025 Tracker</a></p>
+  </div>
+</div>
+
+<script>
+  // Auto-refresh every 30 minutes
+  setTimeout(() => location.reload(), 30 * 60 * 1000);
+</script>
+</body>
+</html>
