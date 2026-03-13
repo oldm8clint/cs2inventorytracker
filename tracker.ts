@@ -748,12 +748,20 @@ function getInvestmentGrade(roi: number, volume: number): { grade: string; color
 
 // ── Main ────────────────────────────────────────────────────────────
 async function main() {
-  const now = new Date();
-  const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}-${String(now.getHours()).padStart(2,'0')}`;
-  const todayFull = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')} UTC`;
-  const history = await loadHistory();
-  let imageCache = await fetchStickerImages();
-  imageCache = await fetchIconicImages(imageCache);
+  try {
+    console.log('=== Starting Budapest 2025 Tracker Update ===');
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}-${String(now.getHours()).padStart(2,'0')}`;
+    const todayFull = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')} UTC`;
+
+    console.log('Loading price history...');
+    const history = await loadHistory();
+    console.log(`Loaded ${history.entries.length} price snapshots`);
+
+    console.log('Fetching sticker images...');
+    let imageCache = await fetchStickerImages();
+    imageCache = await fetchIconicImages(imageCache);
+    console.log(`Image cache ready (${Object.keys(imageCache).length} entries)`);
 
   // Check if we already have today's data
   const existingToday = history.entries.find(e => e.date === today);
@@ -1515,7 +1523,9 @@ async function main() {
     csvOut += `${esc(r.name)},${esc(r.quality)},${r.qty},0.35,${r.totalCost.toFixed(2)},${r.currentPrice.toFixed(2)},${r.totalValue.toFixed(2)},${r.profitLoss.toFixed(2)},${r.roi},${r.marketUrl}\n`;
   }
   csvOut += `\nTOTAL,,${grandQty},,${grandCost.toFixed(2)},,${grandValue.toFixed(2)},${grandPL.toFixed(2)},${grandROI}%,\n`;
+  console.log(`Writing CSV (${csvOut.length} bytes)...`);
   await Bun.write(CSV_FILE, csvOut);
+  console.log(`CSV written successfully`);
 
   // ── Generate HTML ─────────────────────────────────────────────────
   const html = `<!DOCTYPE html>
@@ -3118,7 +3128,9 @@ function downloadCSV() {
 </body>
 </html>`;
 
+  console.log(`\nWriting HTML (${html.length} bytes) to ${HTML_FILE}...`);
   await Bun.write(HTML_FILE, html);
+  console.log(`HTML written successfully`);
 
   console.log(`\n========================================`);
   console.log(`DONE - ${todayFull}`);
@@ -3313,8 +3325,14 @@ function downloadCSV() {
 
     // Save updated milestones/signal data back to history
     await Bun.write(HISTORY_FILE, JSON.stringify(history, null, 2));
+  } catch (err) {
+    console.error('ERROR in main():', err);
+    console.error('Stack:', (err instanceof Error) ? err.stack : 'N/A');
+    throw err;
   }
-
 }
 
-main().catch(console.error);
+main().catch(err => {
+  console.error('FATAL ERROR:', err);
+  process.exit(1);
+});
