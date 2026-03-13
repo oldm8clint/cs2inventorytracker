@@ -353,10 +353,17 @@ const stickers: StickerEntry[] = [
   { name: "ztr", quality: "Normal", qty: 8 },
   { name: "zweih", quality: "Embroidered", qty: 2 },
   { name: "zweih", quality: "Normal", qty: 12 },
+  // ── Capsules ──
+  { name: "Legends", quality: "Capsule", qty: 20 },
+  { name: "Challengers", quality: "Capsule", qty: 20 },
+  { name: "Contenders", quality: "Capsule", qty: 20 },
 ];
 
 // ── Helpers ─────────────────────────────────────────────────────────
 function getMarketHashName(name: string, quality: string): string {
+  if (quality === 'Capsule') {
+    return `Budapest 2025 ${name} Sticker Capsule`;
+  }
   const q: Record<string, string> = {
     "Normal": "", "Embroidered": " (Embroidered)", "Gold": " (Gold)", "Holo": " (Holo)",
     "Normal (Champion)": " (Champion)", "Embroidered (Champion)": " (Embroidered, Champion)",
@@ -366,6 +373,7 @@ function getMarketHashName(name: string, quality: string): string {
 }
 
 function getSlabMarketHashName(name: string, quality: string): string {
+  if (quality === 'Capsule') return ''; // capsules don't have slabs
   const q: Record<string, string> = {
     "Normal": "", "Embroidered": " (Embroidered)", "Gold": " (Gold)", "Holo": " (Holo)",
     "Normal (Champion)": " (Champion)", "Embroidered (Champion)": " (Embroidered, Champion)",
@@ -762,6 +770,7 @@ async function main() {
       const s = stickers[i];
       const slabHash = getSlabMarketHashName(s.name, s.quality);
       const key = stickerKey(s.name, s.quality);
+      if (!slabHash) { slabPrices[key] = 0; continue; } // skip capsules
       process.stdout.write(`[SLAB ${i + 1}/${stickers.length}] ${slabHash}...`);
       const slabResult = await fetchPrice(slabHash, 1);
       slabPrices[key] = slabResult.price;
@@ -1533,6 +1542,7 @@ async function main() {
   .q-holo { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.15); }
   .q-gold { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.15); }
   .q-champion { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.15); }
+  .q-capsule { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.15); }
 
   /* ROI bar in table */
   .roi-bar { display: flex; align-items: center; gap: 6px; }
