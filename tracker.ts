@@ -655,7 +655,7 @@ const ICONIC_STICKERS: Record<string, { hashName: string; label: string; iconHas
   "Rio 2022": { hashName: "Sticker | s1mple (Gold) | Rio 2022", label: "s1mple Gold" },
   "Paris 2023": { hashName: "Sticker | NiKo (Gold) | Paris 2023", label: "NiKo Gold" },
   "Copenhagen 2024": { hashName: "Sticker | NiKo (Gold) | Copenhagen 2024", label: "NiKo Gold" },
-  "Shanghai 2024": { hashName: "Sticker | NiKo (Gold) | PGL Major Copenhagen 2024", label: "NiKo Gold" },
+  "Shanghai 2024": { hashName: "Sticker | NiKo (Gold) | Shanghai 2024", label: "NiKo Gold" },
   "Austin 2025": { hashName: "Sticker | NiKo (Gold) | Austin 2025", label: "NiKo Gold" },
 };
 
@@ -682,8 +682,8 @@ async function fetchIconicImages(cache: StickerImageCache): Promise<StickerImage
     return cache;
   }
 
-  // Only fetch a few missing ones per run to avoid burning rate limit
-  const toFetch = missing.slice(0, 3);
+  // Fetch up to 10 missing per run (with delays between)
+  const toFetch = missing.slice(0, 10);
   console.log(`  ${missing.length} iconic images still need fetching (doing ${toFetch.length} this run)...`);
   for (const [major, info] of toFetch) {
     console.log(`  Fetching iconic image for ${major}: ${info.label}...`);
@@ -1959,20 +1959,31 @@ async function main() {
   interface TimeProjection { months: number; label: string; avgROI: number; projectedValue: number; projectedPerSticker: number; actualValue?: number; actualROI?: number; }
   const timeProjections: TimeProjection[] = timePoints.map(targetMonths => {
     // Find majors near this age and interpolate
-    const nearby = projections.filter(p => Math.abs(p.monthsOld - targetMonths) <= 12);
+    // Use tighter search radius for young ages to avoid ancient major contamination
+    const searchRadius = targetMonths < 6 ? Math.max(3, targetMonths * 2) : Math.max(12, targetMonths * 0.5);
+    const nearby = projections.filter(p => {
+      const dist = Math.abs(p.monthsOld - targetMonths);
+      // For ages < 6 months, only use majors < 24 months old (modern CS2 economy)
+      if (targetMonths < 6 && p.monthsOld > 24) return false;
+      // For ages < 12 months, exclude pre-2019 majors (weight < 0.10)
+      if (targetMonths < 12 && (majorWeightMap[p.name] || 0.10) < 0.10) return false;
+      return dist <= searchRadius;
+    });
     let avgROI: number;
     if (nearby.length > 0) {
-      // Weight closer majors more heavily, with recency bias for last 4 majors
+      // Weight closer majors more heavily, with recency bias
       let totalWeight = 0, weightedROI = 0;
       for (const p of nearby) {
-        const w = (1 / (1 + Math.abs(p.monthsOld - targetMonths))) * (majorWeightMap[p.name] || 0.10);
+        const distW = 1 / (1 + Math.abs(p.monthsOld - targetMonths));
+        const w = distW * (majorWeightMap[p.name] || 0.10);
         weightedROI += p.roi * w;
         totalWeight += w;
       }
       avgROI = weightedROI / totalWeight;
     } else {
-      // Extrapolate from closest
-      const sorted = [...projections].sort((a, b) => Math.abs(a.monthsOld - targetMonths) - Math.abs(b.monthsOld - targetMonths));
+      // Extrapolate from closest modern major (weight >= 0.10)
+      const modern = projections.filter(p => (majorWeightMap[p.name] || 0.10) >= 0.10);
+      const sorted = [...(modern.length > 0 ? modern : projections)].sort((a, b) => Math.abs(a.monthsOld - targetMonths) - Math.abs(b.monthsOld - targetMonths));
       avgROI = sorted[0].roi;
     }
     const projValue = grandCost * (1 + avgROI / 100);
@@ -1987,6 +1998,7 @@ async function main() {
 
   // Match actual data from price history snapshots
   const BUDAPEST_EVENT = new Date(config.eventReleaseDate);
+  const currentAgeMonths = (refDate.getTime() - BUDAPEST_EVENT.getTime()) / (30.44 * 86400000);
   for (const tp of timeProjections) {
     const targetDate = new Date(BUDAPEST_EVENT.getTime() + tp.months * 30.44 * 86400000);
     if (targetDate <= refDate && history.entries.length > 0) {
@@ -2000,6 +2012,25 @@ async function main() {
       if (closest && closestDist < 45 * 86400000) { // within 45 days
         tp.actualValue = closest.totalValue;
         tp.actualROI = ((closest.totalValue - grandCost) / grandCost) * 100;
+      }
+    }
+  }
+
+  // Override projections for past/current months with actual observed data
+  // This fixes the issue where no historical major is young enough for short-term predictions
+  for (const tp of timeProjections) {
+    if (tp.months <= currentAgeMonths) {
+      if (tp.actualValue !== undefined) {
+        // Use actual snapshot value
+        tp.projectedValue = tp.actualValue;
+        tp.avgROI = tp.actualROI!;
+        tp.projectedPerSticker = tp.projectedValue / userTotal;
+      } else {
+        // Interpolate linearly between cost basis (month 0) and current value
+        const t = tp.months / currentAgeMonths;
+        tp.projectedValue = grandCost + (grandValue - grandCost) * t;
+        tp.avgROI = ((tp.projectedValue - grandCost) / grandCost) * 100;
+        tp.projectedPerSticker = tp.projectedValue / userTotal;
       }
     }
   }
@@ -2150,18 +2181,33 @@ async function main() {
     { label: '10 Years', months: 120, avgROI: 0, majorsInRange: [], recommendation: '' },
   ];
   const realisticProjections = projections.filter(p => (majorWeightMap[p.name] || 0) >= 0.05);
+  const currentROIpct = ((grandValue - grandCost) / grandCost) * 100;
   for (const sw of sellWindows) {
-    const searchRadius = Math.max(6, sw.months * 0.5); // proportional search radius
-    const nearby = realisticProjections.filter(p => Math.abs(p.monthsOld - sw.months) <= searchRadius);
-    if (nearby.length > 0) {
-      let tw = 0, wr = 0;
-      for (const p of nearby) {
-        const w = (1 / (1 + Math.abs(p.monthsOld - sw.months))) * (majorWeightMap[p.name] || 0.10);
-        wr += p.roi * w;
-        tw += w;
+    // For past/current months, use actual observed trajectory instead of historical major interpolation
+    if (sw.months <= currentAgeMonths) {
+      const t = sw.months / currentAgeMonths;
+      sw.avgROI = currentROIpct * t;
+      sw.majorsInRange = ['Actual'];
+    } else {
+      // Tighter radius for early windows so they produce different values
+      const searchRadius = sw.months < 3 ? Math.max(2, sw.months * 2) : Math.max(6, sw.months * 0.5);
+      const nearby = realisticProjections.filter(p => {
+        const dist = Math.abs(p.monthsOld - sw.months);
+        // For early windows, exclude ancient majors
+        if (sw.months < 6 && p.monthsOld > 24) return false;
+        if (sw.months < 12 && (majorWeightMap[p.name] || 0.10) < 0.10) return false;
+        return dist <= searchRadius;
+      });
+      if (nearby.length > 0) {
+        let tw = 0, wr = 0;
+        for (const p of nearby) {
+          const w = (1 / (1 + Math.abs(p.monthsOld - sw.months))) * (majorWeightMap[p.name] || 0.10);
+          wr += p.roi * w;
+          tw += w;
+        }
+        sw.avgROI = wr / tw;
+        sw.majorsInRange = nearby.map(p => p.name);
       }
-      sw.avgROI = wr / tw;
-      sw.majorsInRange = nearby.map(p => p.name);
     }
     if (sw.avgROI > 500) sw.recommendation = 'STRONG SELL';
     else if (sw.avgROI > 200) sw.recommendation = 'CONSIDER SELLING';
@@ -2784,6 +2830,8 @@ async function main() {
   .quality-chip { padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 </head>
 <body>
 
@@ -3510,7 +3558,7 @@ ${weeklySnapshots.length > 0 ? `
   <canvas id="historicalChart"></canvas>
 </div>
 
-<table class="history-table" style="max-width: 1400px;">
+<table class="history-table" style="max-width: 1200px; font-size: 12px;">
 <thead><tr>
   <th></th>
   <th>Major</th>
@@ -3527,7 +3575,7 @@ ${weeklySnapshots.length > 0 ? `
   <th title="Skinport average price with 15% markup for Steam fee parity" style="color:#c084fc;border-left:1px solid #2a475e;">SP Price (+15%)</th>
   <th title="Skinport 7-day sales volume" style="color:#60a5fa;">SP Vol 7d</th>
   <th title="Active listings on Skinport" style="color:#f59e0b;">SP Listings</th>
-  <th style="min-width:200px;border-left:1px solid #2a475e;">Why It Performed This Way</th>
+  <th style="min-width:140px;max-width:180px;border-left:1px solid #2a475e;">Context</th>
 </tr></thead>
 <tbody>
 ${projections.map(p => {
@@ -3556,7 +3604,7 @@ ${projections.map(p => {
     '<td style="color:#c084fc;border-left:1px solid #2a475e;">' + (m.skinportAvgPrice > 0 ? '$' + m.skinportAvgPrice.toFixed(2) : '<span style="color:#555">—</span>') + '</td>' +
     '<td style="color:#60a5fa">' + (m.skinportVol7d > 0 ? m.skinportVol7d.toLocaleString() : '<span style="color:#555">—</span>') + '</td>' +
     '<td style="color:#f59e0b">' + (m.skinportListings > 0 ? m.skinportListings.toLocaleString() : '<span style="color:#555">—</span>') + '</td>' +
-    '<td style="color:#8f98a0;font-size:11px;max-width:280px;line-height:1.3;border-left:1px solid #2a475e;">' + m.notes + '</td>' +
+    '<td style="color:#8f98a0;font-size:11px;max-width:180px;line-height:1.3;border-left:1px solid #2a475e;" title="' + m.notes.replace(/"/g, '&quot;') + '">' + (m.notes.length > 100 ? m.notes.slice(0, 100) + '...' : m.notes) + '</td>' +
   '</tr>';
 }).join('\n')}
 <tr style="border-top:2px solid #ffd700;font-weight:600;">
@@ -4007,6 +4055,16 @@ function sortTable(col) {
 }
 
 ${portfolioHistory.length > 1 ? `
+// Enable zoom/pan on all charts (scroll to zoom, drag to pan, double-click to reset)
+if (typeof ChartZoom !== 'undefined') {
+  Chart.register(ChartZoom);
+  Chart.defaults.plugins.zoom = {
+    zoom: { wheel: { enabled: true, speed: 0.1 }, pinch: { enabled: true }, mode: 'x',
+      onZoomComplete: function({chart}) { chart.options.plugins.zoom.pan.enabled = true; } },
+    pan: { enabled: true, mode: 'x' },
+  };
+}
+const zoomOpts = undefined; // not needed, using global defaults
 const ctx = document.getElementById('portfolioChart').getContext('2d');
 new Chart(ctx, {
   type: 'line',
@@ -4269,7 +4327,7 @@ new Chart(pCtx, {
   for (const q of qualNames) {
     const qStickers = ${JSON.stringify(stickers)}.filter(s => s.quality === q || (q === 'Normal' && s.quality.startsWith('Normal')));
     const qQty = qStickers.reduce((a, s) => a + s.qty, 0);
-    const qCost = qQty * config.costPerUnit;
+    const qCost = qQty * ${config.costPerUnit};
     qualPredData[q] = predValues.map((v, i) => {
       if (i === 0) {
         const qCurrentVal = ${JSON.stringify(Object.fromEntries(
