@@ -6,7 +6,7 @@
 <title>CS2 Portfolio — clint</title>
 <link rel="icon" href="https://community.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg">
 <meta property="og:title" content="CS2 Portfolio — clint">
-<meta property="og:description" content="Full Steam CS2 inventory portfolio tracker — 60 items worth $1910.34 AUD">
+<meta property="og:description" content="Full Steam CS2 inventory portfolio tracker — 60 items worth $1766.51 AUD">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,7 +97,7 @@
   /* Full table */
   table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
   thead { position: sticky; top: 48px; z-index: 50; }
-  th { background: #1a3a52; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
+  th { background: #1a3a52; box-shadow: 0 1px 0 #0e1a26; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
   th:hover { color: #66c0f4; }
   td { padding: 7px 8px; border-bottom: 1px solid rgba(0,0,0,0.15); font-variant-numeric: tabular-nums; }
   tbody tr { transition: background 0.15s; }
@@ -153,11 +153,11 @@
   <span>1 AUD = <span style="color:#fff">0.6128</span> EUR</span>
   <span>1 AUD = <span style="color:#fff">0.5293</span> GBP</span>
   <span style="color:#2a475e">|</span><span style="color:#f59e0b;font-weight:600;">Crypto:</span>
-  <span>BTC = <span style="color:#f7931a">$70,537</span></span>
-  <span>ETH = <span style="color:#627eea">$2,068.48</span></span>
-  <span>SOL = <span style="color:#9945ff">$86.88</span></span>
+  <span>BTC = <span style="color:#f7931a">$71,115</span></span>
+  <span>ETH = <span style="color:#627eea">$2,092.42</span></span>
+  <span>SOL = <span style="color:#9945ff">$88.28</span></span>
   <span style="color:#2a475e">|</span>
-  <span>Portfolio: <span style="color:#fff">$1339.12</span> USD</span>
+  <span>Portfolio: <span style="color:#fff">$1238.30</span> USD</span>
 </div>
 
 <div class="steam-header">
@@ -165,7 +165,7 @@
     <a href="https://steamcommunity.com/id/oldm8clint" target="_blank"><img class="steam-avatar" src="https://avatars.akamai.steamstatic.com/596b07e4b11e4821c9a695accd501f7180bc5f99_full.jpg" alt="clint"></a>
     <div class="steam-profile-info">
       <div class="steam-profile-name"><a href="https://steamcommunity.com/id/oldm8clint" target="_blank">clint</a></div>
-      <div class="steam-profile-sub">CS2 Portfolio &mdash; 60 items &mdash; Last updated: <span style="color:#acb2b8">14 Mar 2026, 9:02 pm AEST</span></div>
+      <div class="steam-profile-sub">CS2 Portfolio &mdash; 60 items &mdash; Last updated: <span style="color:#acb2b8">14 Mar 2026, 4:18 pm AEST</span></div>
     </div>
     <div class="steam-profile-links">
       <a class="steam-link-btn" href="https://steamcommunity.com/id/oldm8clint/inventory/#730" target="_blank">Steam Inventory</a>
@@ -174,6 +174,19 @@
   </div>
 </div>
 
+<!-- Create Your Own Tracker Banner -->
+<div id="createBanner" style="background:linear-gradient(135deg,#1a2a3a 0%,#1b2838 100%);border:1px solid #2a475e;border-radius:0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+  <div style="flex:1;min-width:200px;">
+    <div style="color:#fff;font-weight:600;font-size:15px;margin-bottom:4px;">Track Your Own CS2 Portfolio</div>
+    <div style="color:#8f98a0;font-size:13px;">Fork this project, import your Steam inventory, and deploy your own tracker in under 5 minutes.</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="https://github.com/oldm8clint/cs2inventorytracker#create-your-own-tracker" target="_blank" style="background:linear-gradient(135deg,#1a9fff,#0d6efd);color:#fff;padding:8px 20px;border-radius:3px;font-weight:600;font-size:13px;text-decoration:none;white-space:nowrap;border:none;">Create Your Own</a>
+    <button onclick="document.getElementById('createBanner').style.display='none';localStorage.setItem('hidePortfolioBanner','1')" style="background:none;border:none;color:#555;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;" title="Dismiss">&times;</button>
+  </div>
+</div>
+<script>if(localStorage.getItem('hidePortfolioBanner')==='1')document.getElementById('createBanner').style.display='none';</script>
+
 <div class="page-content">
 
 <!-- Summary Section -->
@@ -181,8 +194,8 @@
 <div class="summary">
   <div class="card">
     <div class="card-label">Total Value</div>
-    <div class="card-value neutral">$1910.34</div>
-    <div class="card-sub">~$1339.12 USD</div>
+    <div class="card-value neutral">$1766.51</div>
+    <div class="card-sub">~$1238.30 USD</div>
   </div>
   <div class="card">
     <div class="card-label">Total Items</div>
@@ -196,8 +209,8 @@
   </div>
   <div class="card">
     <div class="card-label">Profit / Loss</div>
-    <div class="card-value positive">+$1081.99</div>
-    <div class="card-sub">ROI: 130.6%</div>
+    <div class="card-value negative">$-289.42</div>
+    <div class="card-sub">ROI: -34.9%</div>
   </div>
   <div class="card">
     <div class="card-label">24h Change</div>
@@ -206,8 +219,8 @@
   </div>
   <div class="card">
     <div class="card-label">7d Change</div>
-    <div class="card-value negative">$-136.05</div>
-    <div class="card-sub">-6.6%</div>
+    <div class="card-value positive">+$333.84</div>
+    <div class="card-sub">+23.3%</div>
   </div>
   <div class="card">
     <div class="card-label">Marketable</div>
@@ -239,8 +252,8 @@
         <span class="cat-name" style="color:#ef4444">Skins</span>
         <span class="cat-count">12 items</span>
       </div>
-      <div class="cat-value">$1371.11</div>
-      <div class="cat-pct">71.8% of portfolio</div>
+      <div class="cat-value">$1208.47</div>
+      <div class="cat-pct">68.4% of portfolio</div>
     </div>
 
     <div class="cat-card" style="border-left:3px solid #6b7280">
@@ -248,8 +261,8 @@
         <span class="cat-name" style="color:#6b7280">Sticker Investments</span>
         <span class="cat-count">1 item</span>
       </div>
-      <div class="cat-value">$303.21</div>
-      <div class="cat-pct">15.9% of portfolio</div>
+      <div class="cat-value">$309.60</div>
+      <div class="cat-pct">17.5% of portfolio</div>
     </div>
 
     <div class="cat-card" style="border-left:3px solid #f59e0b">
@@ -257,8 +270,8 @@
         <span class="cat-name" style="color:#f59e0b">Cases</span>
         <span class="cat-count">19 items</span>
       </div>
-      <div class="cat-value">$226.10</div>
-      <div class="cat-pct">11.8% of portfolio</div>
+      <div class="cat-value">$229.33</div>
+      <div class="cat-pct">13.0% of portfolio</div>
     </div>
 
     <div class="cat-card" style="border-left:3px solid #8b5cf6">
@@ -266,8 +279,8 @@
         <span class="cat-name" style="color:#8b5cf6">Stickers</span>
         <span class="cat-count">6 items</span>
       </div>
-      <div class="cat-value">$9.51</div>
-      <div class="cat-pct">0.5% of portfolio</div>
+      <div class="cat-value">$18.68</div>
+      <div class="cat-pct">1.1% of portfolio</div>
     </div>
 
     <div class="cat-card" style="border-left:3px solid #34d399">
@@ -275,7 +288,7 @@
         <span class="cat-name" style="color:#34d399">Graffiti</span>
         <span class="cat-count">15 items</span>
       </div>
-      <div class="cat-value">$0.41</div>
+      <div class="cat-value">$0.43</div>
       <div class="cat-pct">0.0% of portfolio</div>
     </div>
 
@@ -334,80 +347,80 @@
       <div class="mv-rank">#1</div>
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Tk71ruQBH4jYLf-i5U-fe9V7d9JfOaD2uZ0vpJtuNgcCW6khUz_TiHydigcXyXawRxX5QmQLQIsxC9kYfgN--w5QCLi4IRzyz42yofvCZ1o7FVbJfAqIA/96x96" class="mv-img" loading="lazy">
       <div class="mv-name">★ Specialist Gloves | Field Agent</div>
-      <div class="mv-price">$788.29</div>
-      <div class="mv-sub">1x @ $788.29 | Skins</div>
+      <div class="mv-price">$785.45</div>
+      <div class="mv-sub">1x @ $785.45 | Skins</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#2</div>
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0Oq8ab1SLaSsAm6Xyfo46LAxTHrgxU8lt2WHmNf7cS-Ub1JxDpQkQecO40OwxN2yZbvg41DciJUFk3vXysuZ3Q/96x96" class="mv-img" loading="lazy">
       <div class="mv-name">M4A4 | X-Ray</div>
-      <div class="mv-price">$578.92</div>
-      <div class="mv-sub">1x @ $578.92 | Skins</div>
+      <div class="mv-price">$417.62</div>
+      <div class="mv-sub">1x @ $417.62 | Skins</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#3</div>
       <img src="https://cdn.csgoskins.gg/public/uih/tournaments/aHR0cHM6Ly9jc2dvc2tpbnMuZ2cvYnVpbGQvYXNzZXRzLzIwMjUtc3RhcmxhZGRlci1idWRhcGVzdC1ESnM3aFlfdi5wbmc-/auto/auto/85/notrim/eec62b9fb416cc1a7052736b519b8499.webp" class="mv-img" loading="lazy">
       <div class="mv-name">Budapest 2025 Stickers</div>
-      <div class="mv-price">$303.21</div>
-      <div class="mv-sub">1x @ $303.21 | Sticker Investments</div>
+      <div class="mv-price">$309.60</div>
+      <div class="mv-sub">1x @ $309.60 | Sticker Investments</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#4</div>
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fqWxdv_b8O_w5eKXBWWXHw-smtrBvTHDmwEsl4jvWn4z_I3qWZwV1X5ZwW6dU5RcRF1o0/96x96" class="mv-img" loading="lazy">
       <div class="mv-name">Operation Breakout Weapon Case</div>
-      <div class="mv-price">$226.10</div>
-      <div class="mv-sub">19x @ $11.90 | Cases</div>
+      <div class="mv-price">$229.33</div>
+      <div class="mv-sub">19x @ $12.07 | Cases</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#5</div>
-      <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfgXojs_4s3UK66v6OaJrcKKSWTXHwLdzs7c7SXmwkxwl5z_Tw9qocyrDZgV0W5duBbldi9L4d9Y/96x96" class="mv-img" loading="lazy">
-      <div class="mv-name">Sticker | Xyp9x | Krakow 2017</div>
-      <div class="mv-price">$3.00</div>
-      <div class="mv-sub">1x @ $3.00 | Stickers</div>
+      <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfg7_n46urCcOt6X_bfw8JaGWXWOVmeh16bZoTHrgwRsksmvdz9-hciifPQQgA4wwG7BmpHhbjQ/96x96" class="mv-img" loading="lazy">
+      <div class="mv-name">Sticker | Snax | Krakow 2017</div>
+      <div class="mv-price">$8.60</div>
+      <div class="mv-sub">1x @ $8.60 | Stickers</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#6</div>
-      <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfhb7n5Py_zteofT_Pqc0I6nDWjXIwuwl4bhvH3vilEV-5T_Sw4uvci3EPwAgDJF0QOAU8k7vb2SRD94/96x96" class="mv-img" loading="lazy">
-      <div class="mv-name">Sticker | Kjaerbye | Krakow 2017</div>
-      <div class="mv-price">$2.35</div>
-      <div class="mv-sub">1x @ $2.35 | Stickers</div>
+      <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfgXojs_4s3UK66v6OaJrcKKSWTXHwLdzs7c7SXmwkxwl5z_Tw9qocyrDZgV0W5duBbldi9L4d9Y/96x96" class="mv-img" loading="lazy">
+      <div class="mv-name">Sticker | Xyp9x | Krakow 2017</div>
+      <div class="mv-price">$4.23</div>
+      <div class="mv-sub">1x @ $4.23 | Stickers</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#7</div>
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfhv0jNi2pCFauKf7PaU5dqfHWDeTmepw5ONvTSzixxgmsG6EztascXjDOwYmFNIuEtjLp9YF/96x96" class="mv-img" loading="lazy">
       <div class="mv-name">Sticker | fer | Krakow 2017</div>
-      <div class="mv-price">$2.19</div>
-      <div class="mv-sub">1x @ $2.19 | Stickers</div>
+      <div class="mv-price">$3.11</div>
+      <div class="mv-sub">1x @ $3.11 | Stickers</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#8</div>
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk7uORbKF-JeKHMWKRxuJzj-JmQTqnlB8rtgKIn4vwNCaJaA51CJEiE-NethS4w9TvYbjn5AWIjdgXm3r4jykcvX1r5r4HVvYtqLqX0V-aKjERig/96x96" class="mv-img" loading="lazy">
       <div class="mv-name">Desert Eagle | Directive</div>
-      <div class="mv-price">$1.85</div>
-      <div class="mv-sub">1x @ $1.85 | Skins</div>
+      <div class="mv-price">$2.70</div>
+      <div class="mv-sub">1x @ $2.70 | Skins</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#9</div>
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmuOHaC619h7cj35VTqVBP4io_fr3IJur2mZ6hiH_WFB2OVz-1z_rloFiyxlBwh4jnXydevc3rDagR0WMR3RuVZskLulNXlZO6w4lDbiIJbjXKpuprLW0s/96x96" class="mv-img" loading="lazy">
       <div class="mv-name">Sticker | Evidence (Holo)</div>
-      <div class="mv-price">$1.21</div>
-      <div class="mv-sub">1x @ $1.21 | Stickers</div>
+      <div class="mv-price">$1.76</div>
+      <div class="mv-sub">1x @ $1.76 | Stickers</div>
     </div>
 
     <div class="mv-card">
       <div class="mv-rank">#10</div>
-      <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmyMnTGtRl2-7j35WbkUiLhn4bl72xZv6X5avRoIfTLXzfGw-wvsbI7Gnjhl00h5mTXmYr_JHKebwZ0CJYjW6dU5c_PmZQr/96x96" class="mv-img" loading="lazy">
-      <div class="mv-name">Sticker | Co Co Co</div>
-      <div class="mv-price">$0.76</div>
-      <div class="mv-sub">1x @ $0.76 | Stickers</div>
+      <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2kpnj9h1Y-s2pZKtuK8-aAGOZxuFJveRtRjy-2xh26zyGw4ypcHiRZwR1WMB4ReAL5hG7wNLnN-23tVPdgoxHmSX23CtXrnE84Ix86A0/96x96" class="mv-img" loading="lazy">
+      <div class="mv-name">StatTrak™ Glock-18 | Off World</div>
+      <div class="mv-price">$1.03</div>
+      <div class="mv-sub">1x @ $1.03 | Skins</div>
     </div>
 </div>
 
@@ -417,16 +430,16 @@
     <div class="perf-card positive-border">
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fqWxdv_b8O_w5eKXBWWXHw-smtrBvTHDmwEsl4jvWn4z_I3qWZwV1X5ZwW6dU5RcRF1o0/96x96" class="perf-img" loading="lazy">
       <div class="perf-name">Operation Breakout Weapon Case</div>
-      <div class="perf-price">$11.90</div>
-      <div class="perf-roi positive">-10.9%</div>
+      <div class="perf-price">$12.07</div>
+      <div class="perf-roi positive">-9.6%</div>
       <div class="perf-sub">19x | Cost: $13.35</div>
     </div>
 
     <div class="perf-card positive-border">
       <img src="https://cdn.csgoskins.gg/public/uih/tournaments/aHR0cHM6Ly9jc2dvc2tpbnMuZ2cvYnVpbGQvYXNzZXRzLzIwMjUtc3RhcmxhZGRlci1idWRhcGVzdC1ESnM3aFlfdi5wbmc-/auto/auto/85/notrim/eec62b9fb416cc1a7052736b519b8499.webp" class="perf-img" loading="lazy">
       <div class="perf-name">Budapest 2025 Stickers</div>
-      <div class="perf-price">$303.21</div>
-      <div class="perf-roi positive">-47.2%</div>
+      <div class="perf-price">$309.60</div>
+      <div class="perf-roi positive">-46.1%</div>
       <div class="perf-sub">1x | Cost: $574.70</div>
     </div>
 </div>
@@ -437,16 +450,16 @@
     <div class="perf-card negative-border">
       <img src="https://cdn.csgoskins.gg/public/uih/tournaments/aHR0cHM6Ly9jc2dvc2tpbnMuZ2cvYnVpbGQvYXNzZXRzLzIwMjUtc3RhcmxhZGRlci1idWRhcGVzdC1ESnM3aFlfdi5wbmc-/auto/auto/85/notrim/eec62b9fb416cc1a7052736b519b8499.webp" class="perf-img" loading="lazy">
       <div class="perf-name">Budapest 2025 Stickers</div>
-      <div class="perf-price">$303.21</div>
-      <div class="perf-roi negative">-47.2%</div>
+      <div class="perf-price">$309.60</div>
+      <div class="perf-roi negative">-46.1%</div>
       <div class="perf-sub">1x | Cost: $574.70</div>
     </div>
 
     <div class="perf-card negative-border">
       <img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fqWxdv_b8O_w5eKXBWWXHw-smtrBvTHDmwEsl4jvWn4z_I3qWZwV1X5ZwW6dU5RcRF1o0/96x96" class="perf-img" loading="lazy">
       <div class="perf-name">Operation Breakout Weapon Case</div>
-      <div class="perf-price">$11.90</div>
-      <div class="perf-roi negative">-10.9%</div>
+      <div class="perf-price">$12.07</div>
+      <div class="perf-roi negative">-9.6%</div>
       <div class="perf-sub">19x | Cost: $13.35</div>
     </div>
 </div>
@@ -490,35 +503,35 @@
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Tk71ruQBH4jYLf-i5U-fe9V7d9JfOaD2uZ0vpJtuNgcCW6khUz_TiHydigcXyXawRxX5QmQLQIsxC9kYfgN--w5QCLi4IRzyz42yofvCZ1o7FVbJfAqIA/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/%E2%98%85%20Specialist%20Gloves%20%7C%20Field%20Agent%20(Minimal%20Wear)" target="_blank">★ Specialist Gloves | Field Agent</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$788.29</td>
-      <td style="text-align:right;font-weight:600">$788.29</td>
+      <td style="text-align:right">$785.45</td>
+      <td style="text-align:right;font-weight:600">$785.45</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">20</td>
+      <td style="text-align:right;color:#8f98a0">21</td>
     </tr>
 <tr>
       <td>2</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0Oq8ab1SLaSsAm6Xyfo46LAxTHrgxU8lt2WHmNf7cS-Ub1JxDpQkQecO40OwxN2yZbvg41DciJUFk3vXysuZ3Q/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/M4A4%20%7C%20X-Ray%20(Factory%20New)" target="_blank">M4A4 | X-Ray</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$578.92</td>
-      <td style="text-align:right;font-weight:600">$578.92</td>
+      <td style="text-align:right">$417.62</td>
+      <td style="text-align:right;font-weight:600">$417.62</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">26</td>
+      <td style="text-align:right;color:#8f98a0">25</td>
     </tr>
 <tr>
       <td>3</td>
       <td><div class="item-name-cell"><img src="https://cdn.csgoskins.gg/public/uih/tournaments/aHR0cHM6Ly9jc2dvc2tpbnMuZ2cvYnVpbGQvYXNzZXRzLzIwMjUtc3RhcmxhZGRlci1idWRhcGVzdC1ESnM3aFlfdi5wbmc-/auto/auto/85/notrim/eec62b9fb416cc1a7052736b519b8499.webp" class="item-thumb" loading="lazy"><span><a href="budapest.html" target="_blank">Budapest 2025 Stickers</a></span></div></td>
       <td><span class="cat-badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728044">Sticker Investments</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$303.21</td>
-      <td style="text-align:right;font-weight:600">$303.21</td>
+      <td style="text-align:right">$309.60</td>
+      <td style="text-align:right;font-weight:600">$309.60</td>
       <td style="text-align:right">$574.70</td>
-      <td style="text-align:right" class="negative">-$271.49</td>
-      <td style="text-align:right" class="negative">-47.2%</td>
+      <td style="text-align:right" class="negative">-$265.10</td>
+      <td style="text-align:right" class="negative">-46.1%</td>
       <td style="text-align:right;color:#8f98a0">-</td>
     </tr>
 <tr>
@@ -526,44 +539,44 @@
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fqWxdv_b8O_w5eKXBWWXHw-smtrBvTHDmwEsl4jvWn4z_I3qWZwV1X5ZwW6dU5RcRF1o0/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Operation%20Breakout%20Weapon%20Case" target="_blank">Operation Breakout Weapon Case</a></span></div></td>
       <td><span class="cat-badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44">Cases</span></td>
       <td style="text-align:right">19</td>
-      <td style="text-align:right">$11.90</td>
-      <td style="text-align:right;font-weight:600">$226.10</td>
+      <td style="text-align:right">$12.07</td>
+      <td style="text-align:right;font-weight:600">$229.33</td>
       <td style="text-align:right">$13.35</td>
-      <td style="text-align:right" class="negative">-$27.55</td>
-      <td style="text-align:right" class="negative">-10.9%</td>
-      <td style="text-align:right;color:#8f98a0">13,462</td>
+      <td style="text-align:right" class="negative">-$24.32</td>
+      <td style="text-align:right" class="negative">-9.6%</td>
+      <td style="text-align:right;color:#8f98a0">13,115</td>
     </tr>
 <tr>
       <td>5</td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfg7_n46urCcOt6X_bfw8JaGWXWOVmeh16bZoTHrgwRsksmvdz9-hciifPQQgA4wwG7BmpHhbjQ/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20Snax%20%7C%20Krakow%202017" target="_blank">Sticker | Snax | Krakow 2017</a></span></div></td>
+      <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">$8.60</td>
+      <td style="text-align:right;font-weight:600">$8.60</td>
+      <td style="text-align:right">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right;color:#8f98a0">30</td>
+    </tr>
+<tr>
+      <td>6</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfgXojs_4s3UK66v6OaJrcKKSWTXHwLdzs7c7SXmwkxwl5z_Tw9qocyrDZgV0W5duBbldi9L4d9Y/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20Xyp9x%20%7C%20Krakow%202017" target="_blank">Sticker | Xyp9x | Krakow 2017</a></span></div></td>
       <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$3.00</td>
-      <td style="text-align:right;font-weight:600">$3.00</td>
+      <td style="text-align:right">$4.23</td>
+      <td style="text-align:right;font-weight:600">$4.23</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right;color:#8f98a0">35</td>
     </tr>
 <tr>
-      <td>6</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfhb7n5Py_zteofT_Pqc0I6nDWjXIwuwl4bhvH3vilEV-5T_Sw4uvci3EPwAgDJF0QOAU8k7vb2SRD94/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20Kjaerbye%20%7C%20Krakow%202017" target="_blank">Sticker | Kjaerbye | Krakow 2017</a></span></div></td>
-      <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
-      <td style="text-align:right">1</td>
-      <td style="text-align:right">$2.35</td>
-      <td style="text-align:right;font-weight:600">$2.35</td>
-      <td style="text-align:right">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">7</td>
-    </tr>
-<tr>
       <td>7</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMGzNHCY8gQlpdC7-VDgfhv0jNi2pCFauKf7PaU5dqfHWDeTmepw5ONvTSzixxgmsG6EztascXjDOwYmFNIuEtjLp9YF/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20fer%20%7C%20Krakow%202017" target="_blank">Sticker | fer | Krakow 2017</a></span></div></td>
       <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$2.19</td>
-      <td style="text-align:right;font-weight:600">$2.19</td>
+      <td style="text-align:right">$3.11</td>
+      <td style="text-align:right;font-weight:600">$3.11</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
@@ -574,99 +587,111 @@
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk7uORbKF-JeKHMWKRxuJzj-JmQTqnlB8rtgKIn4vwNCaJaA51CJEiE-NethS4w9TvYbjn5AWIjdgXm3r4jykcvX1r5r4HVvYtqLqX0V-aKjERig/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Desert%20Eagle%20%7C%20Directive%20(Field-Tested)" target="_blank">Desert Eagle | Directive</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$1.85</td>
-      <td style="text-align:right;font-weight:600">$1.85</td>
+      <td style="text-align:right">$2.70</td>
+      <td style="text-align:right;font-weight:600">$2.70</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">349</td>
+      <td style="text-align:right;color:#8f98a0">346</td>
     </tr>
 <tr>
       <td>9</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmuOHaC619h7cj35VTqVBP4io_fr3IJur2mZ6hiH_WFB2OVz-1z_rloFiyxlBwh4jnXydevc3rDagR0WMR3RuVZskLulNXlZO6w4lDbiIJbjXKpuprLW0s/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20Evidence%20(Holo)" target="_blank">Sticker | Evidence (Holo)</a></span></div></td>
       <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$1.21</td>
-      <td style="text-align:right;font-weight:600">$1.21</td>
+      <td style="text-align:right">$1.76</td>
+      <td style="text-align:right;font-weight:600">$1.76</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">1,126</td>
+      <td style="text-align:right;color:#8f98a0">1,120</td>
     </tr>
 <tr>
       <td>10</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmyMnTGtRl2-7j35WbkUiLhn4bl72xZv6X5avRoIfTLXzfGw-wvsbI7Gnjhl00h5mTXmYr_JHKebwZ0CJYjW6dU5c_PmZQr/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20Co%20Co%20Co" target="_blank">Sticker | Co Co Co</a></span></div></td>
-      <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
-      <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.76</td>
-      <td style="text-align:right;font-weight:600">$0.76</td>
-      <td style="text-align:right">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">265</td>
-    </tr>
-<tr>
-      <td>11</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2kpnj9h1Y-s2pZKtuK8-aAGOZxuFJveRtRjy-2xh26zyGw4ypcHiRZwR1WMB4ReAL5hG7wNLnN-23tVPdgoxHmSX23CtXrnE84Ix86A0/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/StatTrak%E2%84%A2%20Glock-18%20%7C%20Off%20World%20(Well-Worn)" target="_blank">StatTrak™ Glock-18 | Off World</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.72</td>
-      <td style="text-align:right;font-weight:600">$0.72</td>
+      <td style="text-align:right">$1.03</td>
+      <td style="text-align:right;font-weight:600">$1.03</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">341</td>
+      <td style="text-align:right;color:#8f98a0">334</td>
+    </tr>
+<tr>
+      <td>11</td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmyMnTGtRl2-7j35WbkUiLhn4bl72xZv6X5avRoIfTLXzfGw-wvsbI7Gnjhl00h5mTXmYr_JHKebwZ0CJYjW6dU5c_PmZQr/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sticker%20%7C%20Co%20Co%20Co" target="_blank">Sticker | Co Co Co</a></span></div></td>
+      <td><span class="cat-badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf644">Stickers</span></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">$0.98</td>
+      <td style="text-align:right;font-weight:600">$0.98</td>
+      <td style="text-align:right">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right;color:#8f98a0">256</td>
     </tr>
 <tr>
       <td>12</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLin4Hl-S1d6c2veZt-IeeWCmiWx9Fsse9tSjvhqhAitzSQl8GqdH3DbgJxA5p1TbIDsBC5koDlM-604gXf39hDm3_4h3lNvXlt6roFT-N7rWHBabwX/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sawed-Off%20%7C%20Zander%20(Well-Worn)" target="_blank">Sawed-Off | Zander</a></span></div></td>
-      <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
-      <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.54</td>
-      <td style="text-align:right;font-weight:600">$0.54</td>
-      <td style="text-align:right">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">36</td>
-    </tr>
-<tr>
-      <td>13</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwi5Hf7i1k_OKva6FSLfGBB2mV_uNztOh8Qme2w0xz4mWBn9j4JX-UPQ4jWJUhEOYK4ESwx4DmNenrtATfj90RmyyqkGoXuedj0AxD/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Souvenir%20AUG%20%7C%20Colony%20(Field-Tested)" target="_blank">Souvenir AUG | Colony</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.46</td>
-      <td style="text-align:right;font-weight:600">$0.46</td>
+      <td style="text-align:right">$0.66</td>
+      <td style="text-align:right;font-weight:600">$0.66</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">375</td>
+      <td style="text-align:right;color:#8f98a0">374</td>
+    </tr>
+<tr>
+      <td>13</td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLin4Hl-S1d6c2veZt-IeeWCmiWx9Fsse9tSjvhqhAitzSQl8GqdH3DbgJxA5p1TbIDsBC5koDlM-604gXf39hDm3_4h3lNvXlt6roFT-N7rWHBabwX/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sawed-Off%20%7C%20Zander%20(Well-Worn)" target="_blank">Sawed-Off | Zander</a></span></div></td>
+      <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">$0.55</td>
+      <td style="text-align:right;font-weight:600">$0.55</td>
+      <td style="text-align:right">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right;color:#8f98a0">35</td>
     </tr>
 <tr>
       <td>14</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLinZfyr3Jk7v-Ra6V_Iv-dMWGZw-tkj-1gSCGn20xx4mXRyd79eHPBbgQiXJpyQrMLuhfqm4LkNu7htQWI2d9CzSX9jShXrnE8-xTDFeg/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/SCAR-20%20%7C%20Carbon%20Fiber%20(Factory%20New)" target="_blank">SCAR-20 | Carbon Fiber</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.18</td>
-      <td style="text-align:right;font-weight:600">$0.18</td>
+      <td style="text-align:right">$0.28</td>
+      <td style="text-align:right;font-weight:600">$0.28</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">3,806</td>
+      <td style="text-align:right;color:#8f98a0">3,850</td>
     </tr>
 <tr>
       <td>15</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwipC6s2vard5MvGQGlibz-Fij-w9cCG2lAs-_TnRyIz9di-VblN1XJF0F-AIs0PrloG2NLuz51CLiI0TyHmsjyJL6yZ1o7FVGtqIzbk/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/M4A4%20%7C%20Aeolian%20Dark%20(Battle-Scarred)" target="_blank">M4A4 | Aeolian Dark</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.07</td>
-      <td style="text-align:right;font-weight:600">$0.07</td>
+      <td style="text-align:right">$0.10</td>
+      <td style="text-align:right;font-weight:600">$0.10</td>
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">359</td>
+      <td style="text-align:right;color:#8f98a0">351</td>
     </tr>
 <tr>
       <td>16</td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pvaKUnDzOTLGenWITAYwS7FZN2Dd9zWj4ryXS23JEu1_F1sDePAD92BLac2Xf0xqwtRUp2qqmlFxCh84ftwbcVm4nnVGFuh0GdE/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20GTG%20(Cash%20Green)" target="_blank">Sealed Graffiti | GTG (Cash Green)</a></span></div></td>
+      <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">$0.04</td>
+      <td style="text-align:right;font-weight:600">$0.04</td>
+      <td style="text-align:right">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right;color:#8f98a0">1,285</td>
+    </tr>
+<tr>
+      <td>17</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0te2DG2HyJmbGeHCJSV9sGOFdYTvd_mWt5u2cSzvPQLt4FlgCfKcG9jFLbpvfP0MjlNlc7Wa3m0tvEwMkZsxWfBbmy3JKY7kjRoDVsPQ/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Eat%20It%20(Violent%20Violet)" target="_blank">Sealed Graffiti | Eat It (Violent Violet)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -678,7 +703,7 @@
       <td style="text-align:right;color:#8f98a0">789</td>
     </tr>
 <tr>
-      <td>17</td>
+      <td>18</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pO-CI3z2eCfdYXbfSA5rTuZXPGrQ-TSs5-vGETicRL4tEA9VL_ZV9WUfPJvbOxZr0IUVu2u_0UdyEhk6f9BKZAarxm1OM-VymXVKMg2D55g/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Mr.%20Teeth%20(Tiger%20Orange)" target="_blank">Sealed Graffiti | Mr. Teeth (Tiger Orange)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -687,10 +712,10 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">807</td>
+      <td style="text-align:right;color:#8f98a0">803</td>
     </tr>
 <tr>
-      <td>18</td>
+      <td>19</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pvaKUnDzOTLGenWITAYwS7FZN2Dd9zWj4ryXS23JEu1_F1sDePAD92BLac2Xf0xqwtRUp2qqmlFxCh84ftwbJArszHVKm-e8Ffw/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20GTG%20(Monarch%20Blue)" target="_blank">Sealed Graffiti | GTG (Monarch Blue)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -699,10 +724,10 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">999</td>
+      <td style="text-align:right;color:#8f98a0">996</td>
     </tr>
 <tr>
-      <td>19</td>
+      <td>20</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLimcO1qx1I_826abRoH_ScGnSv1u9gtfJWQiy3nAgq_WjSzIn7dXiRbQBzA5smTbYO5hPsm4GxYui3tQSMidoQxXiqhnwa7np1o7FVFqHxgf0/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/SG%20553%20%7C%20Waves%20Perforated%20(Well-Worn)" target="_blank">SG 553 | Waves Perforated</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
@@ -711,10 +736,22 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">1,467</td>
+      <td style="text-align:right;color:#8f98a0">1,469</td>
     </tr>
 <tr>
-      <td>20</td>
+      <td>21</td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pe2YHnjyVzzNIy2XGFtpTrJcMG_d_2Gs5-SQSjicQ-klQFwMKKoGoWQcP5iKOBU91o8I8iuomUM7HRkkfddLZQOvw2QfKOBxmXYTccqJ7o8-MA/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Double%20(Jungle%20Green)" target="_blank">Sealed Graffiti | Double (Jungle Green)</a></span></div></td>
+      <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">$0.04</td>
+      <td style="text-align:right;font-weight:600">$0.04</td>
+      <td style="text-align:right">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right;color:#8f98a0">1,150</td>
+    </tr>
+<tr>
+      <td>22</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0rO2BBTqgPGPGLHSKTQ0_H-ZZNjyP-Tb0sLmUFmvPRLl5S1gHfKVQ-zJMPJuAIVJjg5FYpGm3hUloEgIhYslfLVa_nyJEMI3P1ifT/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Toasted%20(Princess%20Pink)" target="_blank">Sealed Graffiti | Toasted (Princess Pink)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -726,7 +763,7 @@
       <td style="text-align:right;color:#8f98a0">1,121</td>
     </tr>
 <tr>
-      <td>21</td>
+      <td>23</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0qe6yD3n-ZDLdYSXcTVg9ROEKZ2HYqGHzsevASzHPSb0tEV8Cf6YN9W0fbJjbPEFo3Y8Vu2u_0UdyEhk6f9BKZAarxm1OZuV8zHRBuucA4wA/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Still%20Happy%20(Battle%20Green)" target="_blank">Sealed Graffiti | Still Happy (Battle Green)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -738,7 +775,7 @@
       <td style="text-align:right;color:#8f98a0">771</td>
     </tr>
 <tr>
-      <td>22</td>
+      <td>24</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0puWyTCa5ODKcLnfaGAoxHLYMNG-LrTCiseXBSjDIQuopRl1XePFQ9TVMb5yLOAx9itAdqGq0mFZwCxo8e9VKaVK5yyJLM-9f9NdzWg/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20GGWP%20(Bazooka%20Pink)" target="_blank">Sealed Graffiti | GGWP (Bazooka Pink)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -747,22 +784,10 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">398</td>
+      <td style="text-align:right;color:#8f98a0">395</td>
     </tr>
 <tr>
-      <td>23</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0qeOZI2f_bSXNKW-JSQ8_TrYKZjzd_zeh4e7BEz3BF7wlRgpXePBXoGEdNJ-JP0Y_0tIM5XW2kAJ-ERonYMhTfBuy2ngKbOUjnyVHIbtyVONc/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Sheriff%20(Dust%20Brown)" target="_blank">Sealed Graffiti | Sheriff (Dust Brown)</a></span></div></td>
-      <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
-      <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.04</td>
-      <td style="text-align:right;font-weight:600">$0.04</td>
-      <td style="text-align:right">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">972</td>
-    </tr>
-<tr>
-      <td>24</td>
+      <td>25</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0rO2BBTqgPGPGLHSKTQ0_H-ZZNjyP-Tb0sLmUFmvPRLl5S1gHfKVQ-zJMPJuAIVJjg5FYpGm3hUloEgIhYslfLQ3qnnBHNWalVL_7/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Toasted%20(Blood%20Red)" target="_blank">Sealed Graffiti | Toasted (Blood Red)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
@@ -771,10 +796,22 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">1,102</td>
+      <td style="text-align:right;color:#8f98a0">1,098</td>
     </tr>
 <tr>
-      <td>25</td>
+      <td>26</td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pe2BEHXlJmDHdnWAGQ88ReUMYTnZ92at5OiSF2zKE-ApEgpVL_QE9DBOOZuJOEAjlNlc7Wa3m0tvEwMkZsxWfBbmnixLN-V1bHZsw8c/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Keep%20the%20Change%20(Frog%20Green)" target="_blank">Sealed Graffiti | Keep the Change (Frog Green)</a></span></div></td>
+      <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">$0.04</td>
+      <td style="text-align:right;font-weight:600">$0.04</td>
+      <td style="text-align:right">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right" class="dimmed">-</td>
+      <td style="text-align:right;color:#8f98a0">2,678</td>
+    </tr>
+<tr>
+      <td>27</td>
       <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhzMOwwipC0PSheqF-NM-RAXWVwOJJveRtRjy-2xt-4WSDzIyocHOTblUjApJ3R-UNsxbswYbvYbvltQeM39oQmHqr2CpXrnE81vc51Pw/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/P250%20%7C%20Boreal%20Forest%20(Field-Tested)" target="_blank">P250 | Boreal Forest</a></span></div></td>
       <td><span class="cat-badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444444">Skins</span></td>
       <td style="text-align:right">1</td>
@@ -783,35 +820,11 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">9,616</td>
-    </tr>
-<tr>
-      <td>26</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pvaKUnDzOTLGenWITAYwS7FZN2Dd9zWj4ryXS23JEu1_F1sDePAD92BLac2Xf0xqwtRUp2qqmlFxCh84ftwbcVm4nnVGFuh0GdE/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20GTG%20(Cash%20Green)" target="_blank">Sealed Graffiti | GTG (Cash Green)</a></span></div></td>
-      <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
-      <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.03</td>
-      <td style="text-align:right;font-weight:600">$0.03</td>
-      <td style="text-align:right">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">1,289</td>
-    </tr>
-<tr>
-      <td>27</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pe2YHnjyVzzNIy2XGFtpTrJcMG_d_2Gs5-SQSjicQ-klQFwMKKoGoWQcP5iKOBU91o8I8iuomUM7HRkkfddLZQOvw2QfKOBxmXYTccqJ7o8-MA/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Double%20(Jungle%20Green)" target="_blank">Sealed Graffiti | Double (Jungle Green)</a></span></div></td>
-      <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
-      <td style="text-align:right">1</td>
-      <td style="text-align:right">$0.03</td>
-      <td style="text-align:right;font-weight:600">$0.03</td>
-      <td style="text-align:right">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">1,151</td>
+      <td style="text-align:right;color:#8f98a0">9,655</td>
     </tr>
 <tr>
       <td>28</td>
-      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0pe2BEHXlJmDHdnWAGQ88ReUMYTnZ92at5OiSF2zKE-ApEgpVL_QE9DBOOZuJOEAjlNlc7Wa3m0tvEwMkZsxWfBbmnixLN-V1bHZsw8c/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Keep%20the%20Change%20(Frog%20Green)" target="_blank">Sealed Graffiti | Keep the Change (Frog Green)</a></span></div></td>
+      <td><div class="item-name-cell"><img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0qeOZI2f_bSXNKW-JSQ8_TrYKZjzd_zeh4e7BEz3BF7wlRgpXePBXoGEdNJ-JP0Y_0tIM5XW2kAJ-ERonYMhTfBuy2ngKbOUjnyVHIbtyVONc/96x96" class="item-thumb" loading="lazy"><span><a href="https://steamcommunity.com/market/listings/730/Sealed%20Graffiti%20%7C%20Sheriff%20(Dust%20Brown)" target="_blank">Sealed Graffiti | Sheriff (Dust Brown)</a></span></div></td>
       <td><span class="cat-badge" style="background:#34d39922;color:#34d399;border:1px solid #34d39944">Graffiti</span></td>
       <td style="text-align:right">1</td>
       <td style="text-align:right">$0.03</td>
@@ -819,7 +832,7 @@
       <td style="text-align:right">-</td>
       <td style="text-align:right" class="dimmed">-</td>
       <td style="text-align:right" class="dimmed">-</td>
-      <td style="text-align:right;color:#8f98a0">2,696</td>
+      <td style="text-align:right;color:#8f98a0">988</td>
     </tr>
   </tbody>
 </table>
@@ -894,10 +907,10 @@ document.addEventListener('DOMContentLoaded', () => {
   new Chart(document.getElementById('valueChart'), {
     type: 'line',
     data: {
-      labels: ["03/14 03:00","03/14 02:00","03/14 04:00","03/14 05:00","03/14 06:00","03/14 08:00","03/14 09:00","03/14 10:00"],
+      labels: ["03/14 03:00","03/14 02:00","03/14 04:00","03/14 05:00"],
       datasets: [
-        { label: 'Portfolio Value (AUD)', data: [2046.3899999999996,992.6999999999996,1951.53,1946.9,1943.6399999999996,1934.8399999999997,1921.71,1910.34], borderColor: '#66c0f4', backgroundColor: 'rgba(102,192,244,0.08)', fill: true, tension: 0.3, pointRadius: 0 },
-        { label: 'Cost Basis', data: [828.3500000000007,828.3500000000007,828.3500000000007,828.3500000000007,828.3500000000007,828.3500000000007,828.3500000000007,828.3500000000007], borderColor: '#c33c3c', borderDash: [5,3], pointRadius: 0, fill: false },
+        { label: 'Portfolio Value (AUD)', data: [1432.669999999997,992.6999999999996,1984.7899999999995,1766.5099999999998], borderColor: '#66c0f4', backgroundColor: 'rgba(102,192,244,0.08)', fill: true, tension: 0.3, pointRadius: 0 },
+        { label: 'Cost Basis', data: [828.3500000000007,828.3500000000007,828.3500000000007,828.3500000000007], borderColor: '#c33c3c', borderDash: [5,3], pointRadius: 0, fill: false },
       ]
     },
     options: { responsive: true, plugins: { legend: { labels: { color: '#888' } } }, scales: { x: { ticks: { color: '#666', maxTicksLimit: 10 }, grid: { color: '#111' } }, y: { ticks: { color: '#888', callback: v => '$' + v.toFixed(2) }, grid: { color: '#111' } } } }
@@ -908,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
     type: 'doughnut',
     data: {
       labels: ["Skins","Sticker Investments","Cases","Stickers","Graffiti","Tools","Music Kits","Collectibles"],
-      datasets: [{ data: [1371.11,303.21000000000026,226.1,9.51,0.41000000000000003,0,0,0], backgroundColor: ["#ef4444","#6b7280","#f59e0b","#8b5cf6","#34d399","#9ca3af","#ec4899","#fcd34d"], borderColor: '#1b2838', borderWidth: 2 }]
+      datasets: [{ data: [1208.47,309.60000000000025,229.33,18.68,0.42999999999999994,0,0,0], backgroundColor: ["#ef4444","#6b7280","#f59e0b","#8b5cf6","#34d399","#9ca3af","#ec4899","#fcd34d"], borderColor: '#1b2838', borderWidth: 2 }]
     },
     options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: '#888', font: { size: 11 } } } } }
   });
@@ -918,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
     type: 'bar',
     data: {
       labels: ["Skins","Sticker Investments","Cases","Stickers","Graffiti","Tools","Music Kits","Collectibles"],
-      datasets: [{ label: 'Value (AUD)', data: [1371.11,303.21000000000026,226.1,9.51,0.41000000000000003,0,0,0], backgroundColor: ["#ef444488","#6b728088","#f59e0b88","#8b5cf688","#34d39988","#9ca3af88","#ec489988","#fcd34d88"], borderColor: ["#ef4444","#6b7280","#f59e0b","#8b5cf6","#34d399","#9ca3af","#ec4899","#fcd34d"], borderWidth: 1 }]
+      datasets: [{ label: 'Value (AUD)', data: [1208.47,309.60000000000025,229.33,18.68,0.42999999999999994,0,0,0], backgroundColor: ["#ef444488","#6b728088","#f59e0b88","#8b5cf688","#34d39988","#9ca3af88","#ec489988","#fcd34d88"], borderColor: ["#ef4444","#6b7280","#f59e0b","#8b5cf6","#34d399","#9ca3af","#ec4899","#fcd34d"], borderWidth: 1 }]
     },
     options: { responsive: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#888', callback: v => '$' + v }, grid: { color: '#111' } }, y: { ticks: { color: '#ccc' }, grid: { display: false } } } }
   });

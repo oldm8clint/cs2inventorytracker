@@ -298,12 +298,12 @@ async function fetchPrices(items: InventoryItem[]): Promise<Record<string, { pri
     }
   }
 
-  // Correction pass: search/render sell_price is unreliable for expensive items.
-  // Use priceoverview API for any item valued over A$50 to get accurate lowest_price.
-  const expensive = [...needed].filter(n => result[n] && result[n].price >= 50);
-  if (expensive.length > 0) {
-    console.log(`  Verifying ${expensive.length} high-value items via priceoverview...`);
-    for (const hashName of expensive) {
+  // Correction pass: search/render sell_price is often stale/wrong.
+  // Use priceoverview API to verify all priced items.
+  const toVerify = [...needed].filter(n => result[n] && result[n].price > 0);
+  if (toVerify.length > 0) {
+    console.log(`  Verifying ${toVerify.length} items via priceoverview...`);
+    for (const hashName of toVerify) {
       try {
         const url = `https://steamcommunity.com/market/priceoverview/?appid=730&currency=${config.currencyCode}&market_hash_name=${encodeURIComponent(hashName)}`;
         const res = await fetch(url);
@@ -505,6 +505,7 @@ async function main() {
   const enriched: EnrichedItem[] = [];
   let grandValue = 0;
   let grandCost = 0;
+  let trackedValue = 0; // Only items with cost basis
   let knownCostItems = 0;
 
   for (const item of inventory) {
@@ -516,6 +517,7 @@ async function main() {
       const roi = totalCost > 0 ? ((profitLoss) / totalCost) * 100 : null;
       grandValue += totalValue;
       grandCost += totalCost;
+      trackedValue += totalValue;
       knownCostItems += budapestAgg.totalQty;
       enriched.push({
         ...item,
@@ -550,6 +552,7 @@ async function main() {
 
     if (totalCost !== null) {
       grandCost += totalCost;
+      trackedValue += totalValue;
       knownCostItems += item.qty;
     }
     grandValue += totalValue;
@@ -638,7 +641,7 @@ async function main() {
   const marketableCount = enriched.filter(i => i.marketable && i.currentPrice > 0).reduce((s, i) => s + i.qty, 0);
   const tradableCount = enriched.filter(i => i.tradable).reduce((s, i) => s + i.qty, 0);
   const uniqueItems = enriched.length;
-  const grandPL = grandCost > 0 ? grandValue - grandCost : 0;
+  const grandPL = grandCost > 0 ? trackedValue - grandCost : 0;
   const grandROI = grandCost > 0 ? ((grandPL / grandCost) * 100).toFixed(1) : 'N/A';
 
   const localTimeStr = now.toLocaleString('en-AU', { timeZone: 'Australia/Sydney', dateStyle: 'medium', timeStyle: 'short' });
@@ -854,7 +857,7 @@ async function main() {
   /* Full table */
   table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
   thead { position: sticky; top: 48px; z-index: 50; }
-  th { background: #1a3a52; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
+  th { background: #1a3a52; box-shadow: 0 1px 0 #0e1a26; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
   th:hover { color: #66c0f4; }
   td { padding: 7px 8px; border-bottom: 1px solid rgba(0,0,0,0.15); font-variant-numeric: tabular-nums; }
   tbody tr { transition: background 0.15s; }
@@ -930,6 +933,19 @@ async function main() {
     </div>
   </div>
 </div>
+
+<!-- Create Your Own Tracker Banner -->
+<div id="createBanner" style="background:linear-gradient(135deg,#1a2a3a 0%,#1b2838 100%);border:1px solid #2a475e;border-radius:0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+  <div style="flex:1;min-width:200px;">
+    <div style="color:#fff;font-weight:600;font-size:15px;margin-bottom:4px;">Track Your Own CS2 Portfolio</div>
+    <div style="color:#8f98a0;font-size:13px;">Fork this project, import your Steam inventory, and deploy your own tracker in under 5 minutes.</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="https://github.com/${config.steamProfile.vanityUrl}/cs2inventorytracker#create-your-own-tracker" target="_blank" style="background:linear-gradient(135deg,#1a9fff,#0d6efd);color:#fff;padding:8px 20px;border-radius:3px;font-weight:600;font-size:13px;text-decoration:none;white-space:nowrap;border:none;">Create Your Own</a>
+    <button onclick="document.getElementById('createBanner').style.display='none';localStorage.setItem('hidePortfolioBanner','1')" style="background:none;border:none;color:#555;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;" title="Dismiss">&times;</button>
+  </div>
+</div>
+<script>if(localStorage.getItem('hidePortfolioBanner')==='1')document.getElementById('createBanner').style.display='none';</script>
 
 <div class="page-content">
 

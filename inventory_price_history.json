@@ -2,24 +2,20 @@
   "entries": [
     {
       "date": "2026-03-14-03",
-      "totalValue": 2046.3899999999996,
-      "totalItems": 60,
+      "totalValue": 1432.669999999997,
+      "totalItems": 1661,
       "categoryValues": {
         "Skins": {
           "count": 12,
-          "value": 1380.45
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 407.44000000000005
+          "value": 976.5899999999999
         },
         "Cases": {
           "count": 19,
           "value": 247
         },
         "Stickers": {
-          "count": 6,
-          "value": 11.07
+          "count": 1608,
+          "value": 208.65000000000072
         },
         "Graffiti": {
           "count": 15,
@@ -39,20 +35,276 @@
         }
       },
       "itemPrices": {
-        "★ Specialist Gloves | Field Agent (Minimal Wear)": 785.45,
-        "M4A4 | X-Ray (Factory New)": 591.03,
-        "__budapest_sticker_lot__": 407.44000000000005,
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 555,
+        "M4A4 | X-Ray (Factory New)": 417.62,
         "Operation Breakout Weapon Case": 13,
+        "Sticker | C4LLM3SU3 (Gold) | Budapest 2025": 39.11,
+        "Sticker | EmiliaQAQ (Gold) | Budapest 2025": 17.66,
+        "Sticker | m0NESY (Holo) | Budapest 2025": 8.54,
+        "Sticker | nin9 (Holo) | Budapest 2025": 8.17,
+        "Sticker | C4LLM3SU3 (Holo) | Budapest 2025": 7.32,
+        "Sticker | Lucky (Gold) | Budapest 2025": 7.27,
         "Sticker | Snax | Krakow 2017": 6.07,
+        "Budapest 2025 Legends Sticker Capsule": 0.29,
+        "Sticker | HooXi (Gold) | Budapest 2025": 5.37,
+        "Sticker | kyousuke (Holo) | Budapest 2025": 4.33,
+        "Sticker | MIBR (Holo) | Budapest 2025": 3.61,
+        "Sticker | jcobbb (Holo) | Budapest 2025": 3.48,
         "Sticker | Xyp9x | Krakow 2017": 3,
+        "Sticker | Kjaerbye | Krakow 2017": 2.35,
+        "Sticker | fer | Krakow 2017": 2.19,
         "Desert Eagle | Directive (Field-Tested)": 1.89,
+        "Sticker | alex666 (Holo) | Budapest 2025": 1.8,
+        "Sticker | G2 esports (Gold) | Budapest 2025": 1.76,
+        "Sticker | Senzu (Holo) | Budapest 2025": 0.86,
+        "Sticker | JamYoung | Budapest 2025": 0.15,
+        "Sticker | snow (Gold) | Budapest 2025": 1.63,
+        "Sticker | XotiC (Holo) | Budapest 2025": 1.29,
+        "Sticker | lux | Budapest 2025": 0.18,
         "Sticker | Evidence (Holo)": 1.24,
-        "Sticker | Co Co Co": 0.76,
+        "Sticker | Tauson (Holo) | Budapest 2025": 1.24,
+        "Sticker | m0NESY | Budapest 2025": 0.09,
+        "Sticker | donk | Budapest 2025": 0.14,
+        "Sticker | drop | Budapest 2025": 0.17,
+        "Sticker | nin9 | Budapest 2025": 0.17,
+        "Sticker | HooXi (Holo) | Budapest 2025": 1,
+        "Sticker | jcobbb | Budapest 2025": 0.1,
+        "Sticker | westmelon (Holo) | Budapest 2025": 1,
+        "Sticker | jottAAA (Holo) | Budapest 2025": 0.93,
+        "Sticker | NiKo (Embroidered) | Budapest 2025": 0.3,
+        "Sticker | fEAR (Holo) | Budapest 2025": 0.89,
+        "Sticker | Jame | Budapest 2025": 0.14,
+        "Sticker | n1ssim (Holo) | Budapest 2025": 0.81,
+        "Sticker | Co Co Co": 0.8,
+        "Sticker | Jame (Embroidered) | Budapest 2025": 0.38,
         "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.74,
+        "Sticker | sh1ro (Holo) | Budapest 2025": 0.73,
+        "Sticker | FalleN | Budapest 2025": 0.05,
+        "Sticker | ropz (Holo, Champion) | Budapest 2025": 0.7,
+        "Sticker | drop (Embroidered) | Budapest 2025": 0.17,
+        "Sticker | woxic (Holo) | Budapest 2025": 0.63,
+        "Sticker | XANTARES | Budapest 2025": 0.09,
+        "Sticker | kyousuke | Budapest 2025": 0.04,
+        "Sticker | m0NESY (Embroidered) | Budapest 2025": 0.29,
+        "Sticker | donk (Embroidered) | Budapest 2025": 0.57,
+        "Sticker | KSCERATO (Holo) | Budapest 2025": 0.57,
         "Sawed-Off | Zander (Well-Worn)": 0.55,
+        "Sticker | JamYoung (Embroidered) | Budapest 2025": 0.54,
+        "Sticker | Ex3rcice (Holo) | Budapest 2025": 0.53,
+        "Sticker | snow | Budapest 2025": 0.03,
+        "Sticker | FlameZ (Holo) | Budapest 2025": 0.48,
         "Souvenir AUG | Colony (Field-Tested)": 0.47,
+        "Sticker | mezii | Budapest 2025": 0.03,
+        "Sticker | TeSeS | Budapest 2025": 0.03,
+        "Sticker | zont1x | Budapest 2025": 0.03,
+        "Sticker | ChildKing | Budapest 2025": 0.11,
+        "Sticker | ZywOo (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | 910 | Budapest 2025": 0.03,
+        "Sticker | molodoy | Budapest 2025": 0.03,
+        "Sticker | ropz | Budapest 2025": 0.03,
+        "Sticker | Senzu | Budapest 2025": 0.03,
+        "Sticker | sh1ro | Budapest 2025": 0.03,
+        "Sticker | cobra | Budapest 2025": 0.05,
+        "Sticker | dumau (Embroidered) | Budapest 2025": 0.4,
+        "Sticker | bLitz | Budapest 2025": 0.03,
+        "Sticker | Brollan | Budapest 2025": 0.03,
+        "Sticker | dav1deuS | Budapest 2025": 0.03,
+        "Sticker | Techno4K | Budapest 2025": 0.03,
+        "Sticker | zweih | Budapest 2025": 0.03,
+        "Sticker | molodoy (Embroidered) | Budapest 2025": 0.19,
+        "Sticker | apEX (Champion) | Budapest 2025": 0.03,
+        "Sticker | decenty (Embroidered) | Budapest 2025": 0.09,
+        "Sticker | dumau | Budapest 2025": 0.06,
+        "Sticker | FalleN (Embroidered) | Budapest 2025": 0.12,
+        "Sticker | mzinho | Budapest 2025": 0.03,
+        "Sticker | Starry | Budapest 2025": 0.05,
+        "Sticker | kyxsan | Budapest 2025": 0.03,
+        "Sticker | MATYS | Budapest 2025": 0.03,
+        "Sticker | yuurih | Budapest 2025": 0.03,
+        "Sticker | jcobbb (Embroidered) | Budapest 2025": 0.32,
+        "Sticker | xertioN (Holo) | Budapest 2025": 0.31,
+        "Sticker | L1haNg | Budapest 2025": 0.05,
+        "Sticker | ChildKing (Embroidered) | Budapest 2025": 0.15,
+        "Sticker | Heavygod | Budapest 2025": 0.03,
+        "Sticker | r1nkle | Budapest 2025": 0.03,
+        "Sticker | Spinx | Budapest 2025": 0.03,
+        "Sticker | Tauson | Budapest 2025": 0.03,
+        "Sticker | xertioN | Budapest 2025": 0.03,
+        "Sticker | XotiC | Budapest 2025": 0.03,
+        "Sticker | YEKINDAR | Budapest 2025": 0.03,
+        "Sticker | Jee | Budapest 2025": 0.04,
+        "Sticker | Marek | Budapest 2025": 0.04,
+        "Sticker | mzinho (Holo) | Budapest 2025": 0.28,
+        "Sticker | Cypher | Budapest 2025": 0.03,
+        "Sticker | hallzerk | Budapest 2025": 0.03,
+        "Sticker | huNter- | Budapest 2025": 0.03,
+        "Sticker | karrigan (Embroidered) | Budapest 2025": 0.27,
+        "Sticker | Lucky (Embroidered) | Budapest 2025": 0.09,
+        "Sticker | noway | Budapest 2025": 0.03,
+        "Sticker | w0nderful | Budapest 2025": 0.03,
+        "Sticker | ztr | Budapest 2025": 0.03,
+        "Sticker | ZywOo | Budapest 2025": 0.03,
+        "Sticker | device (Embroidered) | Budapest 2025": 0.26,
+        "Sticker | apEX (Holo, Champion) | Budapest 2025": 0.24,
+        "Sticker | Bart4k | Budapest 2025": 0.03,
+        "Sticker | chayJESUS (Embroidered) | Budapest 2025": 0.08,
+        "Sticker | decenty | Budapest 2025": 0.03,
+        "Sticker | FlameZ (Champion) | Budapest 2025": 0.03,
+        "Sticker | headtr1ck | Budapest 2025": 0.03,
+        "Sticker | KSCERATO | Budapest 2025": 0.03,
+        "Sticker | Lucaozy | Budapest 2025": 0.03,
+        "Sticker | malbsMd | Budapest 2025": 0.03,
+        "Sticker | NertZ | Budapest 2025": 0.03,
+        "Sticker | s1n | Budapest 2025": 0.03,
+        "Sticker | sjuush | Budapest 2025": 0.03,
+        "Sticker | Tiger | Budapest 2025": 0.04,
+        "Sticker | torzsi | Budapest 2025": 0.03,
+        "Sticker | Wicadia | Budapest 2025": 0.03,
+        "Sticker | xKacpersky (Embroidered) | Budapest 2025": 0.08,
+        "Sticker | YEKINDAR (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | z4KR | Budapest 2025": 0.03,
+        "Sticker | NAF (Embroidered) | Budapest 2025": 0.11,
+        "Sticker | kl1m (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | chayJESUS | Budapest 2025": 0.03,
+        "Sticker | esenthial | Budapest 2025": 0.03,
+        "Sticker | jottAAA | Budapest 2025": 0.03,
+        "Sticker | kensizor | Budapest 2025": 0.03,
+        "Sticker | makazze | Budapest 2025": 0.03,
+        "Sticker | Mercury | Budapest 2025": 0.03,
+        "Sticker | paiN Gaming | Budapest 2025": 0.03,
+        "Sticker | saadzin | Budapest 2025": 0.03,
+        "Sticker | Sonic | Budapest 2025": 0.03,
+        "Sticker | Swisher | Budapest 2025": 0.03,
+        "Sticker | ultimate | Budapest 2025": 0.03,
+        "Sticker | venomzera | Budapest 2025": 0.03,
+        "Sticker | xiELO | Budapest 2025": 0.03,
+        "Sticker | xKacpersky | Budapest 2025": 0.03,
+        "Sticker | woxic | Budapest 2025": 0.04,
+        "Sticker | ztr (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | TYLOO (Embroidered) | Budapest 2025": 0.19,
+        "Sticker | BELCHONOKK | Budapest 2025": 0.03,
+        "Sticker | br0 | Budapest 2025": 0.03,
+        "Sticker | History | Budapest 2025": 0.03,
+        "Sticker | JT | Budapest 2025": 0.03,
+        "Sticker | Magisk | Budapest 2025": 0.03,
+        "Sticker | NAF | Budapest 2025": 0.03,
+        "Sticker | nicx | Budapest 2025": 0.03,
+        "Sticker | nitr0 | Budapest 2025": 0.03,
+        "Sticker | qikert | Budapest 2025": 0.03,
+        "Sticker | slaxz- | Budapest 2025": 0.03,
+        "Sticker | Staehr | Budapest 2025": 0.03,
+        "Sticker | VINI | Budapest 2025": 0.03,
+        "Sticker | westmelon | Budapest 2025": 0.03,
+        "Sticker | ZywOo (Champion) | Budapest 2025": 0.03,
         "SCAR-20 | Carbon Fiber (Factory New)": 0.17,
+        "Sticker | chelo | Budapest 2025": 0.04,
+        "Sticker | Heavygod (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | HexT (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | snow (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Spinx (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Summer (Embroidered) | Budapest 2025": 0.08,
+        "Sticker | Aleksib (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | Mercury (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | Summer | Budapest 2025": 0.05,
+        "Sticker | arT | Budapest 2025": 0.03,
+        "Sticker | blameF | Budapest 2025": 0.03,
+        "Sticker | EmiliaQAQ | Budapest 2025": 0.03,
+        "Sticker | Ex3rcice | Budapest 2025": 0.03,
+        "Sticker | G2 esports | Budapest 2025": 0.03,
+        "Sticker | karrigan | Budapest 2025": 0.03,
+        "Sticker | Lake | Budapest 2025": 0.03,
+        "Sticker | MAJ3R | Budapest 2025": 0.03,
+        "Sticker | mezii (Champion) | Budapest 2025": 0.03,
+        "Sticker | Moseyuh | Budapest 2025": 0.03,
+        "Sticker | n1ssim | Budapest 2025": 0.03,
+        "Sticker | rain (Embroidered) | Budapest 2025": 0.15,
+        "Sticker | siuhy | Budapest 2025": 0.03,
+        "Sticker | skullz | Budapest 2025": 0.03,
+        "Sticker | TeSeS (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | The Mongolz | Budapest 2025": 0.03,
+        "Sticker | xerolte | Budapest 2025": 0.03,
+        "Sticker | EmiliaQAQ (Embroidered) | Budapest 2025": 0.14,
+        "Sticker | Falcons (Embroidered) | Budapest 2025": 0.14,
+        "Sticker | Jee (Embroidered) | Budapest 2025": 0.14,
+        "Sticker | Swisher (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | z4KR (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | apEX | Budapest 2025": 0.03,
+        "Sticker | Astralis | Budapest 2025": 0.03,
+        "Sticker | bodyy | Budapest 2025": 0.03,
+        "Sticker | dav1deuS (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | EliGE | Budapest 2025": 0.03,
+        "Sticker | Falcons | Budapest 2025": 0.03,
+        "Sticker | FURIA | Budapest 2025": 0.03,
+        "Sticker | jambo | Budapest 2025": 0.03,
+        "Sticker | Lucky | Budapest 2025": 0.04,
+        "Sticker | Maka | Budapest 2025": 0.03,
+        "Sticker | mezii (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | nitr0 (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | npl | Budapest 2025": 0.03,
+        "Sticker | ropz (Champion) | Budapest 2025": 0.03,
+        "Sticker | sh1ro (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | TRY | Budapest 2025": 0.03,
+        "Sticker | zweih (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | kyousuke (Embroidered) | Budapest 2025": 0.11,
+        "Sticker | G2 esports (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | HooXi (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | iM (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | woxic (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | Attacker | Budapest 2025": 0.03,
+        "Sticker | broky | Budapest 2025": 0.03,
+        "Sticker | chopper (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | dgt (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | Graviti | Budapest 2025": 0.03,
+        "Sticker | hallzerk (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | HexT | Budapest 2025": 0.03,
+        "Sticker | HooXi | Budapest 2025": 0.03,
+        "Sticker | insani | Budapest 2025": 0.03,
+        "Sticker | kauez | Budapest 2025": 0.03,
+        "Sticker | Kursy | Budapest 2025": 0.03,
+        "Sticker | npl (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | rain | Budapest 2025": 0.03,
+        "Sticker | Team Spirit (Embroidered) | Budapest 2025": 0.09,
+        "Sticker | Team Spirit | Budapest 2025": 0.03,
+        "Sticker | Techno4K (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | torzsi (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | vexite | Budapest 2025": 0.03,
+        "Sticker | 910 (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | fEAR (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | insani (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | kyxsan (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | nettik (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Passion UA (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | skullz (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | SunPayus (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Tauson (Embroidered) | Budapest 2025": 0.04,
         "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
+        "Sticker | Attacker (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | chelo (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | nota (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | Vitality (Embroidered) | Budapest 2025": 0.07,
+        "Sticker | FlameZ (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | Fluxo | Budapest 2025": 0.03,
+        "Sticker | fnatic | Budapest 2025": 0.03,
+        "Sticker | jabbi | Budapest 2025": 0.03,
+        "Sticker | Kvem | Budapest 2025": 0.03,
+        "Sticker | Lynn Vision | Budapest 2025": 0.03,
+        "Sticker | MATYS (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | MIBR (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | Ninjas in Pyjamas | Budapest 2025": 0.03,
+        "Sticker | Passion UA | Budapest 2025": 0.03,
+        "Sticker | Rare Atom | Budapest 2025": 0.03,
+        "Sticker | StarLadder (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | Tiger (Embroidered) | Budapest 2025": 0.06,
+        "Sticker | AW (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | br0 (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | MOUZ (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | noway (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | PR (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | sjuush (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | sk0R (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | Sonic (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | XotiC (Embroidered) | Budapest 2025": 0.05,
+        "Sticker | ZywOo (Embroidered, Champion) | Budapest 2025": 0.05,
         "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
         "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
         "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
@@ -65,7 +317,42 @@
         "Sealed Graffiti | Toasted (Blood Red)": 0.04,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
         "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03
+        "Sticker | alex666 (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | biguzera (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | bodyy (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | ewjerkz (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Ex3rcice (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Graviti (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | History (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | KSCERATO (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | Kursy (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | n1ssim (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | ropz (Embroidered, Champion) | Budapest 2025": 0.04,
+        "Sticker | s1n (Embroidered) | Budapest 2025": 0.04,
+        "Sticker | TYLOO | Budapest 2025": 0.04,
+        "Sticker | westmelon (Embroidered) | Budapest 2025": 0.04,
+        "Sealed Graffiti | GTG (Cash Green)": 0.03,
+        "Sticker | apEX (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | apEX (Embroidered, Champion) | Budapest 2025": 0.03,
+        "Sticker | Aurora | Budapest 2025": 0.03,
+        "Sticker | Brollan (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | EliGE (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | FaZe Clan | Budapest 2025": 0.03,
+        "Sticker | GamerLegion | Budapest 2025": 0.03,
+        "Sticker | headtr1ck (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | jambo (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | Legacy | Budapest 2025": 0.03,
+        "Sticker | MOUZ | Budapest 2025": 0.03,
+        "Sticker | mzinho (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | Natus Vincere | Budapest 2025": 0.03,
+        "Sticker | NQZ (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | NRG | Budapest 2025": 0.03,
+        "Sticker | r1nkle (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | slaxz- (Embroidered) | Budapest 2025": 0.03,
+        "Sticker | StarLadder | Budapest 2025": 0.03,
+        "Sticker | Team Liquid | Budapest 2025": 0.03,
+        "Sticker | Vitality | Budapest 2025": 0.03,
+        "Sticker | yuurih (Embroidered) | Budapest 2025": 0.03
       }
     },
     {
@@ -130,24 +417,94 @@
     },
     {
       "date": "2026-03-14-04",
-      "totalValue": 1951.53,
+      "totalValue": 1984.7899999999995,
       "totalItems": 60,
       "categoryValues": {
         "Skins": {
           "count": 12,
-          "value": 1380.49
+          "value": 1208.46
         },
         "Sticker Investments": {
           "count": 1,
-          "value": 312.26000000000016
+          "value": 407.44000000000005
         },
         "Cases": {
           "count": 19,
-          "value": 244.91000000000003
+          "value": 346.37
         },
         "Stickers": {
           "count": 6,
-          "value": 13.44
+          "value": 22.080000000000002
+        },
+        "Graffiti": {
+          "count": 15,
+          "value": 0.43999999999999995
+        },
+        "Tools": {
+          "count": 1,
+          "value": 0
+        },
+        "Music Kits": {
+          "count": 1,
+          "value": 0
+        },
+        "Collectibles": {
+          "count": 5,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 785.45,
+        "M4A4 | X-Ray (Factory New)": 417.62,
+        "__budapest_sticker_lot__": 407.44000000000005,
+        "Operation Breakout Weapon Case": 18.23,
+        "Sticker | Snax | Krakow 2017": 8.6,
+        "Sticker | Xyp9x | Krakow 2017": 4.23,
+        "Sticker | Kjaerbye | Krakow 2017": 3.31,
+        "Sticker | fer | Krakow 2017": 3.11,
+        "Desert Eagle | Directive (Field-Tested)": 2.7,
+        "Sticker | Evidence (Holo)": 1.76,
+        "Sticker | Co Co Co": 1.07,
+        "StatTrak™ Glock-18 | Off World (Well-Worn)": 1.05,
+        "Souvenir AUG | Colony (Field-Tested)": 0.66,
+        "Sawed-Off | Zander (Well-Worn)": 0.55,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.26,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.09,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
+        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
+        "Sealed Graffiti | Double (Jungle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
+        "P250 | Boreal Forest (Field-Tested)": 0.04
+      }
+    },
+    {
+      "date": "2026-03-14-05",
+      "totalValue": 1766.5099999999998,
+      "totalItems": 60,
+      "categoryValues": {
+        "Skins": {
+          "count": 12,
+          "value": 1208.47
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 309.60000000000025
+        },
+        "Cases": {
+          "count": 19,
+          "value": 229.33
+        },
+        "Stickers": {
+          "count": 6,
+          "value": 18.68
         },
         "Graffiti": {
           "count": 15,
@@ -168,90 +525,21 @@
       },
       "itemPrices": {
         "★ Specialist Gloves | Field Agent (Minimal Wear)": 785.45,
-        "M4A4 | X-Ray (Factory New)": 591.03,
-        "__budapest_sticker_lot__": 312.26000000000016,
-        "Operation Breakout Weapon Case": 12.89,
-        "Sticker | Snax | Krakow 2017": 6.07,
-        "Sticker | Xyp9x | Krakow 2017": 3,
-        "Sticker | Kjaerbye | Krakow 2017": 2.35,
-        "Desert Eagle | Directive (Field-Tested)": 1.91,
-        "Sticker | Evidence (Holo)": 1.26,
-        "Sticker | Co Co Co": 0.76,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.73,
+        "M4A4 | X-Ray (Factory New)": 417.62,
+        "__budapest_sticker_lot__": 309.60000000000025,
+        "Operation Breakout Weapon Case": 12.07,
+        "Sticker | Snax | Krakow 2017": 8.6,
+        "Sticker | Xyp9x | Krakow 2017": 4.23,
+        "Sticker | fer | Krakow 2017": 3.11,
+        "Desert Eagle | Directive (Field-Tested)": 2.7,
+        "Sticker | Evidence (Holo)": 1.76,
+        "StatTrak™ Glock-18 | Off World (Well-Worn)": 1.03,
+        "Sticker | Co Co Co": 0.98,
+        "Souvenir AUG | Colony (Field-Tested)": 0.66,
         "Sawed-Off | Zander (Well-Worn)": 0.55,
-        "Souvenir AUG | Colony (Field-Tested)": 0.47,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.2,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
-        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
-        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
-        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
-        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
-        "Sealed Graffiti | Double (Jungle Green)": 0.04,
-        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
-        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
-        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
-        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
-        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
-        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
-        "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03
-      }
-    },
-    {
-      "date": "2026-03-14-05",
-      "totalValue": 1946.9,
-      "totalItems": 60,
-      "categoryValues": {
-        "Skins": {
-          "count": 12,
-          "value": 1380.49
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 303.0700000000003
-        },
-        "Cases": {
-          "count": 19,
-          "value": 247.38
-        },
-        "Stickers": {
-          "count": 6,
-          "value": 15.54
-        },
-        "Graffiti": {
-          "count": 15,
-          "value": 0.42000000000000004
-        },
-        "Tools": {
-          "count": 1,
-          "value": 0
-        },
-        "Music Kits": {
-          "count": 1,
-          "value": 0
-        },
-        "Collectibles": {
-          "count": 5,
-          "value": 0
-        }
-      },
-      "itemPrices": {
-        "★ Specialist Gloves | Field Agent (Minimal Wear)": 785.45,
-        "M4A4 | X-Ray (Factory New)": 591.03,
-        "__budapest_sticker_lot__": 303.0700000000003,
-        "Operation Breakout Weapon Case": 13.02,
-        "Sticker | Snax | Krakow 2017": 6.07,
-        "Sticker | Xyp9x | Krakow 2017": 3,
-        "Sticker | Kjaerbye | Krakow 2017": 2.35,
-        "Sticker | fer | Krakow 2017": 2.19,
-        "Desert Eagle | Directive (Field-Tested)": 1.91,
-        "Sticker | Evidence (Holo)": 1.23,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.73,
-        "Sticker | Co Co Co": 0.7,
-        "Sawed-Off | Zander (Well-Worn)": 0.55,
-        "Souvenir AUG | Colony (Field-Tested)": 0.47,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.2,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.28,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.1,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
         "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
         "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
         "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
@@ -263,282 +551,7 @@
         "Sealed Graffiti | Toasted (Blood Red)": 0.04,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
         "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03,
         "Sealed Graffiti | Sheriff (Dust Brown)": 0.03
-      }
-    },
-    {
-      "date": "2026-03-14-06",
-      "totalValue": 1943.6399999999996,
-      "totalItems": 60,
-      "categoryValues": {
-        "Skins": {
-          "count": 12,
-          "value": 1383.1999999999998
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 302.6700000000003
-        },
-        "Cases": {
-          "count": 19,
-          "value": 247.19
-        },
-        "Stickers": {
-          "count": 6,
-          "value": 10.17
-        },
-        "Graffiti": {
-          "count": 15,
-          "value": 0.41000000000000003
-        },
-        "Tools": {
-          "count": 1,
-          "value": 0
-        },
-        "Music Kits": {
-          "count": 1,
-          "value": 0
-        },
-        "Collectibles": {
-          "count": 5,
-          "value": 0
-        }
-      },
-      "itemPrices": {
-        "★ Specialist Gloves | Field Agent (Minimal Wear)": 788.29,
-        "M4A4 | X-Ray (Factory New)": 591.03,
-        "__budapest_sticker_lot__": 302.6700000000003,
-        "Operation Breakout Weapon Case": 13.01,
-        "Sticker | Snax | Krakow 2017": 5.93,
-        "Sticker | Xyp9x | Krakow 2017": 3,
-        "Desert Eagle | Directive (Field-Tested)": 1.8,
-        "Sticker | Evidence (Holo)": 1.24,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.73,
-        "Sawed-Off | Zander (Well-Worn)": 0.54,
-        "Souvenir AUG | Colony (Field-Tested)": 0.47,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.19,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
-        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
-        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
-        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
-        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
-        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
-        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
-        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
-        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
-        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
-        "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03,
-        "Sealed Graffiti | Double (Jungle Green)": 0.03,
-        "Sealed Graffiti | Sheriff (Dust Brown)": 0.03
-      }
-    },
-    {
-      "date": "2026-03-14-08",
-      "totalValue": 1934.8399999999997,
-      "totalItems": 60,
-      "categoryValues": {
-        "Skins": {
-          "count": 12,
-          "value": 1383.2499999999998
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 305.12000000000023
-        },
-        "Cases": {
-          "count": 19,
-          "value": 232.94
-        },
-        "Stickers": {
-          "count": 6,
-          "value": 13.12
-        },
-        "Graffiti": {
-          "count": 15,
-          "value": 0.41000000000000003
-        },
-        "Tools": {
-          "count": 1,
-          "value": 0
-        },
-        "Music Kits": {
-          "count": 1,
-          "value": 0
-        },
-        "Collectibles": {
-          "count": 5,
-          "value": 0
-        }
-      },
-      "itemPrices": {
-        "★ Specialist Gloves | Field Agent (Minimal Wear)": 788.29,
-        "M4A4 | X-Ray (Factory New)": 591.03,
-        "__budapest_sticker_lot__": 305.12000000000023,
-        "Operation Breakout Weapon Case": 12.26,
-        "Sticker | Snax | Krakow 2017": 5.93,
-        "Sticker | Xyp9x | Krakow 2017": 3,
-        "Sticker | fer | Krakow 2017": 2.19,
-        "Desert Eagle | Directive (Field-Tested)": 1.86,
-        "Sticker | Evidence (Holo)": 1.24,
-        "Sticker | Co Co Co": 0.76,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.73,
-        "Sawed-Off | Zander (Well-Worn)": 0.54,
-        "Souvenir AUG | Colony (Field-Tested)": 0.46,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.19,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
-        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
-        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
-        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
-        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
-        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
-        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
-        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
-        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
-        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
-        "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03,
-        "Sealed Graffiti | Double (Jungle Green)": 0.03,
-        "Sealed Graffiti | Keep the Change (Frog Green)": 0.03
-      }
-    },
-    {
-      "date": "2026-03-14-09",
-      "totalValue": 1921.71,
-      "totalItems": 60,
-      "categoryValues": {
-        "Skins": {
-          "count": 12,
-          "value": 1371.11
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 303.21000000000026
-        },
-        "Cases": {
-          "count": 19,
-          "value": 233.89000000000001
-        },
-        "Stickers": {
-          "count": 6,
-          "value": 13.089999999999998
-        },
-        "Graffiti": {
-          "count": 15,
-          "value": 0.41000000000000003
-        },
-        "Tools": {
-          "count": 1,
-          "value": 0
-        },
-        "Music Kits": {
-          "count": 1,
-          "value": 0
-        },
-        "Collectibles": {
-          "count": 5,
-          "value": 0
-        }
-      },
-      "itemPrices": {
-        "★ Specialist Gloves | Field Agent (Minimal Wear)": 788.29,
-        "M4A4 | X-Ray (Factory New)": 578.92,
-        "__budapest_sticker_lot__": 303.21000000000026,
-        "Operation Breakout Weapon Case": 12.31,
-        "Sticker | Snax | Krakow 2017": 5.93,
-        "Sticker | Xyp9x | Krakow 2017": 3,
-        "Sticker | fer | Krakow 2017": 2.19,
-        "Desert Eagle | Directive (Field-Tested)": 1.85,
-        "Sticker | Evidence (Holo)": 1.21,
-        "Sticker | Co Co Co": 0.76,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.72,
-        "Sawed-Off | Zander (Well-Worn)": 0.54,
-        "Souvenir AUG | Colony (Field-Tested)": 0.46,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.18,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
-        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
-        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
-        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
-        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
-        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
-        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
-        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
-        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
-        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
-        "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03,
-        "Sealed Graffiti | Double (Jungle Green)": 0.03,
-        "Sealed Graffiti | Keep the Change (Frog Green)": 0.03
-      }
-    },
-    {
-      "date": "2026-03-14-10",
-      "totalValue": 1910.34,
-      "totalItems": 60,
-      "categoryValues": {
-        "Skins": {
-          "count": 12,
-          "value": 1371.11
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 303.21000000000026
-        },
-        "Cases": {
-          "count": 19,
-          "value": 226.1
-        },
-        "Stickers": {
-          "count": 6,
-          "value": 9.51
-        },
-        "Graffiti": {
-          "count": 15,
-          "value": 0.41000000000000003
-        },
-        "Tools": {
-          "count": 1,
-          "value": 0
-        },
-        "Music Kits": {
-          "count": 1,
-          "value": 0
-        },
-        "Collectibles": {
-          "count": 5,
-          "value": 0
-        }
-      },
-      "itemPrices": {
-        "★ Specialist Gloves | Field Agent (Minimal Wear)": 788.29,
-        "M4A4 | X-Ray (Factory New)": 578.92,
-        "__budapest_sticker_lot__": 303.21000000000026,
-        "Operation Breakout Weapon Case": 11.9,
-        "Sticker | Xyp9x | Krakow 2017": 3,
-        "Sticker | Kjaerbye | Krakow 2017": 2.35,
-        "Sticker | fer | Krakow 2017": 2.19,
-        "Desert Eagle | Directive (Field-Tested)": 1.85,
-        "Sticker | Evidence (Holo)": 1.21,
-        "Sticker | Co Co Co": 0.76,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.72,
-        "Sawed-Off | Zander (Well-Worn)": 0.54,
-        "Souvenir AUG | Colony (Field-Tested)": 0.46,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.18,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.07,
-        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
-        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
-        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
-        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
-        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
-        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
-        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
-        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
-        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
-        "P250 | Boreal Forest (Field-Tested)": 0.04,
-        "Sealed Graffiti | GTG (Cash Green)": 0.03,
-        "Sealed Graffiti | Double (Jungle Green)": 0.03,
-        "Sealed Graffiti | Keep the Change (Frog Green)": 0.03
       }
     }
   ]

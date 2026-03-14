@@ -1320,6 +1320,7 @@ async function main() {
   console.log('Fetching SteamAnalyst pricing data...');
   const steamAnalystData = await fetchSteamAnalyst();
 
+
   // ── Build data rows ───────────────────────────────────────────────
   interface Row {
     name: string; quality: string; qty: number; costPerUnit: number;
@@ -1427,6 +1428,7 @@ async function main() {
     grandCost += totalCost;
     grandValue += totalValue;
   }
+
 
   const grandPL = grandValue - grandCost;
   const grandROI = ((grandPL / grandCost) * 100).toFixed(1);
@@ -1747,6 +1749,7 @@ async function main() {
     .slice(0, 30)
     .map(t => ({ name: t.name, quality: t.quality, appearances: t.count, firstPrice: t.firstPrice, latestPrice: t.latestPrice, priceChange: t.latestPrice - t.firstPrice, rising: t.latestPrice >= t.firstPrice }));
 
+
   // ── Historical Major Data (fetched Mar 2026) ────────────────────────
   // Quality mapping: Normal→Paper, Embroidered→Foil/Glitter/Embroidered, Holo→Holo, Gold→Gold
   // Embroidered was introduced in Copenhagen 2024 (CS2 native). Pre-CS2 equivalent = Foil/Glitter.
@@ -1803,6 +1806,7 @@ async function main() {
     { name: "Shanghai 2024", date: "2024-12-15", monthsOld: monthsSince("2024-12-15"), avgPaper: 0.09, avgMidTier: 1.19, avgHolo: 22.48, avgGold: 96.10, saleDays: 130, capsulePrice: 0.92, weight: 0.95, notes: "First China major — huge CN buyer pool. Team Spirit won. Only 20% of Paris volume = much better supply profile. 130-day sale still long. Sale removed Apr 2025. Early volatile but stabilising." },
     { name: "Austin 2025", date: "2025-06-15", monthsOld: monthsSince("2025-06-15"), avgPaper: 0.05, avgMidTier: 0.34, avgHolo: 16.12, avgGold: 41.54, saleDays: 49, capsulePrice: 0.42, weight: 1.00, notes: "Shortest modern sale (49 days) = best scarcity since Stockholm. Only 121K listings vs Paris 377K. Prices doubled within hours of removal. TYLOO Holo $66. Most relevant comparable for Budapest — recent, short sale, modern market." },
   ];
+
   // Set Skinport defaults for all entries (will be overridden by live data below)
   for (const m of historicalMajors) { m.skinportVol7d = m.skinportVol7d || 0; m.skinportVol30d = m.skinportVol30d || 0; m.skinportAvgPrice = m.skinportAvgPrice || 0; m.skinportListings = m.skinportListings || 0; }
 
@@ -1816,6 +1820,7 @@ async function main() {
   }
   let majorPriceHistory: { entries: MajorPriceHistoryEntry[] } = { entries: [] };
   let majorPriceLastUpdated = '';
+
   try {
     const raw = await Bun.file(MAJOR_HISTORY_FILE).text();
     majorPriceHistory = JSON.parse(raw);
@@ -1840,6 +1845,7 @@ async function main() {
       console.log(`  Updated ${Object.keys(latest.averages).length} majors with live price + Skinport data from ${majorPriceLastUpdated}`);
     }
   } catch { /* no major history yet — use hardcoded values */ }
+
 
   // Build major price trend data for charts (all entries over time)
   const majorPriceTrends: { date: string; majors: Record<string, { avgNormal: number; avgHolo: number; avgGold: number }> }[] = [];
@@ -1883,6 +1889,7 @@ async function main() {
   // Conservative capsule prediction based on most similar major (Austin 2025 — shortest sale)
   const austinCapsule = capsuleHistory.find(c => c.name === "Austin 2025");
   const capsuleConservativeROI = austinCapsule ? austinCapsule.roi : 0;
+
 
   // User's quality distribution
   const userNormalCount = data.filter(r => r.quality === 'Normal' || r.quality.startsWith('Normal')).reduce((a, r) => a + r.qty, 0);
@@ -1935,6 +1942,7 @@ async function main() {
     };
   });
   projections.forEach(p => { if (p.roi === bestROI) p.bestMajor = true; });
+
 
   // Timeline projections for Budapest 2025
   // Use historical data points (months vs weighted ROI) to project future values
@@ -2232,6 +2240,7 @@ async function main() {
     return '<span class="grade-badge" style="background:' + color + '20;color:' + color + '">' + grade + '</span>';
   }
 
+
   // ── Alternative Investment Comparison (Gold, Silver, BTC, ETH, SOL) ──
   // What if you had invested the same $grandCost AUD in these assets instead?
   const investmentDateStr = history.entries.length > 0 ? history.entries[0].date.slice(0, 10) : '2025-09-01';
@@ -2303,6 +2312,60 @@ async function main() {
   for (const alt of altInvestments) {
     console.log(`  ${alt.name}: $${alt.investedValue.toFixed(2)} AUD (${alt.roi >= 0 ? '+' : ''}${alt.roi.toFixed(1)}%)`);
   }
+
+  // ── Fun Investment Comparison (CS2 Commodities) ──────────────────────
+  // What if you invested the same amount in other popular CS2 items?
+  interface FunInvestment {
+    name: string;
+    hashName: string;
+    purchasePriceAud: number; // approximate price at sticker purchase date
+    currentPriceAud: number;
+    color: string;
+    icon: string; // emoji
+    note: string;
+  }
+  const funInvestmentDefs = [
+    { name: 'Austin 2025 Capsules', hashName: 'Austin 2025 Legends Sticker Capsule', purchasePriceAud: 0.39, color: '#e74c3c', icon: '🏆', note: 'Most comparable — shortest modern sale (49 days)' },
+    { name: 'Shanghai 2024 Capsules', hashName: 'Shanghai 2024 Legends Sticker Capsule', purchasePriceAud: 0.39, color: '#e67e22', icon: '🐉', note: 'First China major, removed Apr 2025' },
+    { name: 'Copenhagen 2024 Capsules', hashName: 'Copenhagen 2024 Legends Sticker Capsule', purchasePriceAud: 0.39, color: '#3498db', icon: '🇩🇰', note: 'First CS2-native major, 152-day sale' },
+    { name: 'Kilowatt Case', hashName: 'Kilowatt Case', purchasePriceAud: 1.60, color: '#f1c40f', icon: '⚡', note: 'Popular active drop case' },
+    { name: 'Gallery Case', hashName: 'Gallery Case', purchasePriceAud: 1.50, color: '#9b59b6', icon: '🎨', note: 'Newest case with desirable skins' },
+    { name: 'Revolution Case', hashName: 'Revolution Case', purchasePriceAud: 0.15, color: '#2ecc71', icon: '✊', note: 'Affordable case investment' },
+    { name: 'Dreams & Nightmares Case', hashName: 'Dreams %26 Nightmares Case', purchasePriceAud: 2.00, color: '#8e44ad', icon: '🌙', note: 'Iconic designs, strong holder base' },
+    { name: 'Clutch Case', hashName: 'Clutch Case', purchasePriceAud: 3.50, color: '#1abc9c', icon: '🧤', note: 'Contains popular glove skins' },
+    { name: 'Operation Breakout Case', hashName: 'Operation Breakout Weapon Case', purchasePriceAud: 13.35, color: '#e74c3c', icon: '💼', note: "You own 19 of these!" },
+    { name: 'Snakebite Case', hashName: 'Snakebite Case', purchasePriceAud: 6.50, color: '#27ae60', icon: '🐍', note: 'Operation case with rare skins' },
+  ];
+
+  console.log(`\nFetching fun investment prices (${funInvestmentDefs.length} CS2 items)...`);
+  const funInvestments: FunInvestment[] = [];
+  for (const def of funInvestmentDefs) {
+    try {
+      const hashForUrl = def.hashName.includes('%') ? def.hashName : encodeURIComponent(def.hashName);
+      const res = await fetch(`https://steamcommunity.com/market/priceoverview/?currency=${config.currencyCode}&appid=730&market_hash_name=${hashForUrl}`);
+      if (res.ok) {
+        const json = await res.json() as any;
+        if (json.success && json.lowest_price) {
+          const priceStr = json.lowest_price.replace(/[^0-9.]/g, '');
+          const currentPrice = parseFloat(priceStr) || 0;
+          if (currentPrice > 0) {
+            funInvestments.push({
+              name: def.name,
+              hashName: def.hashName,
+              purchasePriceAud: def.purchasePriceAud,
+              currentPriceAud: currentPrice,
+              color: def.color,
+              icon: def.icon,
+              note: def.note,
+            });
+            console.log(`  ${def.name}: $${currentPrice.toFixed(2)} AUD (was ~$${def.purchasePriceAud.toFixed(2)})`);
+          }
+        }
+      }
+      await new Promise(r => setTimeout(r, 1500)); // rate limit
+    } catch { /* skip failed items */ }
+  }
+  console.log(`  Fetched ${funInvestments.length}/${funInvestmentDefs.length} fun investment prices`);
 
   // ── Generate CSV ──────────────────────────────────────────────────
   let csvOut = "Sticker Name,Quality,Qty,Cost/Unit (AUD),Total Cost (AUD),Current Price (AUD),Total Value (AUD),Profit/Loss (AUD),ROI %,Steam Market Link\n";
@@ -2430,7 +2493,7 @@ async function main() {
   /* Main table — Steam market style */
   table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
   thead { position: sticky; top: 48px; z-index: 50; }
-  th { background: #1a3a52; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
+  th { background: #1a3a52; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; box-shadow: 0 1px 0 #0e1a26; }
   th:hover { color: #66c0f4; }
   td { padding: 7px 8px; border-bottom: 1px solid rgba(0,0,0,0.15); font-variant-numeric: tabular-nums; }
   tbody tr { transition: background 0.15s; }
@@ -2675,6 +2738,7 @@ async function main() {
   <a href="#weekly-section">Weekly</a>
   <a href="#predictions-section">Predictions</a>
   <a href="#altinvest-section">vs Assets</a>
+  <a href="#funinvest-section">vs CS2 Items</a>
   <a href="#capsule-section">Capsules</a>
   <a href="#browse-section">Browse</a>
   <a href="#inventory-section">Inventory</a>
@@ -2716,7 +2780,7 @@ async function main() {
     <div style="color:#8f98a0;font-size:13px;">Fork this project, import your Steam inventory, and deploy your own tracker in under 5 minutes.</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;">
-    <a href="https://github.com/${config.steamProfile.vanityUrl}/budapest2025#create-your-own-tracker" target="_blank" style="background:linear-gradient(135deg,#1a9fff,#0d6efd);color:#fff;padding:8px 20px;border-radius:3px;font-weight:600;font-size:13px;text-decoration:none;white-space:nowrap;border:none;">Create Your Own</a>
+    <a href="https://github.com/${config.steamProfile.vanityUrl}/cs2inventorytracker#create-your-own-tracker" target="_blank" style="background:linear-gradient(135deg,#1a9fff,#0d6efd);color:#fff;padding:8px 20px;border-radius:3px;font-weight:600;font-size:13px;text-decoration:none;white-space:nowrap;border:none;">Create Your Own</a>
     <button onclick="document.getElementById('createBanner').style.display='none';localStorage.setItem('hideBanner','1')" style="background:none;border:none;color:#555;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;" title="Dismiss">&times;</button>
   </div>
 </div>
@@ -3591,6 +3655,50 @@ ${altInvestments.map(a => {
 </table>
 <p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Gold/silver prices are approximate for the purchase date. Crypto prices from CoinGecko historical API. All values converted to AUD using current exchange rate ($1 USD = $${exchangeRates.usdToAud.toFixed(4)} AUD). Sticker investments are illiquid and carry higher risk than traditional assets.</p>
 ` : '<p style="color:#555;text-align:center;padding:20px;">Alternative investment data unavailable. Will appear on next update.</p>'}
+
+${funInvestments.length > 0 ? `
+<h3 id="funinvest-section">Fun Investment Comparison &mdash; CS2 Commodities</h3>
+<p style="color:#888;font-size:13px;margin-bottom:16px;">What if you had invested your <strong style="color:#fff">$${grandCost.toFixed(2)} AUD</strong> in other popular CS2 items instead of ${config.event} stickers? Purchase prices are approximate values from around <strong style="color:#fff">${investmentDateStr}</strong>.</p>
+
+<table class="history-table" style="max-width:1100px;margin-top:16px;">
+<thead><tr>
+  <th>Item</th>
+  <th>Buy Price</th>
+  <th>Current Price</th>
+  <th>Item Change</th>
+  <th>Qty You'd Own</th>
+  <th>Portfolio Value</th>
+  <th>vs Stickers</th>
+</tr></thead>
+<tbody>
+<tr style="background:rgba(103,193,245,0.05);">
+  <td style="font-weight:600;color:#67c1f5">Budapest 2025 Stickers</td>
+  <td>$${config.costPerUnit.toFixed(2)}</td>
+  <td>$${avgStickerValue.toFixed(3)}</td>
+  <td class="${stickerROI >= 0 ? 'positive' : 'negative'}" style="font-weight:700">${stickerROI >= 0 ? '+' : ''}${stickerROI.toFixed(1)}%</td>
+  <td>${grandQty.toLocaleString()}</td>
+  <td style="font-weight:600" class="${grandValue >= grandCost ? 'positive' : 'negative'}">$${grandValue.toFixed(2)}</td>
+  <td style="color:#67c1f5;font-weight:600">&mdash;</td>
+</tr>
+${funInvestments.map(f => {
+  const itemChange = ((f.currentPriceAud - f.purchasePriceAud) / f.purchasePriceAud * 100);
+  const qtyBought = Math.floor(grandCost / f.purchasePriceAud);
+  const portfolioValue = qtyBought * f.currentPriceAud;
+  const vsDiff = portfolioValue - grandValue;
+  return '<tr>' +
+    '<td style="font-weight:600;color:' + f.color + '">' + f.icon + ' ' + f.name + '</td>' +
+    '<td>$' + f.purchasePriceAud.toFixed(2) + '</td>' +
+    '<td>$' + f.currentPriceAud.toFixed(2) + '</td>' +
+    '<td class="' + (itemChange >= 0 ? 'positive' : 'negative') + '" style="font-weight:700">' + (itemChange >= 0 ? '+' : '') + itemChange.toFixed(1) + '%</td>' +
+    '<td>' + qtyBought.toLocaleString() + '</td>' +
+    '<td style="font-weight:600" class="' + (portfolioValue >= grandCost ? 'positive' : 'negative') + '">$' + portfolioValue.toFixed(2) + '</td>' +
+    '<td class="' + (vsDiff >= 0 ? 'negative' : 'positive') + '">' + (vsDiff >= 0 ? 'Behind by $' + vsDiff.toFixed(2) : 'Ahead by $' + Math.abs(vsDiff).toFixed(2)) + '</td>' +
+  '</tr>';
+}).join('\n')}
+</tbody>
+</table>
+<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Purchase prices are estimated values at the time of sticker investment (~${investmentDateStr}). Current prices fetched live from Steam Community Market. Case quantities use floor division (can't buy fractional cases). All prices in AUD.</p>
+` : ''}
 
 <h3 id="capsule-section">Capsule Investment (${CAPSULE_QTY} Capsules)</h3>
 <p style="color:#888;font-size:13px;margin-bottom:16px;">You hold <strong style="color:#fff">${CAPSULE_QTY} ${config.event} capsules</strong> bought at ~A$${CAPSULE_COST_EACH.toFixed(2)} each (A$${capsuleTotalCost.toFixed(2)} total). Capsule prices typically rise after removal from the in-game store. Below is how capsules from previous majors performed.</p>
