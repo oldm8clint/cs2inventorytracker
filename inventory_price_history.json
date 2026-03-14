@@ -976,24 +976,24 @@
     },
     {
       "date": "2026-03-14-16",
-      "totalValue": 2030.9099999999999,
+      "totalValue": 2037.1899999999998,
       "totalItems": 60,
       "categoryValues": {
         "Skins": {
           "count": 12,
-          "value": 1372.93
+          "value": 1372.78
         },
         "Cases": {
           "count": 19,
-          "value": 333.83
+          "value": 342.57000000000005
         },
         "Sticker Investments": {
           "count": 1,
-          "value": 301.73000000000036
+          "value": 299.30000000000035
         },
         "Stickers": {
           "count": 6,
-          "value": 21.959999999999997
+          "value": 22.08
         },
         "Graffiti": {
           "count": 15,
@@ -1015,20 +1015,20 @@
       "itemPrices": {
         "★ Specialist Gloves | Field Agent (Minimal Wear)": 788.29,
         "M4A4 | X-Ray (Factory New)": 578.92,
-        "Operation Breakout Weapon Case": 17.57,
-        "__budapest_sticker_lot__": 301.73000000000036,
+        "Operation Breakout Weapon Case": 18.03,
+        "__budapest_sticker_lot__": 299.30000000000035,
         "Sticker | Snax | Krakow 2017": 8.6,
         "Sticker | Xyp9x | Krakow 2017": 4.23,
         "Sticker | Kjaerbye | Krakow 2017": 3.34,
         "Sticker | fer | Krakow 2017": 3.31,
-        "Desert Eagle | Directive (Field-Tested)": 2.66,
-        "Sticker | Evidence (Holo)": 1.42,
-        "Sticker | Co Co Co": 1.06,
-        "StatTrak™ Glock-18 | Off World (Well-Worn)": 1.01,
+        "Desert Eagle | Directive (Field-Tested)": 2.56,
+        "Sticker | Evidence (Holo)": 1.45,
+        "Sticker | Co Co Co": 1.15,
         "Sawed-Off | Zander (Well-Worn)": 0.98,
+        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.93,
         "Souvenir AUG | Colony (Field-Tested)": 0.64,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.26,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.09,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.28,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.1,
         "Sealed Graffiti | Still Happy (Battle Green)": 0.06,
         "Sealed Graffiti | GTG (Cash Green)": 0.04,
         "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
