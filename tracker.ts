@@ -5,7 +5,7 @@
 const SCRIPT_DIR = import.meta.dir;
 const HISTORY_FILE = `${SCRIPT_DIR}/sticker_price_history.json`;
 const MAJOR_HISTORY_FILE = `${SCRIPT_DIR}/major_price_history.json`;
-const HTML_FILE = `${SCRIPT_DIR}/index.html`;
+const HTML_FILE = `${SCRIPT_DIR}/budapest.html`;
 const CSV_FILE = `${SCRIPT_DIR}/budapest2025_stickers.csv`;
 const IMAGES_FILE = `${SCRIPT_DIR}/sticker_images.json`;
 const CONFIG_FILE = `${SCRIPT_DIR}/config.json`;
@@ -2429,7 +2429,7 @@ async function main() {
 
   /* Main table — Steam market style */
   table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
-  thead { position: sticky; top: 48px; z-index: 10; }
+  thead { position: sticky; top: 48px; z-index: 50; }
   th { background: #1a3a52; color: #8f98a0; padding: 8px 8px; text-align: left; border-bottom: 1px solid #0e1a26; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
   th:hover { color: #66c0f4; }
   td { padding: 7px 8px; border-bottom: 1px solid rgba(0,0,0,0.15); font-variant-numeric: tabular-nums; }
@@ -2662,6 +2662,7 @@ async function main() {
 <body>
 
 <nav class="sticky-nav" id="stickyNav">
+  <a href="index.html" style="color:#67c1f5;border-right:1px solid #2a475e;padding-right:16px;margin-right:4px;">&larr; Portfolio</a>
   <a href="#overview-section">Overview</a>
   <a href="#summary-section">Summary</a>
   <a href="#charts-section">Charts</a>

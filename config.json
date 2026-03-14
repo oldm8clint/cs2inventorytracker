@@ -27,5 +27,20 @@
     }
   },
   "siteTitle": "CS2 Inventory Tracker — Budapest 2025 Sticker Investment",
-  "githubPagesUrl": "https://oldm8clint.github.io/budapest2025/"
+  "githubPagesUrl": "https://oldm8clint.github.io/budapest2025/",
+  "portfolio": {
+    "costBasis": {
+      "Operation Breakout Weapon Case": { "qty": 19, "costEach": 13.35, "currency": "AUD" }
+    },
+    "manualItems": [
+      {
+        "market_hash_name": "Operation Breakout Weapon Case",
+        "name": "Operation Breakout Weapon Case",
+        "qty": 19,
+        "category": "Cases",
+        "note": "Trade hold",
+        "icon_url": "https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bj35VTqVBP4io_fqWxdv_b8O_w5eKXBWWXHw-smtrBvTHDmwEsl4jvWn4z_I3qWZwV1X5ZwW6dU5RcRF1o0/96x96"
+      }
+    ]
+  }
 }
