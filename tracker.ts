@@ -2830,8 +2830,6 @@ async function main() {
   .quality-chip { padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 </head>
 <body>
 
@@ -4055,14 +4053,6 @@ function sortTable(col) {
 }
 
 ${portfolioHistory.length > 1 ? `
-// chartjs-plugin-zoom auto-registers when loaded via script tag
-// Just configure the default zoom/pan settings
-try {
-  Chart.defaults.plugins.zoom = {
-    zoom: { wheel: { enabled: true, speed: 0.1 }, pinch: { enabled: true }, mode: 'x' },
-    pan: { enabled: true, mode: 'x' },
-  };
-} catch(e) { /* zoom plugin not loaded */ }
 const ctx = document.getElementById('portfolioChart').getContext('2d');
 new Chart(ctx, {
   type: 'line',
