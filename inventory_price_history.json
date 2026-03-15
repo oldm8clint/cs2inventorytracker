@@ -1743,6 +1743,76 @@
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
         "P250 | Boreal Forest (Field-Tested)": 0.04
       }
+    },
+    {
+      "date": "2026-03-15-06",
+      "totalValue": 2090.5699999999993,
+      "totalItems": 60,
+      "categoryValues": {
+        "Skins": {
+          "count": 12,
+          "value": 1371.8799999999999
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 348.34000000000003
+        },
+        "Cases": {
+          "count": 19,
+          "value": 347.7
+        },
+        "Stickers": {
+          "count": 6,
+          "value": 22.21
+        },
+        "Graffiti": {
+          "count": 15,
+          "value": 0.43999999999999995
+        },
+        "Tools": {
+          "count": 1,
+          "value": 0
+        },
+        "Music Kits": {
+          "count": 1,
+          "value": 0
+        },
+        "Collectibles": {
+          "count": 5,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 781.5,
+        "M4A4 | X-Ray (Factory New)": 584.55,
+        "__budapest_sticker_lot__": 348.34000000000003,
+        "Operation Breakout Weapon Case": 18.3,
+        "Sticker | Snax | Krakow 2017": 8.59,
+        "Sticker | Xyp9x | Krakow 2017": 4.23,
+        "Sticker | Kjaerbye | Krakow 2017": 3.34,
+        "Sticker | fer | Krakow 2017": 3.34,
+        "Desert Eagle | Directive (Field-Tested)": 2.53,
+        "Sticker | Evidence (Holo)": 1.55,
+        "Sawed-Off | Zander (Well-Worn)": 1.43,
+        "Sticker | Co Co Co": 1.16,
+        "StatTrak™ Glock-18 | Off World (Well-Worn)": 0.92,
+        "Souvenir AUG | Colony (Field-Tested)": 0.52,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.27,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.08,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
+        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
+        "Sealed Graffiti | Double (Jungle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
+        "P250 | Boreal Forest (Field-Tested)": 0.04
+      }
     }
   ]
 }
