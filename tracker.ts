@@ -2197,32 +2197,47 @@ async function main() {
 
 
   // Timeline projections for Budapest 2025
-  // Use historical data points (months vs weighted ROI) to project future values
-  // Bias towards last 4 majors (most relevant for modern CS2 economy)
+  // ── Prediction Model: Logarithmic Growth Curve + Nearest-Neighbor Blend ──
+  // Research shows sticker prices follow logarithmic growth post-sale: ROI(t) = a * ln(t+1) + b
+  // We fit this curve using weighted least squares (recent majors weighted highest),
+  // then blend with nearest-neighbor interpolation for robustness.
   // majorWeightMap already computed above (before projections)
+
+  // Step 1: Fit weighted logarithmic curve to all historical major data points
+  // Transform: x = ln(monthsOld + 1), y = ROI, w = majorWeight
+  const curvePoints = projections.filter(p => p.monthsOld > 0 && (majorWeightMap[p.name] || 0) >= 0.01);
+  let sumW = 0, sumWX = 0, sumWY = 0, sumWXX = 0, sumWXY = 0;
+  for (const p of curvePoints) {
+    const x = Math.log(p.monthsOld + 1);
+    const y = p.roi;
+    const w = majorWeightMap[p.name] || 0.01;
+    sumW += w; sumWX += w * x; sumWY += w * y;
+    sumWXX += w * x * x; sumWXY += w * x * y;
+  }
+  // Weighted least squares: y = curveA * x + curveB
+  const curveA = sumW > 0 ? (sumWXY - sumWX * sumWY / sumW) / (sumWXX - sumWX * sumWX / sumW) : 0;
+  const curveB = sumW > 0 ? (sumWY - curveA * sumWX) / sumW : 0;
+  const logCurveROI = (months: number) => curveA * Math.log(months + 1) + curveB;
+
   // 2-week intervals for first year, monthly for year 2, then quarterly/yearly out to 12 years
-  // Capped at 144 months (12 years) — oldest major (Katowice 2014) is ~144 months old, no reliable data beyond that
+  // Capped at 144 months (12 years) — oldest major (Katowice 2014) is ~144 months old
   const timePoints = [
     0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12,
     13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
     27, 30, 33, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144,
   ];
-  interface TimeProjection { months: number; label: string; avgROI: number; projectedValue: number; projectedPerSticker: number; actualValue?: number; actualROI?: number; }
+  interface TimeProjection { months: number; label: string; avgROI: number; projectedValue: number; projectedPerSticker: number; actualValue?: number; actualROI?: number; method?: string; }
   const timeProjections: TimeProjection[] = timePoints.map(targetMonths => {
-    // Find majors near this age and interpolate
-    // Use tighter search radius for young ages to avoid ancient major contamination
+    // Step 2: Nearest-neighbor interpolation (existing approach)
     const searchRadius = targetMonths < 6 ? Math.max(3, targetMonths * 2) : Math.max(12, targetMonths * 0.5);
     const nearby = projections.filter(p => {
       const dist = Math.abs(p.monthsOld - targetMonths);
-      // For ages < 6 months, only use majors < 24 months old (modern CS2 economy)
       if (targetMonths < 6 && p.monthsOld > 24) return false;
-      // For ages < 12 months, exclude pre-2019 majors (weight < 0.10)
       if (targetMonths < 12 && (majorWeightMap[p.name] || 0.10) < 0.10) return false;
       return dist <= searchRadius;
     });
-    let avgROI: number;
+    let nnROI: number;
     if (nearby.length > 0) {
-      // Weight closer majors more heavily, with recency bias
       let totalWeight = 0, weightedROI = 0;
       for (const p of nearby) {
         const distW = 1 / (1 + Math.abs(p.monthsOld - targetMonths));
@@ -2230,13 +2245,26 @@ async function main() {
         weightedROI += p.roi * w;
         totalWeight += w;
       }
-      avgROI = weightedROI / totalWeight;
+      nnROI = weightedROI / totalWeight;
     } else {
-      // Extrapolate from closest modern major (weight >= 0.10)
       const modern = projections.filter(p => (majorWeightMap[p.name] || 0.10) >= 0.10);
       const sorted = [...(modern.length > 0 ? modern : projections)].sort((a, b) => Math.abs(a.monthsOld - targetMonths) - Math.abs(b.monthsOld - targetMonths));
-      avgROI = sorted[0].roi;
+      nnROI = sorted[0].roi;
     }
+
+    // Step 3: Logarithmic curve prediction
+    const lcROI = logCurveROI(targetMonths);
+
+    // Step 4: Blend — curve fit gets more weight for longer projections (better extrapolation)
+    // Short-term (0-6mo): 70% NN / 30% curve (NN captures post-sale dynamics better)
+    // Medium-term (6-36mo): 50/50 blend
+    // Long-term (36mo+): 30% NN / 70% curve (curve extrapolates more smoothly)
+    let curveWeight: number;
+    if (targetMonths <= 6) curveWeight = 0.3;
+    else if (targetMonths <= 36) curveWeight = 0.3 + 0.4 * ((targetMonths - 6) / 30);
+    else curveWeight = 0.7;
+    const avgROI = nnROI * (1 - curveWeight) + lcROI * curveWeight;
+
     const projValue = grandCost * (1 + avgROI / 100);
     return {
       months: targetMonths,
@@ -2244,6 +2272,7 @@ async function main() {
       avgROI,
       projectedValue: projValue,
       projectedPerSticker: projValue / userTotal,
+      method: `${Math.round(curveWeight * 100)}% curve`,
     };
   });
 
@@ -3140,7 +3169,7 @@ async function main() {
   .quality-explainer { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
   .quality-chip { padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 </head>
 <body>
 
@@ -3755,8 +3784,8 @@ ${csgoSkinsData ? '<br><span style="color:' + (csgoSkinsAge <= 7 ? '#22c55e' : c
   <div class="card"><div class="card-label">High Divergence (&gt;20%)</div><div class="card-value" style="color:#ef4444">${sourceCompData.filter(r => r.divergencePct > 20).length}</div><div class="card-sub">Items with major discrepancy</div></div>
 </div>
 
-<details open>
-<summary style="cursor:pointer;color:#67c1f5;font-weight:600;padding:8px 0;user-select:none;">Per-Sticker Source Comparison &mdash; sorted by divergence</summary>
+<details>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;padding:8px 0;user-select:none;">Per-Sticker Source Comparison &mdash; sorted by divergence (click to expand)</summary>
 <div class="scroll-table" style="max-height:500px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
 <table>
 <thead><tr>
@@ -3820,8 +3849,8 @@ ${histDivergence.length > 1 ? `
   <canvas id="cumulativePLChart"></canvas>
 </div>
 </div>
-<details open>
-<summary style="cursor:pointer;color:#67c1f5;font-weight:600;padding:8px 0;user-select:none;">Snapshot Details (${history.entries.length} entries) — click to collapse</summary>
+<details>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;padding:8px 0;user-select:none;">Snapshot Details (${history.entries.length} entries) — click to expand</summary>
 <div class="scroll-table" style="max-height:500px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
 <table class="history-table" style="max-width: 1000px;">
 <thead><tr><th>Date</th><th>Actual Value</th><th title="Predicted value based on weighted historical major performance at this age">Predicted</th><th>Pred Accuracy</th><th>P/L vs Cost</th><th>ROI</th><th>Day Change</th><th>Avg Sticker</th></tr></thead>
@@ -4061,7 +4090,7 @@ ${['Normal', 'Embroidered', 'Holo', 'Gold'].map(q => {
 </div>
 
 <h4 style="color:#fff;font-size:14px;margin:20px 0 12px;">Full Prediction Timeline (${timeProjections.length} intervals)</h4>
-<p style="color:#888;font-size:12px;margin-bottom:8px;">All prediction intervals from 2 weeks to 12 years. Green rows have actual price data to compare against projections. Scroll to explore all ${timeProjections.length} time points.</p>
+<p style="color:#888;font-size:12px;margin-bottom:8px;">Predictions use a blended model: logarithmic growth curve (ROI = a&middot;ln(t+1) + b) fitted to ${curvePoints.length} historical majors, blended with nearest-neighbor interpolation. Curve weight increases for longer projections. Green rows have actual data. Scroll to explore all ${timeProjections.length} time points.</p>
 <div class="scroll-table" style="max-height:600px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
 <table class="history-table" style="max-width: 900px;">
 <thead><tr><th>Timeline</th><th>Projected Value</th><th>Est. ROI</th><th>Per Sticker</th><th>Actual Value</th><th>Actual ROI</th><th>Accuracy</th></tr></thead>
@@ -4086,7 +4115,7 @@ ${timeProjections.map(t => {
 </tbody>
 </table>
 </div>
-<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Projections based on ${projections.length} previous CS majors (Katowice 2014 - Austin 2025). Weighted by relevance: Katowice 2014 at 0.3%, Katowice 2015 at 2%, Atlanta 2017 at 4%, pre-2019 at 5-10%, 2018-2019 at 15-20%, CS2-era at 60-100%. Updated every 15 minutes. Past performance does not guarantee future results.</p>
+<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Blended model: weighted logarithmic curve fit (a=${curveA.toFixed(1)}, b=${curveB.toFixed(1)}) + nearest-neighbor interpolation from ${projections.length} majors (Katowice 2014 - Austin 2025). CS2-era majors weighted 60-100%, pre-2019 at 5-10%. Sticker prices follow logarithmic growth post-sale due to consumable supply burn. Updated every 15 minutes. Past performance does not guarantee future results.</p>
 
 <h3>Sell Timing Recommendation</h3>
 <div class="sell-card">
@@ -4418,6 +4447,7 @@ ${data.map((r, idx) => {
 </div><!-- end .page-content -->
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
 // Convert UTC timestamps to browser local time
 document.querySelectorAll('.local-time').forEach(el => {
   const utc = el.getAttribute('data-utc');
@@ -4877,7 +4907,7 @@ const STICKER_DATA = ${JSON.stringify(data.map(r => ({
   value: r.totalValue, pl: r.profitLoss, roi: r.roi, volume: r.volume,
   listings: r.listings, strength: r.priceStrength, grade: r.grade, gradeColor: r.gradeColor,
   img: r.imageLargeUrl || r.imageUrl, url: r.marketUrl,
-  history: r.priceHistory.map(h => ({ d: h.date, p: h.price })),
+  history: r.priceHistory.slice(-30).map(h => ({ d: h.date, p: h.price })),
   ath: r.allTimeHigh, athDate: r.allTimeHighDate,
   atl: r.allTimeLow, atlDate: r.allTimeLowDate,
 })))};
@@ -5153,6 +5183,7 @@ function downloadCSV() {
   a.click();
   URL.revokeObjectURL(url);
 }
+}); // end DOMContentLoaded
 </script>
 
 <footer style="margin-top:48px;padding:24px 0;border-top:1px solid #2a475e;text-align:center;">
