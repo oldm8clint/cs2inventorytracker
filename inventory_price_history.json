@@ -4892,28 +4892,28 @@
     },
     {
       "date": "2026-03-17-23",
-      "totalValue": 2069.4399999999996,
+      "totalValue": 2094.7699999999995,
       "totalItems": 50,
       "categoryValues": {
         "Skins": {
           "count": 8,
-          "value": 1406.4499999999998
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 340.17000000000013
+          "value": 1406.3999999999999
         },
         "Cases": {
           "count": 19,
-          "value": 321.29
+          "value": 347.51
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 339.27000000000004
         },
         "Stickers": {
           "count": 1,
-          "value": 1.08
+          "value": 1.12
         },
         "Graffiti": {
           "count": 15,
-          "value": 0.4499999999999999
+          "value": 0.4699999999999999
         },
         "Music Kits": {
           "count": 1,
@@ -4927,13 +4927,14 @@
       "itemPrices": {
         "★ Specialist Gloves | Field Agent (Minimal Wear)": 833.58,
         "M4A4 | X-Ray (Factory New)": 571.93,
-        "__budapest_sticker_lot__": 340.17000000000013,
-        "Operation Breakout Weapon Case": 16.91,
-        "Sticker | Co Co Co": 1.08,
+        "Operation Breakout Weapon Case": 18.29,
+        "__budapest_sticker_lot__": 339.27000000000004,
+        "Sticker | Co Co Co": 1.12,
         "Souvenir AUG | Colony (Field-Tested)": 0.52,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.29,
-        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.09,
-        "Sealed Graffiti | Still Happy (Battle Green)": 0.05,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.25,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.08,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.06,
+        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.05,
         "Sealed Graffiti | GTG (Cash Green)": 0.04,
         "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
         "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
@@ -4941,7 +4942,6 @@
         "SG 553 | Waves Perforated (Well-Worn)": 0.04,
         "Sealed Graffiti | Double (Jungle Green)": 0.04,
         "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
-        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
         "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
         "Sealed Graffiti | Toasted (Blood Red)": 0.04,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.04
