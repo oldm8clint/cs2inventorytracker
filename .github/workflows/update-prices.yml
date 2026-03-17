@@ -53,9 +53,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase || true
           for f in index.html budapest.html inventory_price_history.json sticker_price_history.json budapest2025_stickers.csv sticker_images.json major_price_history.json; do
             [ -f "$f" ] && git add "$f"
           done
           git diff --staged --quiet || git commit -m "Update prices $(date -u +%Y-%m-%d-%H%M)"
-          git push
+          git pull --rebase || true
+          git push || (git pull --rebase && git push)
