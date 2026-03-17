@@ -4490,6 +4490,63 @@
         "Sealed Graffiti | GGWP (Bazooka Pink)": 0.03,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.03
       }
+    },
+    {
+      "date": "2026-03-17-16",
+      "totalValue": 2041.7099999999996,
+      "totalItems": 50,
+      "categoryValues": {
+        "Skins": {
+          "count": 8,
+          "value": 1366.6099999999997
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 346.94000000000005
+        },
+        "Cases": {
+          "count": 19,
+          "value": 326.61
+        },
+        "Stickers": {
+          "count": 1,
+          "value": 1.11
+        },
+        "Graffiti": {
+          "count": 15,
+          "value": 0.43999999999999995
+        },
+        "Music Kits": {
+          "count": 1,
+          "value": 0
+        },
+        "Collectibles": {
+          "count": 5,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 793.75,
+        "M4A4 | X-Ray (Factory New)": 571.93,
+        "__budapest_sticker_lot__": 346.94000000000005,
+        "Operation Breakout Weapon Case": 17.19,
+        "Sticker | Co Co Co": 1.11,
+        "Souvenir AUG | Colony (Field-Tested)": 0.52,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.28,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.09,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
+        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
+        "Sealed Graffiti | Double (Jungle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04
+      }
     }
   ]
 }
