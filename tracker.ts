@@ -1765,7 +1765,12 @@ async function main() {
     const normalized = dateStr.replace(/^(\d{4}-\d{2}-\d{2})-\d{2}$/, '$1');
     const d = new Date(normalized);
     if (isNaN(d.getTime())) return dateStr; // fallback
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    // Find the Monday of this ISO week (day 1 = Monday)
+    const day = d.getDay(); // 0=Sun, 1=Mon, ...
+    const diffToMonday = (day === 0 ? -6 : 1) - day; // days to subtract to get Monday
+    const monday = new Date(d);
+    monday.setDate(d.getDate() + diffToMonday);
+    return 'Week of ' + monday.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }
 
   interface WeeklySnapshot {
@@ -2196,11 +2201,11 @@ async function main() {
   // Bias towards last 4 majors (most relevant for modern CS2 economy)
   // majorWeightMap already computed above (before projections)
   // 2-week intervals for first year, monthly for year 2, then quarterly/yearly out to 12 years
+  // Capped at 144 months (12 years) — oldest major (Katowice 2014) is ~144 months old, no reliable data beyond that
   const timePoints = [
     0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12,
     13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
     27, 30, 33, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144,
-    180, 240, 300, 360, // 15, 20, 25, 30 years
   ];
   interface TimeProjection { months: number; label: string; avgROI: number; projectedValue: number; projectedPerSticker: number; actualValue?: number; actualROI?: number; }
   const timeProjections: TimeProjection[] = timePoints.map(targetMonths => {
@@ -2252,10 +2257,13 @@ async function main() {
       let closest: HistoryEntry | null = null;
       let closestDist = Infinity;
       for (const entry of history.entries) {
-        const dist = Math.abs(new Date(entry.date).getTime() - targetDate.getTime());
+        const entryDateStr = entry.date.replace(/^(\d{4}-\d{2}-\d{2})-(\d{2})$/, '$1T$2:00:00Z');
+        const entryDate = new Date(entryDateStr);
+        if (isNaN(entryDate.getTime())) continue;
+        const dist = Math.abs(entryDate.getTime() - targetDate.getTime());
         if (dist < closestDist) { closestDist = dist; closest = entry; }
       }
-      if (closest && closestDist < 45 * 86400000) { // within 45 days
+      if (closest && closestDist < 10 * 86400000) { // within 10 days
         tp.actualValue = closest.totalValue;
         tp.actualROI = ((closest.totalValue - grandCost) / grandCost) * 100;
       }
@@ -2276,7 +2284,9 @@ async function main() {
   // Each snapshot becomes a data point at its real month offset from Budapest release
   const actualTrajectory: { months: number; value: number }[] = [];
   for (const entry of history.entries) {
-    const entryDate = new Date(entry.date);
+    const entryDateStr = entry.date.replace(/^(\d{4}-\d{2}-\d{2})-(\d{2})$/, '$1T$2:00:00Z');
+    const entryDate = new Date(entryDateStr);
+    if (isNaN(entryDate.getTime())) continue;
     const monthsFromRelease = (entryDate.getTime() - BUDAPEST_EVENT.getTime()) / (30.44 * 86400000);
     if (monthsFromRelease >= 0) {
       actualTrajectory.push({ months: +monthsFromRelease.toFixed(1), value: entry.totalValue });
@@ -2426,17 +2436,30 @@ async function main() {
   const realisticProjections = projections.filter(p => (majorWeightMap[p.name] || 0) >= 0.05);
   const currentROIpct = ((grandValue - grandCost) / grandCost) * 100;
   for (const sw of sellWindows) {
-    // For past/current months, use actual observed trajectory instead of historical major interpolation
-    if (sw.months <= currentAgeMonths && Math.abs(sw.months - currentAgeMonths) < 0.5) {
-      // Only mark as "Actual" for the current month (not interpolated past months)
-      sw.avgROI = currentROIpct;
-      sw.majorsInRange = ['Actual'];
+    if (sw.months <= currentAgeMonths) {
+      // Past/current sell windows: use actual snapshot data
+      const targetDate = new Date(BUDAPEST_EVENT.getTime() + sw.months * 30.44 * 86400000);
+      let closestEntry: typeof history.entries[0] | null = null;
+      let closestDist = Infinity;
+      for (const entry of history.entries) {
+        const entryDateStr = entry.date.replace(/^(\d{4}-\d{2}-\d{2})-(\d{2})$/, '$1T$2:00:00Z');
+        const entryDate = new Date(entryDateStr);
+        if (isNaN(entryDate.getTime())) continue;
+        const dist = Math.abs(entryDate.getTime() - targetDate.getTime());
+        if (dist < closestDist) { closestDist = dist; closestEntry = entry; }
+      }
+      if (closestEntry && closestDist < 30 * 86400000) {
+        sw.avgROI = ((closestEntry.totalValue - grandCost) / grandCost) * 100;
+        sw.majorsInRange = ['Actual'];
+      } else {
+        sw.avgROI = currentROIpct;
+        sw.majorsInRange = ['Actual (current)'];
+      }
     } else {
-      // Tighter radius for early windows so they produce different values
+      // Future sell windows: interpolate from historical major data
       const searchRadius = sw.months < 3 ? Math.max(2, sw.months * 2) : Math.max(6, sw.months * 0.5);
       const nearby = realisticProjections.filter(p => {
         const dist = Math.abs(p.monthsOld - sw.months);
-        // For early windows, exclude ancient majors
         if (sw.months < 6 && p.monthsOld > 24) return false;
         if (sw.months < 12 && (majorWeightMap[p.name] || 0.10) < 0.10) return false;
         return dist <= searchRadius;
@@ -2745,13 +2768,10 @@ async function main() {
   const skinportCheaperCount = priceComparisonItems.filter(r => r.skinportPriceAdj < r.currentPrice).length;
   const topPriceDiffs = [...priceComparisonItems].map(r => ({ ...r, diff: r.skinportPriceAdj - r.currentPrice, diffPct: ((r.skinportPriceAdj - r.currentPrice) / r.currentPrice * 100) })).sort((a, b) => Math.abs(b.diffPct) - Math.abs(a.diffPct)).slice(0, 15);
 
-  // ── SteamAnalyst third-party aggregates ──────────────────────────
-  // Steam vs SteamAnalyst price comparison
-
   // ── Multi-source price comparison aggregates ──────────────────────
   interface SourceCompRow {
     name: string; quality: string; hashName: string;
-    steamAud: number; skinportAud: number; saAud: number;
+    steamAud: number; skinportAud: number;
     csgoLowestAud: number; csgoLowestMarket: string;
     consensus: number; divergencePct: number; sourceCount: number;
     lowestSource: string; highestSource: string;
@@ -2760,13 +2780,11 @@ async function main() {
   for (const r of data) {
     const steamAud = r.currentPrice;
     const skinportAud = r.skinportPriceAdj; // already AUD with 15% markup
-    const saAud = r.saAvg7d; // already AUD
     const csgoLowestAud = r.csgoLowest?.price || 0;
     const csgoLowestMarket = r.csgoLowest?.market || '';
     const sources: { name: string; price: number }[] = [];
     if (steamAud > 0) sources.push({ name: 'Steam', price: steamAud });
     if (skinportAud > 0) sources.push({ name: 'Skinport', price: skinportAud });
-    if (saAud > 0) sources.push({ name: 'SteamAnalyst', price: saAud });
     if (csgoLowestAud > 0) sources.push({ name: 'CSGOSkins', price: csgoLowestAud });
     if (sources.length < 2) continue; // need at least 2 sources to compare
     const avg = sources.reduce((a, s) => a + s.price, 0) / sources.length;
@@ -2775,7 +2793,7 @@ async function main() {
     const divPct = minS.price > 0 ? ((maxS.price - minS.price) / minS.price * 100) : 0;
     sourceCompData.push({
       name: r.name, quality: r.quality, hashName: r.hashName,
-      steamAud, skinportAud, saAud, csgoLowestAud, csgoLowestMarket,
+      steamAud, skinportAud, csgoLowestAud, csgoLowestMarket,
       consensus: avg, divergencePct: divPct, sourceCount: sources.length,
       lowestSource: minS.name, highestSource: maxS.name,
     });
@@ -2787,7 +2805,7 @@ async function main() {
   // Historical divergence from saved per-source data
   const histDivergence: { date: string; avgSpread: number }[] = [];
   for (const entry of history.entries) {
-    if (!entry.skinportPrices && !entry.steamAnalystPrices && !entry.csgoSkinsPrices) continue;
+    if (!entry.skinportPrices && !entry.csgoSkinsPrices) continue;
     let totalSpread = 0, count = 0;
     for (const key of Object.keys(entry.prices)) {
       const steamP = entry.prices[key] || 0;
@@ -2795,8 +2813,6 @@ async function main() {
       const sources: number[] = [steamP];
       // Skinport USD→AUD with 15% markup
       if (entry.skinportPrices?.[key]) sources.push(entry.skinportPrices[key] * USD_TO_AUD * 1.15);
-      // SteamAnalyst USD→AUD
-      if (entry.steamAnalystPrices?.[key]) sources.push(entry.steamAnalystPrices[key] * USD_TO_AUD);
       // CSGOSkins.gg USD→AUD
       if (entry.csgoSkinsPrices?.[key]) sources.push(entry.csgoSkinsPrices[key] * USD_TO_AUD);
       if (sources.length < 2) continue;
@@ -3567,7 +3583,7 @@ ${[
       return '<tr><td>' + m.name + '</td><td><span class="quality-badge q-' + cls + '" style="font-size:9px;padding:1px 4px">' + m.quality + '</span></td><td class="negative" style="font-weight:700;text-align:right">' + m.changePct.toFixed(1) + '%</td></tr>';
     }).join('') +
     '</tbody></table></div>';
-}).join('\\n')}
+}).join('')}
 </div>
 ` : ''}
 
@@ -3729,7 +3745,7 @@ ${topPriceDiffs.map(r => {
 ${sourceCompData.length > 0 ? `
 <h3 id="source-comparison-section">Price Source Comparison (${sourceCompData.length} items)</h3>
 <p style="color:#888;font-size:12px;margin-bottom:12px;">
-Cross-source price analysis comparing Steam Market, Skinport (+15% fee adjustment)${csgoSkinsData ? ', and CSGOSkins.gg cross-market lowest' : ''}. All prices in AUD. Consensus = average across available sources. Divergence = gap between cheapest and most expensive source.
+Cross-source price analysis comparing Steam Market, Skinport (+15% fee adjustment)${csgoSkinsData ? ', and CSGOSkins.gg cross-marketplace lowest' : ''}. All prices in AUD. Consensus = average across available sources. Divergence = gap between cheapest and most expensive source.
 ${csgoSkinsData ? '<br><span style="color:' + (csgoSkinsAge <= 7 ? '#22c55e' : csgoSkinsAge <= 14 ? '#f59e0b' : '#ef4444') + '">CSGOSkins.gg data: ' + (csgoSkinsAge === 0 ? 'today' : csgoSkinsAge + 'd old') + ' (' + csgoSkinsData.scrapedCount + ' items)</span>' : ''}
 </p>
 <div class="market-summary">
@@ -3747,7 +3763,6 @@ ${csgoSkinsData ? '<br><span style="color:' + (csgoSkinsAge <= 7 ? '#22c55e' : c
   <th>Sticker</th><th>Quality</th>
   <th style="color:#67c1f5">Steam (AUD)</th>
   <th style="color:#c084fc">Skinport adj (AUD)</th>
-  <th style="color:#f59e0b">SA 7d (AUD)</th>
   ${csgoSkinsData ? '<th style="color:#10b981">CSGOSkins (AUD)</th>' : ''}
   <th>Consensus</th>
   <th>Divergence</th>
@@ -3760,7 +3775,6 @@ ${sourceCompData.map(r => {
   const prices = [
     { src: 'Steam', val: r.steamAud },
     { src: 'Skinport', val: r.skinportAud },
-    { src: 'SA', val: r.saAud },
     { src: 'CSGOSkins', val: r.csgoLowestAud },
   ].filter(p => p.val > 0);
   const minP = Math.min(...prices.map(p => p.val));
@@ -3768,7 +3782,6 @@ ${sourceCompData.map(r => {
   const colorFor = (val: number) => val > 0 ? (val === minP ? '#22c55e' : val === maxP ? '#ef4444' : '#c6d4df') : '#555';
   const steamColor = colorFor(r.steamAud);
   const spColor = colorFor(r.skinportAud);
-  const saColor = colorFor(r.saAud);
   const csgoColor = colorFor(r.csgoLowestAud);
   const divColor = r.divergencePct > 20 ? '#ef4444' : r.divergencePct > 10 ? '#f59e0b' : '#22c55e';
   return '<tr>' +
@@ -3776,7 +3789,6 @@ ${sourceCompData.map(r => {
     '<td><span class="quality-badge q-' + cls + '">' + r.quality + '</span></td>' +
     '<td style="color:' + steamColor + '">' + (r.steamAud > 0 ? '$' + r.steamAud.toFixed(3) : '—') + '</td>' +
     '<td style="color:' + spColor + '">' + (r.skinportAud > 0 ? '$' + r.skinportAud.toFixed(3) : '—') + '</td>' +
-    '<td style="color:' + saColor + '">' + (r.saAud > 0 ? '$' + r.saAud.toFixed(3) : '—') + '</td>' +
     (csgoSkinsData ? '<td style="color:' + csgoColor + '">' + (r.csgoLowestAud > 0 ? '$' + r.csgoLowestAud.toFixed(3) + ' <span style="font-size:10px;color:#888">(' + r.csgoLowestMarket + ')</span>' : '—') + '</td>' : '') +
     '<td style="color:#67c1f5;font-weight:600">$' + r.consensus.toFixed(3) + '</td>' +
     '<td style="color:' + divColor + ';font-weight:700">' + r.divergencePct.toFixed(1) + '%</td>' +
@@ -3896,7 +3908,7 @@ ${monthlySnapshots.map(ms => {
     '<td>' + ms.snapshots + '</td>' +
     '<td>' + (topQ ? topQ.quality + ' ($' + topQ.value.toFixed(2) + ')' : '-') + '</td>' +
     '</tr>';
-}).join('\\n')}
+}).join('')}
 </tbody>
 </table>
 </div>
@@ -3997,7 +4009,7 @@ ${investOpportunities.slice(0, 10).map(r => {
   const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
   const trendCls = r.momentum >= 0 ? 'positive' : 'negative';
   return '<tr><td style="font-weight:500">' + r.name + '</td><td><span class="quality-badge q-' + cls + '" style="font-size:9px;padding:1px 4px">' + r.quality + '</span></td><td style="color:#67c1f5">$' + r.currentPrice.toFixed(2) + '</td><td class="' + trendCls + '">' + (r.momentum >= 0 ? '+' : '') + r.momentum.toFixed(1) + '%</td><td>' + r.volume + '</td><td style="font-weight:700;color:#ffd700">' + r.score + '/8</td></tr>';
-}).join('\\n')}
+}).join('')}
 </tbody>
 </table>
 </div>
@@ -4015,7 +4027,7 @@ ${['Normal', 'Embroidered', 'Holo', 'Gold'].map(q => {
   const qc = q.toLowerCase();
   const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : 'normal';
   return '<tr><td><span class="quality-badge q-' + cls + '">' + q + '</span></td><td style="font-weight:500">' + best.name + '</td><td style="color:#67c1f5">$' + best.currentPrice.toFixed(2) + '</td><td class="' + trendCls + '">' + (best.momentum >= 0 ? '+' : '') + best.momentum.toFixed(1) + '%</td><td style="font-weight:700;color:#ffd700">' + best.score + '/8</td></tr>';
-}).filter(Boolean).join('\\n')}
+}).filter(Boolean).join('')}
 </tbody>
 </table>
 </div>
@@ -5160,7 +5172,7 @@ function downloadCSV() {
     <span style="color:#2a475e;">|</span>
     <a href="https://esportfire.com" target="_blank" style="color:#ffd700;font-size:11px;text-decoration:none;">esportfire</a>
   </div>
-  <p style="color:#555;font-size:10px;">Historical major data sourced from Swap.gg, esportfire, Skinflow, and csgoskins.gg research. Skinport prices adjusted +15% for Steam seller fee parity. SteamAnalyst prices converted USD&rarr;AUD at live exchange rate. This is not financial advice.</p>
+  <p style="color:#555;font-size:10px;">Historical major data sourced from Swap.gg, esportfire, Skinflow, and csgoskins.gg research. Skinport prices adjusted +15% for Steam seller fee parity. This is not financial advice.</p>
 </footer>
 
 </body>
