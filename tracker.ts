@@ -1349,8 +1349,23 @@ async function main() {
   // Use today's prices (either just fetched or from history)
   const todayEntry = existingToday || history.entries[history.entries.length - 1];
   const currentPrices = todayEntry.prices;
-  const currentVolumes = todayEntry.volumes || {};
-  const currentListings = todayEntry.listings || {};
+  // Volume data: prefer current entry, fall back to most recent entry that has volumes
+  let currentVolumes = todayEntry.volumes || {};
+  if (Object.keys(currentVolumes).length === 0) {
+    const entryWithVolumes = [...history.entries].reverse().find(e => e.volumes && Object.keys(e.volumes).length > 0);
+    if (entryWithVolumes?.volumes) {
+      currentVolumes = entryWithVolumes.volumes;
+      console.log(`Using volume data from ${entryWithVolumes.date} (current entry has none)`);
+    }
+  }
+  let currentListings = todayEntry.listings || {};
+  if (Object.keys(currentListings).length === 0) {
+    const entryWithListings = [...history.entries].reverse().find(e => e.listings && Object.keys(e.listings).length > 0);
+    if (entryWithListings?.listings) {
+      currentListings = entryWithListings.listings;
+      console.log(`Using listing data from ${entryWithListings.date} (current entry has none)`);
+    }
+  }
 
   // Fetch blank Sticker Slab price (needed for slab premium calculation)
   console.log('\nFetching blank Sticker Slab price...');
@@ -1600,26 +1615,42 @@ async function main() {
   const stickerATL = [...data].filter(r => r.allTimeLow > 0).sort((a, b) => a.allTimeLow - b.allTimeLow)[0];
 
   // Time to ROI estimate (need 2+ snapshots)
+  // Helper to parse dates like "2026-03-14-03" (YYYY-MM-DD-HH)
+  function parseSnapshotDate(dateStr: string): Date {
+    const normalized = dateStr.replace(/^(\d{4}-\d{2}-\d{2})-(\d{2})$/, '$1T$2:00:00Z');
+    return new Date(normalized);
+  }
   let roiEstimate = '';
   if (history.entries.length >= 2) {
     const first = history.entries[0];
     const last = history.entries[history.entries.length - 1];
-    const daysBetween = (new Date(last.date).getTime() - new Date(first.date).getTime()) / 86400000;
-    if (daysBetween > 0) {
-      const dailyChange = (last.totalValue - first.totalValue) / daysBetween;
+    const daysBetween = (parseSnapshotDate(last.date).getTime() - parseSnapshotDate(first.date).getTime()) / 86400000;
+    if (daysBetween >= 0.04) { // at least ~1 hour apart
+      const dailyChange = (last.totalValue - first.totalValue) / Math.max(daysBetween, 0.04);
       if (dailyChange > 0 && grandPL < 0) {
         const daysToBreakEven = Math.ceil(Math.abs(grandPL) / dailyChange);
-        roiEstimate = `~${daysToBreakEven} days`;
+        if (daysToBreakEven > 365) {
+          roiEstimate = `~${(daysToBreakEven / 365).toFixed(1)} years`;
+        } else if (daysToBreakEven > 30) {
+          roiEstimate = `~${Math.round(daysToBreakEven / 30)} months`;
+        } else {
+          roiEstimate = `~${daysToBreakEven} days`;
+        }
       } else if (grandPL >= 0) {
         roiEstimate = 'Achieved!';
       } else {
         roiEstimate = 'Declining';
       }
     } else {
-      roiEstimate = 'Need more data';
+      // Snapshots too close together — use trend from all snapshots
+      if (grandPL >= 0) {
+        roiEstimate = 'Achieved!';
+      } else {
+        // Try to detect direction from first vs last
+        roiEstimate = last.totalValue > first.totalValue ? 'Trending up' : 'Flat/declining';
+      }
     }
   } else {
-    // With 1 snapshot, estimate based on typical major sticker appreciation
     if (grandPL >= 0) {
       roiEstimate = 'Achieved!';
     } else {
@@ -1888,29 +1919,29 @@ async function main() {
   const historicalMajors: HistoricalMajor[] = [
     // Pre-2019 majors — weighted MUCH lower (1-10%) due to completely different market dynamics
     // Katowice 2014: Only ~350 sticker capsules existed. Paper avg $1,443 USD, Holo avg $22,031 USD. Extreme outlier.
-    { name: "Katowice 2014", date: "2014-03-16", monthsOld: monthsSince("2014-03-16"), avgPaper: 2236, avgMidTier: 2236, avgHolo: 34148, avgGold: 0, saleDays: 30, capsulePrice: 0, weight: 0.001, notes: "Only ~350 capsules existed — extreme scarcity. iBUYPOWER Holo $75K+, Titan Holo $55-85K. Pre-modern era with no in-game store, no 75% sale, no Gold tier. Completely incomparable to any modern major — effectively zero predictive value." },
-    { name: "Cologne 2014", date: "2014-08-17", monthsOld: monthsSince("2014-08-17"), avgPaper: 17.46, avgMidTier: 17.46, avgHolo: 100.25, avgGold: 0, saleDays: 45, capsulePrice: 0, weight: 0.05, notes: "Tiny player base (~200K concurrent). Iconic Holo designs. Dignitas Holo reached $820. Capsules now $3 from $0.25 (1,100%)." },
-    { name: "Katowice 2015", date: "2015-03-15", monthsOld: monthsSince("2015-03-15"), avgPaper: 50.22, avgMidTier: 223.14, avgHolo: 128.47, avgGold: 0, saleDays: 45, capsulePrice: 0, weight: 0.02, notes: "Katowice brand carries collector premium. Foil stickers introduced. Short 45-day sale kept supply low. Capsules now ~$450." },
-    { name: "Cologne 2015", date: "2015-08-23", monthsOld: monthsSince("2015-08-23"), avgPaper: 11.06, avgMidTier: 58.59, avgHolo: 58.59, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.08, notes: "Growing player base drove demand. 60-day sale was standard. Solid designs appreciated steadily over 5+ years." },
-    { name: "Cluj-Napoca 2015", date: "2015-11-01", monthsOld: monthsSince("2015-11-01"), avgPaper: 10.95, avgMidTier: 81.07, avgHolo: 81.07, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.08, notes: "Less popular location hurt brand appeal. 2nd major of year diluted demand slightly. Still 800%+ capsule ROI from low supply era." },
-    { name: "Columbus 2016", date: "2016-04-03", monthsOld: monthsSince("2016-04-03"), avgPaper: 14.60, avgMidTier: 153.98, avgHolo: 68.70, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.08, notes: "MLG production. NA major drove NA buyer interest. Holo/Foil capsules now $41 (2,353% from $1.25). Good team variety." },
-    { name: "Cologne 2016", date: "2016-07-10", monthsOld: monthsSince("2016-07-10"), avgPaper: 14.94, avgMidTier: 159.91, avgHolo: 39.08, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.08, notes: "Peak CS:GO viewership era (~1M concurrent). 2nd major of year but strong demand. Capsule ROI ~84%. Holo/Foil challengers now $32." },
+    { name: "Katowice 2014", date: "2014-03-16", monthsOld: monthsSince("2014-03-16"), avgPaper: 2236, avgMidTier: 2236, avgHolo: 34148, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.001, notes: "Only ~350 capsules existed — extreme scarcity. iBUYPOWER Holo $75K+, Titan Holo $55-85K. Pre-modern era with no in-game store, no 75% sale, no Gold tier. Completely incomparable to any modern major — effectively zero predictive value." },
+    { name: "Cologne 2014", date: "2014-08-17", monthsOld: monthsSince("2014-08-17"), avgPaper: 17.46, avgMidTier: 17.46, avgHolo: 100.25, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.05, notes: "Tiny player base (~200K concurrent). Iconic Holo designs. Dignitas Holo reached $820. Capsules now $3 from $0.25 (1,100%)." },
+    { name: "Katowice 2015", date: "2015-03-15", monthsOld: monthsSince("2015-03-15"), avgPaper: 50.22, avgMidTier: 223.14, avgHolo: 128.47, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.02, notes: "Katowice brand carries collector premium. Foil stickers introduced. Short 45-day sale kept supply low. Capsules now ~$450." },
+    { name: "Cologne 2015", date: "2015-08-23", monthsOld: monthsSince("2015-08-23"), avgPaper: 11.06, avgMidTier: 58.59, avgHolo: 58.59, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.08, notes: "Growing player base drove demand. 60-day sale was standard. Solid designs appreciated steadily over 5+ years." },
+    { name: "Cluj-Napoca 2015", date: "2015-11-01", monthsOld: monthsSince("2015-11-01"), avgPaper: 10.95, avgMidTier: 81.07, avgHolo: 81.07, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.08, notes: "Less popular location hurt brand appeal. 2nd major of year diluted demand slightly. Still 800%+ capsule ROI from low supply era." },
+    { name: "Columbus 2016", date: "2016-04-03", monthsOld: monthsSince("2016-04-03"), avgPaper: 14.60, avgMidTier: 153.98, avgHolo: 68.70, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.08, notes: "MLG production. NA major drove NA buyer interest. Holo/Foil capsules now $41 (2,353% from $1.25). Good team variety." },
+    { name: "Cologne 2016", date: "2016-07-10", monthsOld: monthsSince("2016-07-10"), avgPaper: 14.94, avgMidTier: 159.91, avgHolo: 39.08, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.08, notes: "Peak CS:GO viewership era (~1M concurrent). 2nd major of year but strong demand. Capsule ROI ~84%. Holo/Foil challengers now $32." },
     // Atlanta 2017: Massive price increase due to unique designs, growing investor interest, and limited supply
-    { name: "Atlanta 2017", date: "2017-01-29", monthsOld: monthsSince("2017-01-29"), avgPaper: 38.12, avgMidTier: 409.85, avgHolo: 137.31, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.04, notes: "Best pre-2019 major. ELEAGUE production quality. VP/Astralis iconic designs. Holo capsules now $75 (+4,917%). Weighted low because pre-modern market dynamics." },
-    { name: "Krakow 2017", date: "2017-07-23", monthsOld: monthsSince("2017-07-23"), avgPaper: 16.86, avgMidTier: 103.13, avgHolo: 46.62, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.10, notes: "PGL production. Autograph capsules now $23. Decent but not Atlanta-level — less iconic team stickers. 2nd major of year." },
+    { name: "Atlanta 2017", date: "2017-01-29", monthsOld: monthsSince("2017-01-29"), avgPaper: 38.12, avgMidTier: 409.85, avgHolo: 137.31, avgGold: 0, saleDays: 2, capsulePrice: 0, weight: 0.04, notes: "Best pre-2019 major. ELEAGUE production quality. VP/Astralis iconic designs. Holo capsules now $75 (+4,917%). Weighted low because pre-modern market dynamics." },
+    { name: "Krakow 2017", date: "2017-07-23", monthsOld: monthsSince("2017-07-23"), avgPaper: 16.86, avgMidTier: 103.13, avgHolo: 46.62, avgGold: 0, saleDays: 3, capsulePrice: 0, weight: 0.10, notes: "PGL production. Autograph capsules now $23. Decent but not Atlanta-level — less iconic team stickers. 2nd major of year." },
     // 2018-2019 majors — more relevant, weighted higher (15-25%)
-    { name: "Boston 2018", date: "2018-01-28", monthsOld: monthsSince("2018-01-28"), avgPaper: 13.27, avgMidTier: 109.54, avgHolo: 94.90, avgGold: 0, saleDays: 60, capsulePrice: 331, weight: 0.15, notes: "Last major with separate cheap Holo/Foil capsules. 100 Thieves sticker pulled = ultra-rare. Cloud9 underdog win drove collector interest. Capsules now $331 (+15,880%). Inflection at 12-18mo, accelerated 2020-2021." },
-    { name: "London 2018", date: "2018-09-23", monthsOld: monthsSince("2018-09-23"), avgPaper: 5.84, avgMidTier: 79.90, avgHolo: 25.27, avgGold: 0, saleDays: 60, capsulePrice: 23, weight: 0.15, notes: "FACEIT major. Astralis dynasty era. s1mple Gold reached $720. Steady appreciation over 18-24mo — not explosive like Boston but reliable. 887% capsule ROI." },
-    { name: "Katowice 2019", date: "2019-03-03", monthsOld: monthsSince("2019-03-03"), avgPaper: 5.43, avgMidTier: 35.75, avgHolo: 12.27, avgGold: 606.69, saleDays: 75, capsulePrice: 17, weight: 0.20, notes: "First Gold stickers introduced. Katowice brand premium. 75-day sale (longer than 2018). COVID lockdowns created 2yr gap — scarcity boosted prices. DickStacy Gold $840. 426% capsule ROI." },
-    { name: "Berlin 2019", date: "2019-09-08", monthsOld: monthsSince("2019-09-08"), avgPaper: 1.17, avgMidTier: 6.95, avgHolo: 6.95, avgGold: 95.90, saleDays: 75, capsulePrice: 2.3, weight: 0.20, notes: "WORST pre-CS2 investment. Widely considered ugly designs. $11M+ revenue = massive oversupply. COVID stockpiling flooded the market further. Holo capsules LOST 17%. Proof that bad designs + oversupply = failure." },
+    { name: "Boston 2018", date: "2018-01-28", monthsOld: monthsSince("2018-01-28"), avgPaper: 13.27, avgMidTier: 109.54, avgHolo: 94.90, avgGold: 0, saleDays: 3, capsulePrice: 331, weight: 0.15, notes: "Last major with separate cheap Holo/Foil capsules. 100 Thieves sticker pulled = ultra-rare. Cloud9 underdog win drove collector interest. Capsules now $331 (+15,880%). Inflection at 12-18mo, accelerated 2020-2021." },
+    { name: "London 2018", date: "2018-09-23", monthsOld: monthsSince("2018-09-23"), avgPaper: 5.84, avgMidTier: 79.90, avgHolo: 25.27, avgGold: 0, saleDays: 3, capsulePrice: 23, weight: 0.15, notes: "FACEIT major. Astralis dynasty era. s1mple Gold reached $720. Steady appreciation over 18-24mo — not explosive like Boston but reliable. 887% capsule ROI." },
+    { name: "Katowice 2019", date: "2019-03-03", monthsOld: monthsSince("2019-03-03"), avgPaper: 5.43, avgMidTier: 35.75, avgHolo: 12.27, avgGold: 606.69, saleDays: 10, capsulePrice: 17, weight: 0.20, notes: "First Gold stickers introduced. Katowice brand premium. 75-day sale (longer than 2018). COVID lockdowns created 2yr gap — scarcity boosted prices. DickStacy Gold $840. 426% capsule ROI." },
+    { name: "Berlin 2019", date: "2019-09-08", monthsOld: monthsSince("2019-09-08"), avgPaper: 1.17, avgMidTier: 6.95, avgHolo: 6.95, avgGold: 95.90, saleDays: 14, capsulePrice: 2.3, weight: 0.20, notes: "WORST pre-CS2 investment. Widely considered ugly designs. $11M+ revenue = massive oversupply. COVID stockpiling flooded the market further. Holo capsules LOST 17%. Proof that bad designs + oversupply = failure." },
     // Post-COVID / CS2 transition majors — MOST relevant, weighted highest (30-100%)
-    { name: "Stockholm 2021", date: "2021-11-07", monthsOld: monthsSince("2021-11-07"), avgPaper: 0.26, avgMidTier: 6.53, avgHolo: 11.16, avgGold: 58.56, saleDays: 80, capsulePrice: 3.8, weight: 0.60, notes: "2-year gap since Berlin (COVID) = massive scarcity advantage. First combined capsule format. s1mple won. Prices skyrocketed 20x by 2023. CS2 announcement catalysed additional gains. Proof that supply gaps drive ROI." },
-    { name: "Antwerp 2022", date: "2022-05-22", monthsOld: monthsSince("2022-05-22"), avgPaper: 0.13, avgMidTier: 0.13, avgHolo: 17.72, avgGold: 40.34, saleDays: 90, capsulePrice: 0.7, weight: 0.60, notes: "Only 6mo after Stockholm — too soon, market hadn't recovered. FaZe won but demand diluted. 90-day sale added supply. m0NESY Gold $100. Barely +80% after 4 years. Two-majors-per-year kills returns." },
-    { name: "Rio 2022", date: "2022-11-13", monthsOld: monthsSince("2022-11-13"), avgPaper: 0.24, avgMidTier: 0.24, avgHolo: 7.62, avgGold: 41.40, saleDays: 100, capsulePrice: 0.35, weight: 0.70, notes: "2nd major of 2022 — market flooded. 100-day sale (longest at the time). Brazilian crowd drove massive buying but oversaturated supply. Capsules LOST 4-28%. Proves: long sale + 2 majors/year = worst case." },
+    { name: "Stockholm 2021", date: "2021-11-07", monthsOld: monthsSince("2021-11-07"), avgPaper: 0.26, avgMidTier: 6.53, avgHolo: 11.16, avgGold: 58.56, saleDays: 50, capsulePrice: 3.8, weight: 0.60, notes: "2-year gap since Berlin (COVID) = massive scarcity advantage. First combined capsule format. s1mple won. Prices skyrocketed 20x by 2023. CS2 announcement catalysed additional gains. Proof that supply gaps drive ROI." },
+    { name: "Antwerp 2022", date: "2022-05-22", monthsOld: monthsSince("2022-05-22"), avgPaper: 0.13, avgMidTier: 0.13, avgHolo: 17.72, avgGold: 40.34, saleDays: 67, capsulePrice: 0.7, weight: 0.60, notes: "Only 6mo after Stockholm — too soon, market hadn't recovered. FaZe won but demand diluted. 90-day sale added supply. m0NESY Gold $100. Barely +80% after 4 years. Two-majors-per-year kills returns." },
+    { name: "Rio 2022", date: "2022-11-13", monthsOld: monthsSince("2022-11-13"), avgPaper: 0.24, avgMidTier: 0.24, avgHolo: 7.62, avgGold: 41.40, saleDays: 70, capsulePrice: 0.35, weight: 0.70, notes: "2nd major of 2022 — market flooded. 100-day sale (longest at the time). Brazilian crowd drove massive buying but oversaturated supply. Capsules LOST 4-28%. Proves: long sale + 2 majors/year = worst case." },
     // CS2-era majors — highest relevance for Budapest 2025 predictions
-    { name: "Paris 2023", date: "2023-05-21", monthsOld: monthsSince("2023-05-21"), avgPaper: 0.14, avgMidTier: 0.73, avgHolo: 11.10, avgGold: 34.81, saleDays: 146, capsulePrice: 0.14, weight: 0.80, notes: "WORST investment in CS history. $110M+ revenue — most bought stickers EVER. 377K active listings. 146-day sale (5 months!) flooded supply beyond recovery. All capsule types LOST 56%. Glitter tier introduced. Proof that sale duration is the #1 price killer." },
-    { name: "Copenhagen 2024", date: "2024-03-31", monthsOld: monthsSince("2024-03-31"), avgPaper: 0.12, avgMidTier: 2.15, avgHolo: 23.10, avgGold: 172.73, saleDays: 152, capsulePrice: 0.65, weight: 0.90, notes: "First CS2-native major. 152-day sale (longest ever) hurt supply, BUT Embroidered quality introduced. donk Gold ~$111, z4KR Gold ~$128. Slowly climbing +10%/mo post-removal. Inflection ~6mo. CS2 novelty helped demand." },
-    { name: "Shanghai 2024", date: "2024-12-15", monthsOld: monthsSince("2024-12-15"), avgPaper: 0.09, avgMidTier: 1.19, avgHolo: 22.48, avgGold: 96.10, saleDays: 130, capsulePrice: 0.92, weight: 0.95, notes: "First China major — huge CN buyer pool. Team Spirit won. Only 20% of Paris volume = much better supply profile. 130-day sale still long. Sale removed Apr 2025. Early volatile but stabilising." },
+    { name: "Paris 2023", date: "2023-05-21", monthsOld: monthsSince("2023-05-21"), avgPaper: 0.14, avgMidTier: 0.73, avgHolo: 11.10, avgGold: 34.81, saleDays: 97, capsulePrice: 0.14, weight: 0.80, notes: "WORST investment in CS history. $110M+ revenue — most bought stickers EVER. 377K active listings. 146-day sale (5 months!) flooded supply beyond recovery. All capsule types LOST 56%. Glitter tier introduced. Proof that sale duration is the #1 price killer." },
+    { name: "Copenhagen 2024", date: "2024-03-31", monthsOld: monthsSince("2024-03-31"), avgPaper: 0.12, avgMidTier: 2.15, avgHolo: 23.10, avgGold: 172.73, saleDays: 116, capsulePrice: 0.65, weight: 0.90, notes: "First CS2-native major. 152-day sale (longest ever) hurt supply, BUT Embroidered quality introduced. donk Gold ~$111, z4KR Gold ~$128. Slowly climbing +10%/mo post-removal. Inflection ~6mo. CS2 novelty helped demand." },
+    { name: "Shanghai 2024", date: "2024-12-15", monthsOld: monthsSince("2024-12-15"), avgPaper: 0.09, avgMidTier: 1.19, avgHolo: 22.48, avgGold: 96.10, saleDays: 95, capsulePrice: 0.92, weight: 0.95, notes: "First China major — huge CN buyer pool. Team Spirit won. Only 20% of Paris volume = much better supply profile. 130-day sale still long. Sale removed Apr 2025. Early volatile but stabilising." },
     { name: "Austin 2025", date: "2025-06-15", monthsOld: monthsSince("2025-06-15"), avgPaper: 0.05, avgMidTier: 0.34, avgHolo: 16.12, avgGold: 41.54, saleDays: 49, capsulePrice: 0.42, weight: 1.00, notes: "Shortest modern sale (49 days) = best scarcity since Stockholm. Only 121K listings vs Paris 377K. Prices doubled within hours of removal. TYLOO Holo $66. Most relevant comparable for Budapest — recent, short sale, modern market." },
   ];
 
@@ -1974,16 +2005,16 @@ async function main() {
     saleDays: number;
   }
   const capsuleHistory: CapsuleHistory[] = [
-    { name: "Boston 2018", salePrice: 0.39, currentPrice: 331, roi: ((331-0.39)/0.39*100), monthsOld: monthsSince("2018-03-01"), saleDays: 60 },
-    { name: "London 2018", salePrice: 0.39, currentPrice: 23, roi: ((23-0.39)/0.39*100), monthsOld: monthsSince("2018-11-01"), saleDays: 60 },
-    { name: "Katowice 2019", salePrice: 0.39, currentPrice: 17, roi: ((17-0.39)/0.39*100), monthsOld: monthsSince("2019-05-01"), saleDays: 75 },
-    { name: "Berlin 2019", salePrice: 0.39, currentPrice: 2.3, roi: ((2.3-0.39)/0.39*100), monthsOld: monthsSince("2019-11-01"), saleDays: 75 },
-    { name: "Stockholm 2021", salePrice: 0.39, currentPrice: 3.8, roi: ((3.8-0.39)/0.39*100), monthsOld: monthsSince("2022-01-18"), saleDays: 80 },
-    { name: "Antwerp 2022", salePrice: 0.39, currentPrice: 0.7, roi: ((0.7-0.39)/0.39*100), monthsOld: monthsSince("2022-08-01"), saleDays: 90 },
-    { name: "Rio 2022", salePrice: 0.39, currentPrice: 0.35, roi: ((0.35-0.39)/0.39*100), monthsOld: monthsSince("2023-02-20"), saleDays: 100 },
-    { name: "Paris 2023", salePrice: 0.39, currentPrice: 0.14, roi: ((0.14-0.39)/0.39*100), monthsOld: monthsSince("2023-09-27"), saleDays: 146 },
-    { name: "Copenhagen 2024", salePrice: 0.39, currentPrice: 0.65, roi: ((0.65-0.39)/0.39*100), monthsOld: monthsSince("2024-08-01"), saleDays: 152 },
-    { name: "Shanghai 2024", salePrice: 0.39, currentPrice: 0.92, roi: ((0.92-0.39)/0.39*100), monthsOld: monthsSince("2025-04-20"), saleDays: 130 },
+    { name: "Boston 2018", salePrice: 0.39, currentPrice: 331, roi: ((331-0.39)/0.39*100), monthsOld: monthsSince("2018-03-01"), saleDays: 3 },
+    { name: "London 2018", salePrice: 0.39, currentPrice: 23, roi: ((23-0.39)/0.39*100), monthsOld: monthsSince("2018-11-01"), saleDays: 3 },
+    { name: "Katowice 2019", salePrice: 0.39, currentPrice: 17, roi: ((17-0.39)/0.39*100), monthsOld: monthsSince("2019-05-01"), saleDays: 10 },
+    { name: "Berlin 2019", salePrice: 0.39, currentPrice: 2.3, roi: ((2.3-0.39)/0.39*100), monthsOld: monthsSince("2019-11-01"), saleDays: 14 },
+    { name: "Stockholm 2021", salePrice: 0.39, currentPrice: 3.8, roi: ((3.8-0.39)/0.39*100), monthsOld: monthsSince("2022-01-18"), saleDays: 50 },
+    { name: "Antwerp 2022", salePrice: 0.39, currentPrice: 0.7, roi: ((0.7-0.39)/0.39*100), monthsOld: monthsSince("2022-08-01"), saleDays: 67 },
+    { name: "Rio 2022", salePrice: 0.39, currentPrice: 0.35, roi: ((0.35-0.39)/0.39*100), monthsOld: monthsSince("2023-02-20"), saleDays: 70 },
+    { name: "Paris 2023", salePrice: 0.39, currentPrice: 0.14, roi: ((0.14-0.39)/0.39*100), monthsOld: monthsSince("2023-09-27"), saleDays: 97 },
+    { name: "Copenhagen 2024", salePrice: 0.39, currentPrice: 0.65, roi: ((0.65-0.39)/0.39*100), monthsOld: monthsSince("2024-08-01"), saleDays: 116 },
+    { name: "Shanghai 2024", salePrice: 0.39, currentPrice: 0.92, roi: ((0.92-0.39)/0.39*100), monthsOld: monthsSince("2025-04-20"), saleDays: 95 },
     { name: "Austin 2025", salePrice: 0.39, currentPrice: 0.42, roi: ((0.42-0.39)/0.39*100), monthsOld: monthsSince("2025-10-02"), saleDays: 49 },
   ];
   const CAPSULE_QTY = config.capsules.qty;
@@ -2021,6 +2052,7 @@ async function main() {
   }
 
   let bestROI = -Infinity;
+  let bestModernROI = -Infinity; // Exclude pre-2018 outliers for chart display
   const projections: MajorProjection[] = historicalMajors.map(m => {
     // For majors without Gold (avgGold=0), renormalize across available tiers
     let weightedAvg: number;
@@ -2038,6 +2070,8 @@ async function main() {
     const portfolioVal = weightedAvg * userTotal;
     const roi = ((portfolioVal - grandCost) / grandCost) * 100;
     if (roi > bestROI) bestROI = roi;
+    // Track best modern major (post-2018, weight >= 0.10) for chart scaling
+    if ((majorWeightMap[m.name] || 0) >= 0.10 && roi > bestModernROI) bestModernROI = roi;
     return {
       name: m.name,
       monthsOld: m.monthsOld,
@@ -2049,6 +2083,8 @@ async function main() {
     };
   });
   projections.forEach(p => { if (p.roi === bestROI) p.bestMajor = true; });
+  // Best modern major (for chart display — excludes pre-2018 outliers like Katowice 2014)
+  const bestModernMajor = projections.find(p => p.roi === bestModernROI && (majorWeightMap[p.name] || 0) >= 0.10) || projections.find(p => p.bestMajor)!;
 
 
   // Timeline projections for Budapest 2025
@@ -2056,12 +2092,24 @@ async function main() {
   // Bias towards last 4 majors (most relevant for modern CS2 economy)
   // Use per-major weight field from historicalMajors for prediction weighting
   const majorWeightMap: Record<string, number> = {};
-  for (const m of historicalMajors) majorWeightMap[m.name] = m.weight;
+  const BUDAPEST_SALE_DAYS = config.saleDays || 53;
+  for (const m of historicalMajors) {
+    // Base weight from the major's config
+    let w = m.weight;
+    // Boost weight for majors with similar sale durations to Budapest (53d)
+    // Austin (49d) and Stockholm (50d) are most similar → get the biggest boost
+    const saleDiff = Math.abs(m.saleDays - BUDAPEST_SALE_DAYS);
+    if (saleDiff <= 10) w *= 1.5;       // Very similar (Austin 49d, Stockholm 50d)
+    else if (saleDiff <= 25) w *= 1.2;   // Somewhat similar (Antwerp 67d, Rio 70d)
+    else if (saleDiff > 60) w *= 0.8;    // Very different sale length (Paris 97d, Copenhagen 116d)
+    majorWeightMap[m.name] = w;
+  }
   // 2-week intervals for first year, monthly for year 2, then quarterly/yearly out to 12 years
   const timePoints = [
     0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12,
     13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
     27, 30, 33, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144,
+    180, 240, 300, 360, // 15, 20, 25, 30 years
   ];
   interface TimeProjection { months: number; label: string; avgROI: number; projectedValue: number; projectedPerSticker: number; actualValue?: number; actualROI?: number; }
   const timeProjections: TimeProjection[] = timePoints.map(targetMonths => {
@@ -2218,19 +2266,21 @@ async function main() {
   // Approximate initial buy prices per quality tier
   const INITIAL_PRICES: Record<string, number> = { Paper: 0.15, MidTier: 0.60, Holo: 0.50, Gold: 3.00 };
   interface TierROI { major: string; paper: number; mid: number; holo: number; gold: number; }
-  const post2019Majors = historicalMajors.filter(m => new Date(m.date) >= new Date('2019-01-01'));
-  const tierROIData: TierROI[] = post2019Majors.map(m => ({
-    major: m.name.replace('Katowice ', 'Kato ').replace('Copenhagen ', 'Cph ').replace('Stockholm ', 'Stk '),
+  // Include all majors with weight >= 0.05. For pre-Gold majors, map Holo as the top tier equivalent to Gold
+  const tierROIMajors = historicalMajors.filter(m => (majorWeightMap[m.name] || 0) >= 0.05);
+  const tierROIData: TierROI[] = tierROIMajors.map(m => ({
+    major: m.name.replace('Katowice ', 'Kato ').replace('Copenhagen ', 'Cph ').replace('Stockholm ', 'Stk ').replace('Cluj-Napoca ', 'Cluj '),
     paper: ((m.avgPaper - INITIAL_PRICES.Paper) / INITIAL_PRICES.Paper) * 100,
     mid: ((m.avgMidTier - INITIAL_PRICES.MidTier) / INITIAL_PRICES.MidTier) * 100,
     holo: ((m.avgHolo - INITIAL_PRICES.Holo) / INITIAL_PRICES.Holo) * 100,
-    gold: m.avgGold > 0 ? ((m.avgGold - INITIAL_PRICES.Gold) / INITIAL_PRICES.Gold) * 100 : 0,
+    // For pre-Gold majors (avgGold=0), treat Holo as top tier equivalent
+    gold: m.avgGold > 0 ? ((m.avgGold - INITIAL_PRICES.Gold) / INITIAL_PRICES.Gold) * 100 : (m.avgHolo > 0 ? ((m.avgHolo - INITIAL_PRICES.Gold) / INITIAL_PRICES.Gold) * 100 : 0),
   }));
   const avgTierROI = {
     paper: tierROIData.reduce((a, t) => a + t.paper, 0) / tierROIData.length,
     mid: tierROIData.reduce((a, t) => a + t.mid, 0) / tierROIData.length,
     holo: tierROIData.reduce((a, t) => a + t.holo, 0) / tierROIData.length,
-    gold: tierROIData.filter(t => t.gold > 0).reduce((a, t) => a + t.gold, 0) / (tierROIData.filter(t => t.gold > 0).length || 1),
+    gold: tierROIData.filter(t => t.gold !== 0).reduce((a, t) => a + t.gold, 0) / (tierROIData.filter(t => t.gold !== 0).length || 1),
   };
   const bestTier = Object.entries(avgTierROI).sort((a, b) => b[1] - a[1])[0];
 
@@ -3089,6 +3139,35 @@ async function main() {
   <div class="card"><div class="card-label">Diversity Score</div><div class="card-value dimmed">${diversityScore}%</div><div class="card-sub">${uniqueNames.size} unique stickers across ${data.length} items</div></div>
 </div>
 
+<div class="progress-section" style="margin-bottom:16px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+    <span style="font-size:12px;color:#888;">Break-Even Progress</span>
+    <span style="font-size:12px;font-weight:600;color:${breakEvenPct >= 100 ? '#22c55e' : breakEvenPct >= 70 ? '#f59e0b' : '#ef4444'};">${breakEvenPct.toFixed(1)}% &mdash; $${grandValue.toFixed(2)} / $${grandCost.toFixed(2)}</span>
+  </div>
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" style="width:${Math.min(breakEvenPct, 100)}%;background:linear-gradient(90deg,${breakEvenPct >= 100 ? '#22c55e,#16a34a' : breakEvenPct >= 70 ? '#f59e0b,#d97706' : '#ef4444,#dc2626'});">
+    </div>
+  </div>
+</div>
+
+<details style="margin-bottom:16px;">
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;font-size:14px;padding:8px 0;">Quick Stats & Records</summary>
+<div class="summary" style="margin-bottom:16px;">
+  <div class="card"><div class="card-label">Price Updates</div><div class="card-value neutral">${history.entries.length}</div><div class="card-sub">snapshots recorded</div></div>
+  <div class="card"><div class="card-label">Update Frequency</div><div class="card-value dimmed">~96x</div><div class="card-sub">every 15 minutes</div></div>
+  <div class="card"><div class="card-label">Avg Sticker Price</div><div class="card-value ${avgStickerValue >= config.costPerUnit ? 'positive' : 'negative'}">${config.currencySymbol}${avgStickerValue.toFixed(3)}</div><div class="card-sub">need ${config.currencySymbol}${config.costPerUnit} to break even</div></div>
+  <div class="card"><div class="card-label">Gold Value</div><div class="card-value positive">$${(qualityTotals['Gold']?.value || 0).toFixed(2)}</div><div class="card-sub">${((qualityTotals['Gold']?.value || 0) / grandValue * 100).toFixed(1)}% of portfolio</div></div>
+  <div class="card"><div class="card-label">Holo Value</div><div class="card-value positive">$${(qualityTotals['Holo']?.value || 0).toFixed(2)}</div><div class="card-sub">${((qualityTotals['Holo']?.value || 0) / grandValue * 100).toFixed(1)}% of portfolio</div></div>
+  <div class="card"><div class="card-label">Normal Value</div><div class="card-value negative">$${(qualityTotals['Normal']?.value || 0).toFixed(2)}</div><div class="card-sub">${((qualityTotals['Normal']?.value || 0) / grandValue * 100).toFixed(1)}% of portfolio</div></div>
+  <div class="card"><div class="card-label">Most Valuable</div><div class="card-value" style="font-size:15px;color:#ffd700">${bestPerformer ? bestPerformer.name + ' ' + bestPerformer.quality : '-'}</div><div class="card-sub">${bestPerformer ? '$' + bestPerformer.currentPrice.toFixed(2) + ' (+' + ((bestPerformer.currentPrice / config.costPerUnit - 1) * 100).toFixed(0) + '%)' : ''}</div></div>
+  <div class="card"><div class="card-label">Portfolio ATH</div><div class="card-value positive">${portfolioATH ? '$' + portfolioATH.totalValue.toFixed(2) : '-'}</div><div class="card-sub">${portfolioATH ? portfolioATH.date : ''}</div></div>
+  <div class="card"><div class="card-label">Portfolio ATL</div><div class="card-value negative">${portfolioATL ? '$' + portfolioATL.totalValue.toFixed(2) : '-'}</div><div class="card-sub">${portfolioATL ? portfolioATL.date : ''}</div></div>
+  <div class="card"><div class="card-label">Sticker ATH</div><div class="card-value" style="font-size:15px;color:#22c55e">${stickerATH ? stickerATH.name + ' ' + stickerATH.quality : '-'}</div><div class="card-sub">${stickerATH ? '$' + stickerATH.allTimeHigh.toFixed(2) + ' on ' + stickerATH.allTimeHighDate : ''}</div></div>
+  <div class="card"><div class="card-label">Sticker ATL</div><div class="card-value" style="font-size:15px;color:#ef4444">${stickerATL ? stickerATL.name + ' ' + stickerATL.quality : '-'}</div><div class="card-sub">${stickerATL ? '$' + stickerATL.allTimeLow.toFixed(2) + ' on ' + stickerATL.allTimeLowDate : ''}</div></div>
+  <div class="card"><div class="card-label">Page Views</div><div class="card-value dimmed" id="pageViewCount">-</div><div class="card-sub">since tracking started</div></div>
+</div>
+</details>
+
 <div id="overview-section" class="overview-section">
 <h3>Overview</h3>
 <div class="overview-grid">
@@ -3134,13 +3213,32 @@ async function main() {
     <div class="signal-score" style="color:${signalColor}">${investmentScore}</div>
     <div>
       <div class="signal-label" style="color:${signalColor}">${investmentSignal}</div>
-      <div class="signal-sub">Investment Score (1-10) based on 5 weighted factors</div>
+      <div class="signal-sub">Composite score from 5 weighted factors. 7-10 = Buy More, 4-6 = Hold, 1-3 = Wait.</div>
     </div>
   </div>
   <div class="signal-factors">
-    ${scoreFactors.map(f => `<div class="signal-factor"><span class="signal-factor-name">${f.name}</span><span class="signal-factor-score" style="color:${f.score >= 7 ? '#22c55e' : f.score >= 4 ? '#f59e0b' : '#ef4444'}">${f.score}/10</span></div>`).join('\n    ')}
+    ${scoreFactors.map(f => {
+      const desc: Record<string, string> = {
+        'Cycle Position': 'Where are we in the post-sale appreciation timeline? Higher = earlier in the cycle (more upside)',
+        'Performance vs History': 'How does current ROI compare to similar-age majors? Higher = outperforming',
+        'Quality Mix': 'Higher premium tier % (Holo+Gold) = more upside potential',
+        'Price Momentum': 'Are prices trending up or down between recent snapshots?',
+        'Diversification': 'More unique stickers = lower risk from any single sticker underperforming',
+      };
+      const barWidth = f.score * 10;
+      const barColor = f.score >= 7 ? '#22c55e' : f.score >= 4 ? '#f59e0b' : '#ef4444';
+      return `<div class="signal-factor" title="${desc[f.name] || ''}">
+        <span class="signal-factor-name">${f.name}</span>
+        <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;margin:0 12px;overflow:hidden;">
+          <div style="width:${barWidth}%;height:100%;background:${barColor};border-radius:3px;transition:width 0.3s;"></div>
+        </div>
+        <span class="signal-factor-score" style="color:${barColor}">${f.score}/10</span>
+      </div>`;
+    }).join('\n    ')}
   </div>
-  <p style="color:#555;font-size:11px;margin-top:12px;">${scoreFactors.map(f => `${f.name}: ${f.detail}`).join(' | ')}</p>
+  <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;">
+    ${scoreFactors.map(f => `<div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;"><span style="color:#888;">${f.name}</span><span style="color:#aaa;">${f.detail}</span></div>`).join('\n    ')}
+  </div>
 </div>
 
 <div class="cycle-callout">
@@ -3171,26 +3269,12 @@ async function main() {
   </div>
 </div>
 
-<h3 id="charts-section">Quality Tier ROI Analysis (Post-2019 Majors)</h3>
+<h3 id="charts-section">Quality Tier ROI Analysis (All Comparable Majors)</h3>
 <p style="color:#888;font-size:13px;margin-bottom:16px;">${bestTier[0] === 'gold' ? 'Gold' : bestTier[0] === 'holo' ? 'Holo' : bestTier[0] === 'mid' ? 'Embroidered' : 'Paper'} stickers average ${avgTierROI[bestTier[0] as keyof typeof avgTierROI].toFixed(0)}% ROI historically &mdash; the best long-term investment tier. Your current mix is ${(pctNormal*100).toFixed(0)}% Normal. ${pctGold < 0.05 ? 'Consider shifting toward Gold/Holo for better returns.' : 'Good premium tier allocation.'}</p>
 <div class="chart-container">
   <canvas id="tierRoiChart"></canvas>
 </div>
 
-<h3>Break-Even Progress</h3>
-<p style="color:#888;font-size:12px;margin-bottom:8px;">How close your total portfolio value is to matching your total investment cost. 100% = you've broken even. Above 100% = profit.</p>
-<div class="progress-section">
-  <div class="progress-bar-outer">
-    <div class="progress-bar-inner" style="width:${Math.min(breakEvenPct, 100)}%;background:linear-gradient(90deg,${breakEvenPct >= 100 ? '#22c55e,#16a34a' : breakEvenPct >= 70 ? '#f59e0b,#d97706' : '#ef4444,#dc2626'});">
-      ${breakEvenPct.toFixed(1)}%
-    </div>
-  </div>
-  <div class="progress-labels">
-    <span>$0.00</span>
-    <span>Break-even: $${grandCost.toFixed(2)}</span>
-    <span>Current: $${grandValue.toFixed(2)}</span>
-  </div>
-</div>
 
 ${featured.length > 0 ? `
 <h3>Featured Stickers</h3>
@@ -3869,7 +3953,7 @@ ${projections.map(p => {
 </table>
 
 <h3 id="predictions-section">${config.event} Price Predictions</h3>
-<p style="color:#888;font-size:13px;margin-bottom:16px;">Based on how previous major stickers appreciated over time, here's a projection for your ${config.event} portfolio. Best-performing major: <span style="color:#ffd700;font-weight:600">${bestMajor.name}</span> at <span class="positive">+${bestMajor.roiStr}</span> after ${(bestMajor.monthsOld/12).toFixed(1)} years.${saleEndDate ? ` <span style="color:#22c55e;font-weight:600;">${saleActive ? '75% sale is LIVE — accumulate now!' : monthsSinceSaleEnd < 1 ? 'Sale ended ' + Math.round(monthsSinceSaleEnd * 30.44) + ' days ago — appreciation just starting. Budapest&#39;s 53-day sale (2nd shortest ever) mirrors Austin 2025&#39;s scarcity profile.' : monthsSinceSaleEnd.toFixed(1) + ' months post-sale removal.'}</span>` : ''}</p>
+<p style="color:#888;font-size:13px;margin-bottom:16px;">Based on how previous major stickers appreciated over time, here's a projection for your ${config.event} portfolio. Best comparable major: <span style="color:#ffd700;font-weight:600">${bestModernMajor.name}</span> at <span class="positive">+${bestModernMajor.roiStr}</span> after ${(bestModernMajor.monthsOld/12).toFixed(1)} years.${saleEndDate ? ` <span style="color:#22c55e;font-weight:600;">${saleActive ? '75% sale is LIVE — accumulate now!' : monthsSinceSaleEnd < 1 ? 'Sale ended ' + Math.round(monthsSinceSaleEnd * 30.44) + ' days ago — appreciation just starting. Budapest&#39;s 53-day sale (2nd shortest ever) mirrors Austin 2025&#39;s scarcity profile.' : monthsSinceSaleEnd.toFixed(1) + ' months post-sale removal.'}</span>` : ''}</p>
 
 <div class="chart-container">
   <canvas id="predictionChart"></canvas>
@@ -3877,7 +3961,7 @@ ${projections.map(p => {
 
 <div class="summary" style="margin-top:20px;">
   <div class="card"><div class="card-label">Est. Break-Even</div><div class="card-value neutral" style="font-size:20px">${breakEvenMonths > 0 ? (breakEvenMonths < 12 ? breakEvenMonths + ' months' : (breakEvenMonths/12).toFixed(1) + ' years') : 'Unknown'}</div><div class="card-sub">When portfolio value hits $${grandCost.toFixed(0)}</div></div>
-  <div class="card"><div class="card-label">Best Case (${bestMajor.name} path)</div><div class="card-value positive" style="font-size:20px">$${bestMajor.portfolioValue.toFixed(0)}</div><div class="card-sub">After ${(bestMajor.monthsOld/12).toFixed(1)} years | +${bestMajor.roiStr}</div></div>
+  <div class="card"><div class="card-label">Best Case (${bestModernMajor.name} path)</div><div class="card-value positive" style="font-size:20px">$${bestModernMajor.portfolioValue.toFixed(0)}</div><div class="card-sub">After ${(bestModernMajor.monthsOld/12).toFixed(1)} years | +${bestModernMajor.roiStr}</div></div>
   <div class="card"><div class="card-label">Conservative (avg all majors)</div><div class="card-value positive" style="font-size:20px">$${(projections.reduce((a,p) => a + p.portfolioValue, 0) / projections.length).toFixed(0)}</div><div class="card-sub">Average across ${projections.length} majors</div></div>
 </div>
 
@@ -4093,21 +4177,6 @@ ${capsuleHistory.map(c => {
 </table>
 <p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Capsule prices are approximate. Sale duration is the strongest predictor of capsule ROI — shorter sales = less supply = better returns. Austin 2025's 49-day sale vs Paris 2023's 146 days illustrates this clearly. Budapest's 53-day sale window (Jan 22 – Mar 15, 2026) is the 2nd shortest modern sale after Austin 2025 (49 days) — very bullish for scarcity.</p>
 
-<h3 id="quick-stats-section">Quick Stats</h3>
-<div class="summary" style="margin-bottom:16px;">
-  <div class="card"><div class="card-label">Price Updates</div><div class="card-value neutral">${history.entries.length}</div><div class="card-sub">snapshots recorded</div></div>
-  <div class="card"><div class="card-label">Update Frequency</div><div class="card-value dimmed">~96x</div><div class="card-sub">every 15 minutes</div></div>
-  <div class="card"><div class="card-label">Avg Sticker Price</div><div class="card-value ${avgStickerValue >= config.costPerUnit ? 'positive' : 'negative'}">${config.currencySymbol}${avgStickerValue.toFixed(3)}</div><div class="card-sub">need ${config.currencySymbol}${config.costPerUnit} to break even</div></div>
-  <div class="card"><div class="card-label">Gold Value</div><div class="card-value positive">$${(qualityTotals['Gold']?.value || 0).toFixed(2)}</div><div class="card-sub">${((qualityTotals['Gold']?.value || 0) / grandValue * 100).toFixed(1)}% of portfolio</div></div>
-  <div class="card"><div class="card-label">Holo Value</div><div class="card-value positive">$${(qualityTotals['Holo']?.value || 0).toFixed(2)}</div><div class="card-sub">${((qualityTotals['Holo']?.value || 0) / grandValue * 100).toFixed(1)}% of portfolio</div></div>
-  <div class="card"><div class="card-label">Normal Value</div><div class="card-value negative">$${(qualityTotals['Normal']?.value || 0).toFixed(2)}</div><div class="card-sub">${((qualityTotals['Normal']?.value || 0) / grandValue * 100).toFixed(1)}% of portfolio</div></div>
-  <div class="card"><div class="card-label">Most Valuable</div><div class="card-value" style="font-size:15px;color:#ffd700">${bestPerformer ? bestPerformer.name + ' ' + bestPerformer.quality : '-'}</div><div class="card-sub">${bestPerformer ? '$' + bestPerformer.currentPrice.toFixed(2) + ' (+' + ((bestPerformer.currentPrice / config.costPerUnit - 1) * 100).toFixed(0) + '%)' : ''}</div></div>
-  <div class="card"><div class="card-label">Portfolio ATH</div><div class="card-value positive">${portfolioATH ? '$' + portfolioATH.totalValue.toFixed(2) : '-'}</div><div class="card-sub">${portfolioATH ? portfolioATH.date : ''}</div></div>
-  <div class="card"><div class="card-label">Portfolio ATL</div><div class="card-value negative">${portfolioATL ? '$' + portfolioATL.totalValue.toFixed(2) : '-'}</div><div class="card-sub">${portfolioATL ? portfolioATL.date : ''}</div></div>
-  <div class="card"><div class="card-label">Sticker ATH</div><div class="card-value" style="font-size:15px;color:#22c55e">${stickerATH ? stickerATH.name + ' ' + stickerATH.quality : '-'}</div><div class="card-sub">${stickerATH ? '$' + stickerATH.allTimeHigh.toFixed(2) + ' on ' + stickerATH.allTimeHighDate : ''}</div></div>
-  <div class="card"><div class="card-label">Sticker ATL</div><div class="card-value" style="font-size:15px;color:#ef4444">${stickerATL ? stickerATL.name + ' ' + stickerATL.quality : '-'}</div><div class="card-sub">${stickerATL ? '$' + stickerATL.allTimeLow.toFixed(2) + ' on ' + stickerATL.allTimeLowDate : ''}</div></div>
-  <div class="card"><div class="card-label">Page Views</div><div class="card-value dimmed" id="pageViewCount">-</div><div class="card-sub">since tracking started</div></div>
-</div>
 
 <h3 id="browse-section">Browse by Player / Team (${sortedGroups.length} entities)</h3>
 <p style="color:#888;font-size:13px;margin-bottom:16px;">Click any player/team to expand quality variants. Sorted by total portfolio value.</p>
@@ -4469,8 +4538,8 @@ const predLabels = ['Now', ${timeProjections.map(t => "'" + t.label + "'").join(
 const predValues = [${grandValue.toFixed(2)}, ${timeProjections.map(t => t.projectedValue.toFixed(2)).join(',')}];
 const predActual = ${JSON.stringify(actualDataForChart)};
 const predBestCase = [${grandValue.toFixed(2)}, ${timeProjections.map((t) => {
-  const ratio = t.months / bestMajor.monthsOld;
-  return (grandCost * (1 + bestMajor.roi / 100 * ratio)).toFixed(2);
+  const ratio = t.months / ${bestModernMajor.monthsOld};
+  return (${grandCost} * (1 + ${bestModernMajor.roi} / 100 * ratio)).toFixed(2);
 }).join(',')}];
 const pCtx = document.getElementById('predictionChart').getContext('2d');
 new Chart(pCtx, {
@@ -4515,7 +4584,7 @@ new Chart(pCtx, {
         fill: false,
       },
       {
-        label: 'Best Case (${bestMajor.name} path)',
+        label: 'Best Case (${bestModernMajor.name} path)',
         data: predBestCase,
         borderColor: 'rgba(34,197,94,0.4)',
         borderDash: [3, 3],
@@ -4547,7 +4616,7 @@ new Chart(pCtx, {
         },
         grid: { color: '#111' }
       },
-      y: { ticks: { color: '#444', callback: v => '$' + v, font: { family: 'Inter' } }, grid: { color: '#111' }, suggestedMin: 0 },
+      y: { ticks: { color: '#444', callback: v => '$' + Number(v).toLocaleString(), font: { family: 'Inter' } }, grid: { color: '#111' }, suggestedMin: 0, suggestedMax: Math.max(...predValues.filter(v => v !== null && isFinite(v))) * 1.3 },
     }
   }
 });
