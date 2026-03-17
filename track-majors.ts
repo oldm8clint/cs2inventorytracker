@@ -60,17 +60,48 @@ const trackedStickers: TrackedSticker[] = [
   { hashName: "Sticker | Natus Vincere (Holo) | Antwerp 2022", major: "Antwerp 2022", quality: "Holo" },
   { hashName: "Sticker | s1mple (Gold) | Antwerp 2022", major: "Antwerp 2022", quality: "Gold" },
 
-  // ── Rio 2022 ──
+  // ── Rio 2022 (EXPANDED TRACKING — 15 stickers) ──
+  // Normal tier
   { hashName: "Sticker | FURIA | Rio 2022", major: "Rio 2022", quality: "Normal" },
+  { hashName: "Sticker | Natus Vincere | Rio 2022", major: "Rio 2022", quality: "Normal" },
+  { hashName: "Sticker | FaZe Clan | Rio 2022", major: "Rio 2022", quality: "Normal" },
+  { hashName: "Sticker | Outsiders | Rio 2022", major: "Rio 2022", quality: "Normal" },
+  // Holo tier
   { hashName: "Sticker | Natus Vincere (Holo) | Rio 2022", major: "Rio 2022", quality: "Holo" },
+  { hashName: "Sticker | FURIA (Holo) | Rio 2022", major: "Rio 2022", quality: "Holo" },
+  { hashName: "Sticker | FaZe Clan (Holo) | Rio 2022", major: "Rio 2022", quality: "Holo" },
+  { hashName: "Sticker | s1mple (Holo) | Rio 2022", major: "Rio 2022", quality: "Holo" },
+  { hashName: "Sticker | NiKo (Holo) | Rio 2022", major: "Rio 2022", quality: "Holo" },
+  { hashName: "Sticker | m0NESY (Holo) | Rio 2022", major: "Rio 2022", quality: "Holo" },
+  // Gold tier
   { hashName: "Sticker | s1mple (Gold) | Rio 2022", major: "Rio 2022", quality: "Gold" },
+  { hashName: "Sticker | NiKo (Gold) | Rio 2022", major: "Rio 2022", quality: "Gold" },
+  { hashName: "Sticker | m0NESY (Gold) | Rio 2022", major: "Rio 2022", quality: "Gold" },
+  { hashName: "Sticker | FaZe Clan (Gold) | Rio 2022", major: "Rio 2022", quality: "Gold" },
+  { hashName: "Sticker | FURIA (Gold) | Rio 2022", major: "Rio 2022", quality: "Gold" },
 
-  // ── Paris 2023 ──
+  // ── Paris 2023 (EXPANDED TRACKING — 17 stickers) ──
+  // Normal tier
   { hashName: "Sticker | Vitality | Paris 2023", major: "Paris 2023", quality: "Normal" },
-  { hashName: "Sticker | NiKo (Holo) | Paris 2023", major: "Paris 2023", quality: "Holo" },
+  { hashName: "Sticker | Natus Vincere | Paris 2023", major: "Paris 2023", quality: "Normal" },
+  { hashName: "Sticker | FaZe Clan | Paris 2023", major: "Paris 2023", quality: "Normal" },
+  { hashName: "Sticker | G2 Esports | Paris 2023", major: "Paris 2023", quality: "Normal" },
+  { hashName: "Sticker | Heroic | Paris 2023", major: "Paris 2023", quality: "Normal" },
+  // Glitter tier (mid-tier for Paris 2023)
   { hashName: "Sticker | NiKo (Glitter) | Paris 2023", major: "Paris 2023", quality: "Glitter" },
+  { hashName: "Sticker | m0NESY (Glitter) | Paris 2023", major: "Paris 2023", quality: "Glitter" },
+  { hashName: "Sticker | Vitality (Glitter) | Paris 2023", major: "Paris 2023", quality: "Glitter" },
+  // Holo tier
+  { hashName: "Sticker | NiKo (Holo) | Paris 2023", major: "Paris 2023", quality: "Holo" },
+  { hashName: "Sticker | m0NESY (Holo) | Paris 2023", major: "Paris 2023", quality: "Holo" },
+  { hashName: "Sticker | Vitality (Holo) | Paris 2023", major: "Paris 2023", quality: "Holo" },
+  { hashName: "Sticker | Natus Vincere (Holo) | Paris 2023", major: "Paris 2023", quality: "Holo" },
+  // Gold tier
   { hashName: "Sticker | NiKo (Gold) | Paris 2023", major: "Paris 2023", quality: "Gold" },
   { hashName: "Sticker | s1mple (Gold) | Paris 2023", major: "Paris 2023", quality: "Gold" },
+  { hashName: "Sticker | m0NESY (Gold) | Paris 2023", major: "Paris 2023", quality: "Gold" },
+  { hashName: "Sticker | Vitality (Gold) | Paris 2023", major: "Paris 2023", quality: "Gold" },
+  { hashName: "Sticker | G2 Esports (Gold) | Paris 2023", major: "Paris 2023", quality: "Gold" },
 
   // ── Copenhagen 2024 (DEEP TRACKING — 20 stickers) ──
   // Normal tier
