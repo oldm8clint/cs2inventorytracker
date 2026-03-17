@@ -1355,7 +1355,7 @@ async function main() {
   // Fetch blank Sticker Slab price (needed for slab premium calculation)
   console.log('\nFetching blank Sticker Slab price...');
   const blankSlabResult = await fetchPrice('Sticker Slab | Factory Sealed', 1);
-  const blankSlabPrice = blankSlabResult.price;
+  const blankSlabPrice = blankSlabResult.price > 0 ? blankSlabResult.price : 0.70; // fallback to $0.70 AUD
   console.log(`  Blank slab: ${blankSlabPrice > 0 ? config.currencySymbol + blankSlabPrice.toFixed(2) : 'unavailable'}`);
 
   // ── Fetch exchange rates + Skinport third-party data ──
@@ -3267,7 +3267,7 @@ ${slabbableItems.length > 0 ? `<p style="color:#22c55e;font-size:13px;margin-bot
 <table class="history-table" style="max-width: 1100px;">
 <thead><tr><th>Sticker</th><th>Quality</th><th>Held</th><th>Individual</th><th>Total Cost</th><th>Slab Price</th><th>Last Sold</th><th>Vol</th><th>Premium</th><th>Strategy</th></tr></thead>
 <tbody>
-${uniqueSlabRows.filter(r => r.slabPrice > 0).sort((a, b) => b.premiumPct - a.premiumPct).slice(0, 30).map(r => {
+${uniqueSlabRows.filter(r => r.slabPrice > 0 && (r.slabVolume > 0 || r.medianPrice > 0)).sort((a, b) => b.premiumPct - a.premiumPct).slice(0, 30).map(r => {
   const qc = r.quality.toLowerCase();
   const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
   const slabDataRow = data.find(d => d.name === r.name && d.quality === r.quality);
@@ -3288,7 +3288,8 @@ ${uniqueSlabRows.filter(r => r.slabPrice > 0).sort((a, b) => b.premiumPct - a.pr
 }).join('\n')}
 </tbody>
 </table>
-${uniqueSlabRows.filter(r => r.slabPrice > 0).length > 30 ? `<p style="color:#555;font-size:11px;margin-top:8px;">Showing top 30 by slab premium. ${uniqueSlabRows.filter(r => r.slabPrice > 0).length - 30} more tracked.</p>` : ''}
+${uniqueSlabRows.filter(r => r.slabPrice > 0 && (r.slabVolume > 0 || r.medianPrice > 0)).length > 30 ? `<p style="color:#555;font-size:11px;margin-top:8px;">Showing top 30 by slab premium. ${uniqueSlabRows.filter(r => r.slabPrice > 0 && (r.slabVolume > 0 || r.medianPrice > 0)).length - 30} more with sales data.</p>` : ''}
+<p style="color:#555;font-size:11px;font-style:italic;">Only showing slabs with actual sales data (volume or median sale price). Listings without sales are excluded — anyone can list at any price.</p>
 <p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Slab = 5 identical stickers encased in a blank slab ($${blankSlabPrice > 0 ? blankSlabPrice.toFixed(2) : '?'}). Total Cost = 5x sticker + blank slab. "Last Sold" = median recent sale price. Premium = (slab price - total cost) / total cost. Positive = slabbing earns more.</p>
 
 <h3 id="quality-section">Quality Breakdown</h3>
