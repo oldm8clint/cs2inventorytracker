@@ -1,0 +1,40 @@
+name: Scrape CSGOSkins.gg Prices
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'  # Every Sunday at 3:00 AM UTC
+  workflow_dispatch: # Manual trigger
+
+concurrency:
+  group: scrape-csgoskins
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Playwright
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run CSGOSkins.gg scraper
+        run: bun scrape-csgoskins.ts
+
+      - name: Commit scraped data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase || true
+          [ -f csgoskins_data.json ] && git add csgoskins_data.json
+          git diff --staged --quiet || git commit -m "Update CSGOSkins.gg data $(date -u +%Y-%m-%d)"
+          git push
