@@ -680,20 +680,20 @@ const ICONIC_STICKERS: Record<string, { hashName: string; label: string; iconHas
   "Cologne 2015": { hashName: "Sticker | Ninjas in Pyjamas (Foil) | Cologne 2015", label: "NiP Foil" },
   "Cluj-Napoca 2015": { hashName: "Sticker | Luminosity Gaming (Foil) | Cluj-Napoca 2015", label: "LG Foil" },
   "Columbus 2016": { hashName: "Sticker | FaZe Clan (Holo) | MLG Columbus 2016", label: "FaZe Holo" },
-  "Cologne 2016": { hashName: "Sticker | Astralis (Holo) | Cologne 2016", label: "Astralis Holo" },
-  "Atlanta 2017": { hashName: "Sticker | Astralis (Holo) | Atlanta 2017", label: "Astralis Holo" },
+  "Cologne 2016": { hashName: "Sticker | Astralis (Holo) | Cologne 2016", label: "Astralis Holo", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMu1OXqZ8VcnpNajpVj0VQ_Olpns8mwK7qP9OqJsdPLCWDOVwLgltrc-HCzrxUhxtWuDn4mtIHvFag5zA8R4W6dU5bClXV6s" },
+  "Atlanta 2017": { hashName: "Sticker | Astralis (Holo) | Atlanta 2017", label: "Astralis Holo", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMu1OXqZ8VcnpNajpVj0VQ_Olpns8mwK7qP9OqJsdPLCWDOVwLgltrc-HCzrxUhxtWuDn4mtIHvFag5zA8R4W6dU5bClXV6s" },
   "Krakow 2017": { hashName: "Sticker | FaZe Clan (Holo) | Krakow 2017", label: "FaZe Holo" },
   "Boston 2018": { hashName: "Sticker | FaZe Clan (Holo) | Boston 2018", label: "FaZe Holo" },
-  "London 2018": { hashName: "Sticker | Astralis (Holo) | London 2018", label: "Astralis Holo" },
-  "Katowice 2019": { hashName: "Sticker | Astralis (Gold) | Katowice 2019", label: "Astralis Gold" },
-  "Berlin 2019": { hashName: "Sticker | Astralis (Gold) | Berlin 2019", label: "Astralis Gold" },
-  "Stockholm 2021": { hashName: "Sticker | s1mple (Gold) | Stockholm 2021", label: "s1mple Gold" },
-  "Antwerp 2022": { hashName: "Sticker | s1mple (Gold) | Antwerp 2022", label: "s1mple Gold" },
-  "Rio 2022": { hashName: "Sticker | s1mple (Gold) | Rio 2022", label: "s1mple Gold" },
-  "Paris 2023": { hashName: "Sticker | NiKo (Gold) | Paris 2023", label: "NiKo Gold" },
-  "Copenhagen 2024": { hashName: "Sticker | NiKo (Gold) | Copenhagen 2024", label: "NiKo Gold" },
-  "Shanghai 2024": { hashName: "Sticker | NiKo (Gold) | Shanghai 2024", label: "NiKo Gold" },
-  "Austin 2025": { hashName: "Sticker | NiKo (Gold) | Austin 2025", label: "NiKo Gold" },
+  "London 2018": { hashName: "Sticker | Astralis (Holo) | London 2018", label: "Astralis Holo", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMauO3-Y6wQlpd-760rzUyL5kZrvs3cKvqD_PqU8cqGWXT-Slbcltrg8HHDkxR5ztz6Aztv_d3zBOANzA8RuBbldtKc5dt0" },
+  "Katowice 2019": { hashName: "Sticker | Astralis (Holo) | Katowice 2019", label: "Astralis Holo" },
+  "Berlin 2019": { hashName: "Sticker | Astralis (Holo) | Berlin 2019", label: "Astralis Holo" },
+  "Stockholm 2021": { hashName: "Sticker | s1mple (Gold) | Stockholm 2021", label: "s1mple Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNm1Onic7QQlpta7-VDgfg6gk4bs-B1c4P6qJv1seKHGWmPHwrYu4LcwH3nnlhx_t2jSnIr7dSmQa1JyX5RxR7QI5kOm0oqwa5pQJSY" },
+  "Antwerp 2022": { hashName: "Sticker | s1mple (Gold) | Antwerp 2022", label: "s1mple Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMuvIWyS90YnpNWmpUruRiLiz5vw8Sdk6P2ibOo6ePaWXzLGlbhz5bNtS3iwx09x4z6EzImpICqRPAB2DJF2Q-UJ4UawjJS5YEg8Kb1u" },
+  "Rio 2022": { hashName: "Sticker | s1mple (Gold) | Rio 2022", label: "s1mple Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNioOinHtwQ6547z1Uq2TA39m6nn8i5fofOrbqZvcPOQCjPBkeh05eA5HXHkwUx3sGqHy476dynGaQclDcN0FuAU8k7v7wjO7G8" },
+  "Paris 2023": { hashName: "Sticker | NiKo (Gold) | Paris 2023", label: "NiKo Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNqgJ3KEtwYnp8jn417YTxT6kann8i5foaavbKc5dKnAXGKWle9w5bhrFivqwh905DuGw96hd3KQaVInD8MkQ7MU8k7ve2fXMxM" },
+  "Copenhagen 2024": { hashName: "Sticker | NiKo (Gold) | Copenhagen 2024", label: "NiKo Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMmxPSnHtwI6547z1VfuShLOmZns-WwIvfOtMfc1IqjLVjTBmLx34LA_GXmxzR534GTRmdusI32Tb1cnC5N0W6dU5aj9loD3" },
+  "Shanghai 2024": { hashName: "Sticker | NiKo (Gold) | Shanghai 2024", label: "NiKo Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjNmpNCnHtwI6547z1VfuShLOmZns-WwKuKWvOaFvI6KWXzOVkL0u4LM7Givhkx5y62TTyYmrdCiTZlAkXsd3W6dU5b-GLCrg" },
+  "Austin 2025": { hashName: "Sticker | NiKo (Gold) | Austin 2025", label: "NiKo Gold", iconHash: "i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjMu0JinHtwM6547z1VfuShLOmZns-WwO6vH6Mfc0cKHGWDTDlrpz6LAxS3uywBl1sT6Dyt6scnuQZwQlCpF4W6dU5Vrit132" },
 };
 
 async function fetchIconicImages(cache: StickerImageCache): Promise<StickerImageCache> {
@@ -1727,9 +1727,9 @@ async function main() {
   })).filter(b => b.count > 0);
 
   // Quality breakdown - find representative sticker (highest-value) per quality
+  // Include stickers even without images (they just won't show a thumbnail)
   const qualityRepresentatives: Record<string, Row> = {};
   for (const r of data) {
-    if (!r.imageUrl) continue;
     const existing = qualityRepresentatives[r.quality];
     if (!existing || r.currentPrice > existing.currentPrice) {
       qualityRepresentatives[r.quality] = r;
@@ -1857,6 +1857,48 @@ async function main() {
       };
     });
 
+  // ── Monthly Snapshots (group entries by month) ─────────────────────
+  const monthGroups: Record<string, typeof history.entries> = {};
+  for (const entry of history.entries) {
+    const normalized = entry.date.replace(/^(\d{4}-\d{2}-\d{2})-\d{2}$/, '$1');
+    const d = new Date(normalized);
+    if (isNaN(d.getTime())) continue;
+    const mk = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+    if (!monthGroups[mk]) monthGroups[mk] = [];
+    monthGroups[mk].push(entry);
+  }
+  const monthlySnapshots = Object.entries(monthGroups)
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([mk, entries]) => {
+      const entry = entries[entries.length - 1];
+      const firstEntry = entries[0];
+      const prices = entry.prices || {};
+      const qualityMap: Record<string, { value: number; count: number }> = {};
+      for (const [key, price] of Object.entries(prices)) {
+        const parts = key.split('|||');
+        const quality = parts[1] || 'Normal';
+        if (!qualityMap[quality]) qualityMap[quality] = { value: 0, count: 0 };
+        const s = stickers.find(st => stickerKey(st.name, st.quality) === key);
+        const qty = s?.qty || 1;
+        qualityMap[quality].value += (price as number) * qty;
+        qualityMap[quality].count += qty;
+      }
+      const qualityBreakdown = Object.entries(qualityMap)
+        .map(([quality, { value, count }]) => ({ quality, value, count, avgPrice: count > 0 ? value / count : 0 }))
+        .sort((a, b) => b.value - a.value);
+      const [y, m] = mk.split('-');
+      const monthLabel = new Date(+y, +m - 1).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      const startValue = firstEntry.totalValue;
+      const endValue = entry.totalValue;
+      const monthChange = startValue > 0 ? ((endValue - startValue) / startValue * 100) : 0;
+      return {
+        monthKey: mk, monthLabel, date: entry.date,
+        totalValue: endValue, totalCost: entry.totalCost,
+        qualityBreakdown, snapshots: entries.length,
+        startValue, monthChange,
+      };
+    });
+
   // ── Performer Trends (across snapshots) ─────────────────────────────
   interface PerformerTrend {
     name: string; quality: string; appearances: number;
@@ -1886,6 +1928,55 @@ async function main() {
     .sort((a, b) => b.count - a.count || a.latestPrice - b.latestPrice)
     .slice(0, 30)
     .map(t => ({ name: t.name, quality: t.quality, appearances: t.count, firstPrice: t.firstPrice, latestPrice: t.latestPrice, priceChange: t.latestPrice - t.firstPrice, rising: t.latestPrice >= t.firstPrice }));
+
+  // ── Period Movers (week/month/all-time) ────────────────────────────
+  function computePeriodMovers(entries: typeof history.entries, daysBack: number | null) {
+    if (entries.length < 2) return [];
+    const latest = entries[entries.length - 1];
+    let compareEntry = entries[0]; // all-time
+    if (daysBack !== null) {
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - daysBack);
+      const cutoffStr = cutoff.toISOString().split('T')[0];
+      // Find closest entry to cutoff
+      compareEntry = entries.find(e => {
+        const d = e.date.replace(/^(\d{4}-\d{2}-\d{2})-\d{2}$/, '$1');
+        return d >= cutoffStr;
+      }) || entries[0];
+    }
+    const latestPrices = latest.prices || {};
+    const comparePrices = compareEntry.prices || {};
+    const movers: { name: string; quality: string; changePct: number; currentPrice: number }[] = [];
+    for (const [key, price] of Object.entries(latestPrices)) {
+      const prev = comparePrices[key] as number || 0;
+      if (prev > 0.01 && (price as number) > 0.01) {
+        const parts = key.split('|||');
+        movers.push({ name: parts[0], quality: parts[1] || 'Normal', changePct: ((price as number) - prev) / prev * 100, currentPrice: price as number });
+      }
+    }
+    movers.sort((a, b) => b.changePct - a.changePct);
+    return movers;
+  }
+  const moversWeek = computePeriodMovers(history.entries, 7);
+  const moversMonth = computePeriodMovers(history.entries, 30);
+  const moversAllTime = computePeriodMovers(history.entries, null);
+
+  // ── Investment Opportunity Analysis ────────────────────────────────
+  // For each sticker, compute trend strength and recommend best buys at current prices
+  const investOpportunities = data
+    .filter(r => r.currentPrice > 0)
+    .map(r => {
+      const momentum = r.priceHistory.length >= 3 ? ((r.priceHistory[r.priceHistory.length - 1] - r.priceHistory[0]) / r.priceHistory[0] * 100) : 0;
+      const volatility = r.priceHistory.length >= 3 ? (Math.max(...r.priceHistory) - Math.min(...r.priceHistory)) / r.currentPrice * 100 : 0;
+      // Score: higher = better buy (low price + rising trend + reasonable volatility)
+      const priceScore = r.currentPrice < 0.10 ? 3 : r.currentPrice < 0.50 ? 2 : r.currentPrice < 2 ? 1 : 0;
+      const trendScore = momentum > 10 ? 2 : momentum > 0 ? 1 : momentum > -5 ? 0 : -1;
+      const volScore = volatility < 20 ? 1 : volatility < 50 ? 0 : -1;
+      const demandScore = r.volume > 100 ? 2 : r.volume > 20 ? 1 : 0;
+      const score = priceScore + trendScore + volScore + demandScore;
+      return { ...r, momentum, volatility, score };
+    })
+    .sort((a, b) => b.score - a.score);
 
 
   // ── Historical Major Data (fetched Mar 2026) ────────────────────────
@@ -2473,7 +2564,7 @@ async function main() {
     const currentValueUsd = ozBought * currentGoldUsd;
     const currentValueAud = currentValueUsd / exchangeRates.audToUsd;
     const roi = ((currentValueAud - grandCost) / grandCost) * 100;
-    altInvestments.push({ name: 'Gold', symbol: 'XAU', color: '#ffd700', purchasePrice: histGoldUsd, currentPrice: currentGoldUsd, roi, investedValue: currentValueAud });
+    altInvestments.push({ name: 'Gold', symbol: 'XAU/oz', color: '#ffd700', purchasePrice: histGoldUsd, currentPrice: currentGoldUsd, roi, investedValue: currentValueAud });
   }
   // Silver
   if (currentSilverUsd > 0 && histSilverUsd > 0) {
@@ -2481,7 +2572,7 @@ async function main() {
     const currentValueUsd = ozBought * currentSilverUsd;
     const currentValueAud = currentValueUsd / exchangeRates.audToUsd;
     const roi = ((currentValueAud - grandCost) / grandCost) * 100;
-    altInvestments.push({ name: 'Silver', symbol: 'XAG', color: '#c0c0c0', purchasePrice: histSilverUsd, currentPrice: currentSilverUsd, roi, investedValue: currentValueAud });
+    altInvestments.push({ name: 'Silver', symbol: 'XAG/oz', color: '#c0c0c0', purchasePrice: histSilverUsd, currentPrice: currentSilverUsd, roi, investedValue: currentValueAud });
   }
   // Bitcoin
   if (exchangeRates.btcUsd > 0 && historicalCrypto.btc > 0) {
@@ -2655,23 +2746,7 @@ async function main() {
   const topPriceDiffs = [...priceComparisonItems].map(r => ({ ...r, diff: r.skinportPriceAdj - r.currentPrice, diffPct: ((r.skinportPriceAdj - r.currentPrice) / r.currentPrice * 100) })).sort((a, b) => Math.abs(b.diffPct) - Math.abs(a.diffPct)).slice(0, 15);
 
   // ── SteamAnalyst third-party aggregates ──────────────────────────
-  const saItemsWithData = data.filter(r => r.saAvg7d > 0 || r.saVol7d > 0);
-  const saTotal7dVol = data.reduce((a, r) => a + r.saVol7d, 0);
-  const saTotal24hVol = data.reduce((a, r) => a + r.saVol24h, 0);
-  const saAvgDailyVolTotal = data.reduce((a, r) => a + r.saAvgDailyVol, 0);
-  const saManipulationCount = data.filter(r => r.saManipulation).length;
-  const saSuspiciousCount = data.filter(r => r.saSuspicious).length;
-  const saTopByVol = [...data].filter(r => r.saVol7d > 0).sort((a, b) => b.saVol7d - a.saVol7d).slice(0, 20);
-  const saManipulated = data.filter(r => r.saManipulation || r.saSuspicious);
-  const saYoYMovers = [...data].filter(r => r.saYoYChange !== 0 && r.saAvg7d1yr > 0).sort((a, b) => b.saYoYChange - a.saYoYChange);
-  const saTopYoYGainers = saYoYMovers.filter(r => r.saYoYChange > 0).slice(0, 10);
-  const saTopYoYLosers = saYoYMovers.filter(r => r.saYoYChange < 0).slice(-10).reverse();
   // Steam vs SteamAnalyst price comparison
-  const saComparisonItems = data.filter(r => r.currentPrice > 0 && r.saAvg7d > 0);
-  const saAvgSteamPrice = saComparisonItems.length > 0 ? saComparisonItems.reduce((a, r) => a + r.currentPrice, 0) / saComparisonItems.length : 0;
-  const saAvgSAPrice = saComparisonItems.length > 0 ? saComparisonItems.reduce((a, r) => a + r.saAvg7d, 0) / saComparisonItems.length : 0;
-  const saSteamHigherCount = saComparisonItems.filter(r => r.currentPrice > r.saAvg7d).length;
-  const saSAHigherCount = saComparisonItems.filter(r => r.saAvg7d > r.currentPrice).length;
 
   // ── Multi-source price comparison aggregates ──────────────────────
   interface SourceCompRow {
@@ -3062,10 +3137,10 @@ async function main() {
   <a href="#leaderboard-section">Leaderboards</a>
   <a href="#market-section">Market</a>
   <a href="#thirdparty-section">Skinport</a>
-  <a href="#steamanalyst-section">SteamAnalyst</a>
   <a href="#source-comparison-section">Sources</a>
   <a href="#history-section">History</a>
   <a href="#weekly-section">Weekly</a>
+  <a href="#invest-more-section">Best Buys</a>
   <a href="#predictions-section">Predictions</a>
   <a href="#altinvest-section">vs Assets</a>
   <a href="#funinvest-section">What If</a>
@@ -3168,43 +3243,30 @@ async function main() {
 </div>
 </details>
 
-<div id="overview-section" class="overview-section">
-<h3>Overview</h3>
-<div class="overview-grid">
-  <div class="overview-card card-blue">
-    <h4>What is this?</h4>
-    <p>This tracks <strong>${grandQty.toLocaleString()} CS2 ${config.event} Major stickers</strong> purchased at ${config.currency}${config.currencySymbol}${config.costPerUnit} each from capsule openings. Total investment: <strong>${config.currency}${config.currencySymbol}${grandCost.toFixed(2)}</strong>. The tracker fetches live prices from the Steam Market every 15 minutes and monitors performance over time.</p>
+<div id="overview-section" style="margin-bottom:20px;">
+<details open>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;font-size:14px;padding:4px 0;">Overview</summary>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;font-size:12px;">
+  <div style="background:rgba(103,193,245,0.05);border:1px solid #1a3a52;border-radius:8px;padding:12px;">
+    <div style="color:#67c1f5;font-weight:700;font-size:13px;margin-bottom:4px;">Investment</div>
+    <p style="color:#aaa;margin:0;line-height:1.4;">${grandQty.toLocaleString()} stickers @ ${config.currencySymbol}${config.costPerUnit}/ea = <strong style="color:#fff">${config.currencySymbol}${grandCost.toFixed(2)}</strong> invested. Now worth <strong class="${grandPL >= 0 ? 'positive' : 'negative'}">${config.currencySymbol}${grandValue.toFixed(2)}</strong> (${grandPL >= 0 ? '+' : ''}${grandROI}%). Prices updated every 15 min.</p>
   </div>
-  <div class="overview-card ${grandPL >= 0 ? 'card-green' : 'card-red'}">
-    <h4>Current Status</h4>
-    <div class="big-number ${grandPL >= 0 ? 'positive' : 'negative'}">${grandPL >= 0 ? '+' : ''}$${grandPL.toFixed(2)}</div>
-    <p>Your stickers are worth <strong>A$${grandValue.toFixed(2)}</strong> total. You've ${grandPL >= 0 ? 'gained' : 'lost'} <strong>${Math.abs(parseFloat(grandROI)).toFixed(1)}%</strong> on your investment so far. ${breakEvenPct >= 100 ? 'You\'re above break-even!' : `You need prices to rise ${(100 - breakEvenPct).toFixed(0)}% more to break even.`}</p>
-  </div>
-  <div class="overview-card card-purple">
-    <h4>Quality Tiers Explained</h4>
-    <p>Stickers come in different rarities. Rarer = more valuable, fewer in circulation.</p>
-    <div class="quality-explainer">
-      <span class="quality-chip" style="background:rgba(176,195,217,0.15);color:#b0c3d9">Normal (${(pctNormal*100).toFixed(0)}%)</span>
-      <span class="quality-chip" style="background:rgba(75,105,255,0.15);color:#4b69ff">Embroidered (${(pctEmbroidered*100).toFixed(0)}%)</span>
-      <span class="quality-chip" style="background:rgba(136,71,255,0.15);color:#8847ff">Holo (${(pctHolo*100).toFixed(0)}%)</span>
-      <span class="quality-chip" style="background:rgba(255,215,0,0.15);color:#ffd700">Gold (${(pctGold*100).toFixed(0)}%)</span>
+  <div style="background:rgba(103,193,245,0.05);border:1px solid #1a3a52;border-radius:8px;padding:12px;">
+    <div style="color:#c084fc;font-weight:700;font-size:13px;margin-bottom:4px;">Quality Mix</div>
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;">
+      <span style="background:rgba(176,195,217,0.15);color:#b0c3d9;padding:2px 6px;border-radius:3px;font-size:11px;">Normal ${(pctNormal*100).toFixed(0)}%</span>
+      <span style="background:rgba(75,105,255,0.15);color:#4b69ff;padding:2px 6px;border-radius:3px;font-size:11px;">Embr ${(pctEmbroidered*100).toFixed(0)}%</span>
+      <span style="background:rgba(136,71,255,0.15);color:#8847ff;padding:2px 6px;border-radius:3px;font-size:11px;">Holo ${(pctHolo*100).toFixed(0)}%</span>
+      <span style="background:rgba(255,215,0,0.15);color:#ffd700;padding:2px 6px;border-radius:3px;font-size:11px;">Gold ${(pctGold*100).toFixed(0)}%</span>
     </div>
-    <p style="margin-top:8px;font-size:13px;">Normal stickers avg A$${qualityTotals['Normal'] ? (qualityTotals['Normal'].value / qualityTotals['Normal'].qty).toFixed(3) : '0.03'} each. Gold stickers can be worth A$10-50+ each. Historically, <strong>Gold and Holo</strong> tiers deliver the highest ROI.</p>
+    <p style="color:#aaa;margin:0;line-height:1.4;">Gold+Holo = ${(premiumPct * 100).toFixed(1)}% of portfolio. Historically best ROI tiers.</p>
   </div>
-  <div class="overview-card card-amber">
-    <h4>Market Health</h4>
-    <p><strong>${totalVolume24h.toLocaleString()} stickers</strong> traded in the last 24 hours across all tracked items. <strong>${profitableCount} of ${data.length}</strong> sticker types are currently priced above your ${config.currency}${config.currencySymbol}${config.costPerUnit} buy price. ${strongCount > data.length * 0.3 ? 'Good trading volume indicates healthy price discovery.' : 'Low volume means prices may be volatile.'}</p>
-  </div>
-  <div class="overview-card card-gold">
-    <h4>Prediction</h4>
-    <p>Based on ${projections.length} past CS majors, sticker prices typically appreciate <strong>6-24 months after capsule removal</strong>. Budapest stickers are ~${budapestMonths} months old. ${budapestMonths <= 6 ? 'Prices are usually still declining at this stage — this is the accumulation window.' : budapestMonths <= 18 ? 'You\'re entering the early appreciation phase.' : 'Historical data suggests meaningful gains should be appearing now.'}${breakEvenMonths > 0 ? ` Estimated break-even: <strong>${breakEvenMonths < 12 ? breakEvenMonths + ' months' : (breakEvenMonths/12).toFixed(1) + ' years'}</strong>.` : ''}</p>
-  </div>
-  <div class="overview-card card-blue">
-    <h4>What Should I Do?</h4>
-    <p style="font-size:18px;font-weight:700;color:${signalColor};margin-bottom:8px;">${investmentSignal}</p>
-    <p>${investmentSignal === 'BUY MORE' ? 'Prices are at historically low levels. If you believe in the long-term CS2 sticker market, this is a good entry point.' : investmentSignal === 'HOLD' ? 'Prices are stabilising. Major sticker prices typically recover 6-12 months after a major. Patience is key — don\'t panic sell.' : 'Market conditions are unfavourable right now. Wait for better entry signals before adding more.'} Investment score: <strong>${investmentScore}/10</strong>.</p>
+  <div style="background:rgba(103,193,245,0.05);border:1px solid #1a3a52;border-radius:8px;padding:12px;">
+    <div style="color:#ffd700;font-weight:700;font-size:13px;margin-bottom:4px;">Outlook &mdash; <span style="color:${signalColor}">${investmentSignal}</span></div>
+    <p style="color:#aaa;margin:0;line-height:1.4;">~${budapestMonths}mo old. ${budapestMonths <= 6 ? 'Accumulation window — most majors below cost at this age.' : budapestMonths <= 18 ? 'Early growth phase — premium tiers starting to move.' : 'Appreciation phase — historical gains accelerate here.'} Score: <strong style="color:${signalColor}">${investmentScore}/10</strong>.${breakEvenMonths > 0 ? ' Break-even est: ' + (breakEvenMonths < 12 ? breakEvenMonths + 'mo' : (breakEvenMonths/12).toFixed(1) + 'yr') + '.' : ''}</p>
   </div>
 </div>
+</details>
 </div>
 
 <h3 id="signal-section">Investment Signal</h3>
@@ -3390,7 +3452,7 @@ ${Object.entries(qualityTotals).sort((a,b) => b[1].value - a[1].value).map(([q, 
   const rep = qualityRepresentatives[q];
   return `<div class="qs-card">
     <div style="display:flex;align-items:center;gap:12px;">
-      ${rep ? `<img src="${getImageUrl(imageCache, rep.hashName, 64)}" alt="${rep.name}" style="width:48px;height:48px;border-radius:6px;" loading="lazy">` : ''}
+      ${rep && rep.imageUrl ? `<img src="${rep.imageUrl}" alt="${rep.name}" style="width:48px;height:48px;border-radius:6px;object-fit:contain;" loading="lazy">` : `<div style="width:48px;height:48px;border-radius:6px;background:#1a1a28;display:flex;align-items:center;justify-content:center;font-size:18px;color:#555;">?</div>`}
       <div><span class="quality-badge q-${cls}">${q}</span>${rep ? `<div style="color:#555;font-size:10px;margin-top:3px;">Top: ${rep.name}</div>` : ''}</div>
     </div>
     <div class="qs-row"><span class="qs-stat">Stickers</span><span class="qs-val">${t.qty}</span></div>
@@ -3474,6 +3536,38 @@ ${history.entries.length >= 2 ? `
     </table>
     </div>
   </div>
+</div>
+` : ''}
+
+${moversWeek.length > 0 ? `
+<h3>Top Movers</h3>
+<p style="color:#888;font-size:13px;margin-bottom:16px;">Biggest price changes across different time periods. Based on snapshot comparisons.</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+${[
+  { label: 'Week (7d)', movers: moversWeek, color: '#67c1f5' },
+  { label: 'Month (30d)', movers: moversMonth, color: '#c084fc' },
+  { label: 'All Time', movers: moversAllTime, color: '#ffd700' },
+].map(period => {
+  const top5 = period.movers.slice(0, 5);
+  const bottom5 = period.movers.slice(-5).reverse();
+  return '<div><h4 style="color:' + period.color + ';font-size:13px;margin-bottom:8px;">' + period.label + '</h4>' +
+    '<div style="font-size:11px;margin-bottom:8px;color:#888;">Gainers</div>' +
+    '<table style="font-size:11px;width:100%"><tbody>' +
+    top5.map(m => {
+      const qc = m.quality.toLowerCase();
+      const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : 'normal';
+      return '<tr><td>' + m.name + '</td><td><span class="quality-badge q-' + cls + '" style="font-size:9px;padding:1px 4px">' + m.quality + '</span></td><td class="positive" style="font-weight:700;text-align:right">+' + m.changePct.toFixed(1) + '%</td></tr>';
+    }).join('') +
+    '</tbody></table>' +
+    '<div style="font-size:11px;margin:8px 0 4px;color:#888;">Decliners</div>' +
+    '<table style="font-size:11px;width:100%"><tbody>' +
+    bottom5.map(m => {
+      const qc = m.quality.toLowerCase();
+      const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : 'normal';
+      return '<tr><td>' + m.name + '</td><td><span class="quality-badge q-' + cls + '" style="font-size:9px;padding:1px 4px">' + m.quality + '</span></td><td class="negative" style="font-weight:700;text-align:right">' + m.changePct.toFixed(1) + '%</td></tr>';
+    }).join('') +
+    '</tbody></table></div>';
+}).join('\\n')}
 </div>
 ` : ''}
 
@@ -3631,107 +3725,11 @@ ${topPriceDiffs.map(r => {
 </div>
 ` : ''}
 
-${saItemsWithData.length > 0 ? `
-<h3 id="steamanalyst-section">Third-Party Market Data (SteamAnalyst)</h3>
-<p style="color:#888;font-size:12px;margin-bottom:12px;">Pricing and volume data from <a href="https://steamanalyst.com" target="_blank">SteamAnalyst</a>, which aggregates data from Steam Market, BUFF163, and other marketplaces. Prices converted from USD to AUD at ${USD_TO_AUD.toFixed(4)} rate. Includes <strong>price manipulation detection</strong> and year-over-year comparisons. Updated every price fetch (1 API call = all items).</p>
-<div class="market-summary">
-  <div class="card"><div class="card-label">Items Tracked</div><div class="card-value neutral">${saItemsWithData.length}</div><div class="card-sub">${config.event} stickers</div></div>
-  <div class="card"><div class="card-label">24h Volume</div><div class="card-value" style="color:#22c55e">${saTotal24hVol.toLocaleString()}</div><div class="card-sub">Sales in last 24 hours</div></div>
-  <div class="card"><div class="card-label">7-Day Volume</div><div class="card-value" style="color:#60a5fa">${saTotal7dVol.toLocaleString()}</div><div class="card-sub">Sales in last 7 days</div></div>
-  <div class="card"><div class="card-label">Avg Daily Volume</div><div class="card-value" style="color:#c084fc">${saAvgDailyVolTotal.toLocaleString()}</div><div class="card-sub">Average daily sales</div></div>
-  <div class="card"><div class="card-label">Manipulation Flags</div><div class="card-value" style="color:${saManipulationCount > 0 ? '#ef4444' : '#22c55e'}">${saManipulationCount}</div><div class="card-sub">${saSuspiciousCount} suspicious</div></div>
-</div>
-
-${saManipulated.length > 0 ? `
-<h4 style="color:#ef4444;margin-top:20px;margin-bottom:12px;">Price Manipulation Alerts</h4>
-<p style="color:#888;font-size:12px;margin-bottom:8px;">Items flagged by SteamAnalyst for ongoing price manipulation or suspicious pricing activity. Exercise caution when buying or valuing these items — prices may not reflect genuine market demand.</p>
-<div class="scroll-table" style="max-height:300px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
-<table>
-<thead><tr><th>Sticker</th><th>Quality</th><th>Steam Price</th><th>SA 7d Avg</th><th>SA Safe Price</th><th>Flag</th></tr></thead>
-<tbody>
-${saManipulated.map(r => {
-  const qc = r.quality.toLowerCase();
-  const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
-  const flag = r.saManipulation ? '<span style="color:#ef4444;font-weight:700">MANIPULATION</span>' : '<span style="color:#f59e0b;font-weight:700">SUSPICIOUS</span>';
-  return '<tr><td>' + r.name + '</td><td><span class="quality-badge q-' + cls + '">' + r.quality + '</span></td>' +
-    '<td style="color:#67c1f5">$' + r.currentPrice.toFixed(2) + '</td>' +
-    '<td>$' + r.saAvg7d.toFixed(2) + '</td>' +
-    '<td style="color:#f59e0b">' + (r.saSafePrice > 0 ? '$' + r.saSafePrice.toFixed(2) : '—') + '</td>' +
-    '<td>' + flag + '</td></tr>';
-}).join('\\n')}
-</tbody>
-</table>
-</div>
-` : ''}
-
-<div class="split-tables">
-  <div class="sub-table">
-    <h4 style="color:#60a5fa">Most Traded (SA 7-Day Volume)</h4>
-    <div class="scroll-table" style="max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
-    <table>
-    <thead><tr><th>Sticker</th><th>Quality</th><th>7d Vol</th><th>24h Vol</th><th>Avg/Day</th><th>SA 7d Avg</th></tr></thead>
-    <tbody>
-    ${saTopByVol.map(r => {
-      const qc = r.quality.toLowerCase();
-      const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
-      return '<tr><td>' + r.name + '</td><td><span class="quality-badge q-' + cls + '">' + r.quality + '</span></td><td style="font-weight:700;color:#60a5fa">' + r.saVol7d + '</td><td>' + r.saVol24h + '</td><td>' + r.saAvgDailyVol + '</td><td>$' + r.saAvg7d.toFixed(2) + '</td></tr>';
-    }).join('\\n')}
-    </tbody>
-    </table>
-    </div>
-  </div>
-  <div class="sub-table">
-    <h4 style="color:#22c55e">Year-over-Year Gainers</h4>
-    <div class="scroll-table" style="max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
-    <table>
-    <thead><tr><th>Sticker</th><th>Quality</th><th>Now (7d Avg)</th><th>1yr Ago</th><th>YoY Change</th></tr></thead>
-    <tbody>
-    ${saTopYoYGainers.length > 0 ? saTopYoYGainers.map(r => {
-      const qc = r.quality.toLowerCase();
-      const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
-      return '<tr><td>' + r.name + '</td><td><span class="quality-badge q-' + cls + '">' + r.quality + '</span></td><td>$' + r.saAvg7d.toFixed(2) + '</td><td style="color:#888">$' + r.saAvg7d1yr.toFixed(2) + '</td><td class="positive" style="font-weight:700">+' + r.saYoYChange.toFixed(1) + '%</td></tr>';
-    }).join('\\n') : '<tr><td colspan="5" style="color:#555;text-align:center">No YoY data available yet</td></tr>'}
-    </tbody>
-    </table>
-    </div>
-  </div>
-</div>
-
-${saTopYoYLosers.length > 0 ? `
-<div style="margin-top:16px;">
-  <h4 style="color:#ef4444">Year-over-Year Losers</h4>
-  <div class="scroll-table" style="max-height:300px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
-  <table>
-  <thead><tr><th>Sticker</th><th>Quality</th><th>Now (7d Avg)</th><th>1yr Ago</th><th>YoY Change</th></tr></thead>
-  <tbody>
-  ${saTopYoYLosers.map(r => {
-    const qc = r.quality.toLowerCase();
-    const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
-    return '<tr><td>' + r.name + '</td><td><span class="quality-badge q-' + cls + '">' + r.quality + '</span></td><td>$' + r.saAvg7d.toFixed(2) + '</td><td style="color:#888">$' + r.saAvg7d1yr.toFixed(2) + '</td><td class="negative" style="font-weight:700">' + r.saYoYChange.toFixed(1) + '%</td></tr>';
-  }).join('\\n')}
-  </tbody>
-  </table>
-  </div>
-</div>
-` : ''}
-
-<h4 style="color:#fff;margin-top:24px;margin-bottom:12px;">Steam vs SteamAnalyst Price Comparison</h4>
-<p style="color:#888;font-size:12px;margin-bottom:12px;">SteamAnalyst's 7-day average (converted to AUD) compared to Steam's current lowest listing. Differences indicate pricing discrepancies between instant-buy (Steam) and average recent sale price (SA).</p>
-<div class="market-summary">
-  <div class="card"><div class="card-label">Items Compared</div><div class="card-value neutral">${saComparisonItems.length}</div><div class="card-sub">Have both Steam & SA prices</div></div>
-  <div class="card"><div class="card-label">Avg Steam Price</div><div class="card-value" style="color:#67c1f5">$${saAvgSteamPrice.toFixed(3)}</div><div class="card-sub">AUD lowest listing</div></div>
-  <div class="card"><div class="card-label">SA 7d Avg Price</div><div class="card-value" style="color:#f59e0b">$${saAvgSAPrice.toFixed(3)}</div><div class="card-sub">AUD (converted from USD)</div></div>
-  <div class="card"><div class="card-label">Higher On</div><div class="card-value" style="color:#22c55e">${saSteamHigherCount > saSAHigherCount ? 'Steam (' + saSteamHigherCount + ')' : saSAHigherCount > saSteamHigherCount ? 'SA Avg (' + saSAHigherCount + ')' : 'Even'}</div><div class="card-sub">Steam: ${saSteamHigherCount} | SA: ${saSAHigherCount}</div></div>
-</div>
-` : `
-<h3 id="steamanalyst-section">Third-Party Market Data (SteamAnalyst)</h3>
-<p style="color:#555;text-align:center;padding:20px;">No SteamAnalyst data available. Set the <code>STEAMANALYST_API_KEY</code> environment variable to enable. Free tier: 100 requests/day. <a href="https://steamanalyst.com/api-info" target="_blank" style="color:#67c1f5">Get your API key</a></p>
-`}
 
 ${sourceCompData.length > 0 ? `
 <h3 id="source-comparison-section">Price Source Comparison (${sourceCompData.length} items)</h3>
 <p style="color:#888;font-size:12px;margin-bottom:12px;">
-Cross-source price analysis comparing Steam Market, Skinport (+15% fee adjustment), SteamAnalyst 7-day average${csgoSkinsData ? ', and CSGOSkins.gg cross-market lowest' : ''}. All prices in AUD. Consensus = average across available sources. Divergence = gap between cheapest and most expensive source.
+Cross-source price analysis comparing Steam Market, Skinport (+15% fee adjustment)${csgoSkinsData ? ', and CSGOSkins.gg cross-market lowest' : ''}. All prices in AUD. Consensus = average across available sources. Divergence = gap between cheapest and most expensive source.
 ${csgoSkinsData ? '<br><span style="color:' + (csgoSkinsAge <= 7 ? '#22c55e' : csgoSkinsAge <= 14 ? '#f59e0b' : '#ef4444') + '">CSGOSkins.gg data: ' + (csgoSkinsAge === 0 ? 'today' : csgoSkinsAge + 'd old') + ' (' + csgoSkinsData.scrapedCount + ' items)</span>' : ''}
 </p>
 <div class="market-summary">
@@ -3876,16 +3874,46 @@ ${weeklySnapshots.length > 0 ? `
 </div>
 
 <div id="weekMovers" style="margin-bottom:24px;"></div>
+
+${monthlySnapshots.length > 0 ? `
+<h4 style="color:#fff;margin-top:24px;margin-bottom:12px;">Monthly Breakdown</h4>
+<div class="scroll-table" style="max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
+<table>
+<thead><tr><th>Month</th><th>End Value</th><th>P/L</th><th>ROI</th><th>Month Change</th><th>Snapshots</th><th>Top Quality</th></tr></thead>
+<tbody>
+${monthlySnapshots.map(ms => {
+  const pl = ms.totalValue - ms.totalCost;
+  const roi = ms.totalCost > 0 ? ((pl / ms.totalCost) * 100).toFixed(1) : '0';
+  const plCls = pl >= 0 ? 'positive' : 'negative';
+  const chgCls = ms.monthChange >= 0 ? 'positive' : 'negative';
+  const topQ = ms.qualityBreakdown[0];
+  return '<tr>' +
+    '<td style="font-weight:600">' + ms.monthLabel + '</td>' +
+    '<td>$' + ms.totalValue.toFixed(2) + '</td>' +
+    '<td class="' + plCls + '">' + (pl >= 0 ? '+' : '') + '$' + pl.toFixed(2) + '</td>' +
+    '<td class="' + plCls + '">' + roi + '%</td>' +
+    '<td class="' + chgCls + '">' + (ms.monthChange >= 0 ? '+' : '') + ms.monthChange.toFixed(1) + '%</td>' +
+    '<td>' + ms.snapshots + '</td>' +
+    '<td>' + (topQ ? topQ.quality + ' ($' + topQ.value.toFixed(2) + ')' : '-') + '</td>' +
+    '</tr>';
+}).join('\\n')}
+</tbody>
+</table>
+</div>
+` : ''}
 ` : ''}
 
 <h3>Historical Major Comparison (20 Majors: 2014-2025)</h3>
-<p style="color:#888;font-size:13px;margin-bottom:16px;">If you invested $${grandCost.toFixed(2)} AUD in stickers from each previous major (weighted by your quality mix: ${(pctNormal*100).toFixed(0)}% Normal, ${(pctEmbroidered*100).toFixed(0)}% Embroidered, ${(pctHolo*100).toFixed(0)}% Holo, ${(pctGold*100).toFixed(0)}% Gold). Each major has a prediction weight (shown in <strong>Weight</strong> column) &mdash; CS2-era majors weighted 60-100%, pre-2019 majors at 1-10%. Hover over weight for context notes. <strong>Sale</strong> shows how long capsules were available at 75% off &mdash; shorter sales = less supply = better returns.</p>
+<p style="color:#888;font-size:12px;margin-bottom:12px;">Portfolio value if you held stickers from each major, weighted by your quality mix. Sale = 75% off duration. Weight = prediction relevance. Shorter sales = less supply = better returns.</p>
 
 <div class="chart-container">
   <canvas id="historicalChart"></canvas>
 </div>
 
-<table class="history-table" style="max-width: 1200px; font-size: 12px;">
+<details>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;font-size:13px;padding:6px 0;">Show/Hide Full Major Data Table</summary>
+<div class="scroll-table" style="max-height:500px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
+<table class="history-table" style="max-width: 1200px; font-size: 11px;">
 <thead><tr>
   <th></th>
   <th>Major</th>
@@ -3951,6 +3979,50 @@ ${projections.map(p => {
 </tr>
 </tbody>
 </table>
+</div>
+</details>
+
+${investOpportunities.length > 0 ? `
+<h3 id="invest-more-section">Best Buys Right Now</h3>
+<p style="color:#888;font-size:13px;margin-bottom:16px;">If you're looking to invest more in ${config.event} stickers at current prices, here are the best opportunities based on price, momentum, volume, and stability. Score is out of 8 (higher = better buy). Based on ${history.entries.length} snapshots of data.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+<div>
+<h4 style="color:#22c55e;font-size:13px;margin-bottom:8px;">Top 10 Best Value Picks</h4>
+<div class="scroll-table" style="max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
+<table style="font-size:11px;">
+<thead><tr><th>Sticker</th><th>Quality</th><th>Price</th><th>Trend</th><th>Vol</th><th>Score</th></tr></thead>
+<tbody>
+${investOpportunities.slice(0, 10).map(r => {
+  const qc = r.quality.toLowerCase();
+  const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
+  const trendCls = r.momentum >= 0 ? 'positive' : 'negative';
+  return '<tr><td style="font-weight:500">' + r.name + '</td><td><span class="quality-badge q-' + cls + '" style="font-size:9px;padding:1px 4px">' + r.quality + '</span></td><td style="color:#67c1f5">$' + r.currentPrice.toFixed(2) + '</td><td class="' + trendCls + '">' + (r.momentum >= 0 ? '+' : '') + r.momentum.toFixed(1) + '%</td><td>' + r.volume + '</td><td style="font-weight:700;color:#ffd700">' + r.score + '/8</td></tr>';
+}).join('\\n')}
+</tbody>
+</table>
+</div>
+</div>
+<div>
+<h4 style="color:#f59e0b;font-size:13px;margin-bottom:8px;">Best By Quality Tier</h4>
+<div class="scroll-table" style="max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
+<table style="font-size:11px;">
+<thead><tr><th>Quality</th><th>Best Pick</th><th>Price</th><th>Trend</th><th>Score</th></tr></thead>
+<tbody>
+${['Normal', 'Embroidered', 'Holo', 'Gold'].map(q => {
+  const best = investOpportunities.find(r => r.quality === q || r.quality.startsWith(q));
+  if (!best) return '';
+  const trendCls = best.momentum >= 0 ? 'positive' : 'negative';
+  const qc = q.toLowerCase();
+  const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : 'normal';
+  return '<tr><td><span class="quality-badge q-' + cls + '">' + q + '</span></td><td style="font-weight:500">' + best.name + '</td><td style="color:#67c1f5">$' + best.currentPrice.toFixed(2) + '</td><td class="' + trendCls + '">' + (best.momentum >= 0 ? '+' : '') + best.momentum.toFixed(1) + '%</td><td style="font-weight:700;color:#ffd700">' + best.score + '/8</td></tr>';
+}).filter(Boolean).join('\\n')}
+</tbody>
+</table>
+</div>
+<p style="color:#666;font-size:11px;margin-top:12px;">Scoring: Price (0-3) + Trend (−1 to 2) + Stability (−1 to 1) + Demand (0-2). Low-priced stickers with rising trends and high volume score highest.</p>
+</div>
+</div>
+` : ''}
 
 <h3 id="predictions-section">${config.event} Price Predictions</h3>
 <p style="color:#888;font-size:13px;margin-bottom:16px;">Based on how previous major stickers appreciated over time, here's a projection for your ${config.event} portfolio. Best comparable major: <span style="color:#ffd700;font-weight:600">${bestModernMajor.name}</span> at <span class="positive">+${bestModernMajor.roiStr}</span> after ${(bestModernMajor.monthsOld/12).toFixed(1)} years.${saleEndDate ? ` <span style="color:#22c55e;font-weight:600;">${saleActive ? '75% sale is LIVE — accumulate now!' : monthsSinceSaleEnd < 1 ? 'Sale ended ' + Math.round(monthsSinceSaleEnd * 30.44) + ' days ago — appreciation just starting. Budapest&#39;s 53-day sale (2nd shortest ever) mirrors Austin 2025&#39;s scarcity profile.' : monthsSinceSaleEnd.toFixed(1) + ' months post-sale removal.'}</span>` : ''}</p>
@@ -4285,7 +4357,7 @@ ${data.map((r, idx) => {
   <td><div class="sticker-name-cell">${thumb}<span class="sticker-modal-trigger" data-idx="${idx}" style="cursor:pointer;font-weight:500">${r.name}</span></div></td>
   <td><span class="quality-badge q-${cls}">${r.quality}</span></td>
   <td>${r.qty}</td>
-  <td><div>$${r.currentPrice.toFixed(2)}${r.skinportPriceAdj > 0 || r.saAvg7d > 0 ? '<div style="font-size:9px;color:#666;line-height:1.3;margin-top:2px">' + (r.skinportPriceAdj > 0 ? '<span style="color:#c084fc" title="Skinport +15%">SP $' + r.skinportPriceAdj.toFixed(2) + '</span>' : '') + (r.skinportPriceAdj > 0 && r.saAvg7d > 0 ? ' · ' : '') + (r.saAvg7d > 0 ? '<span style="color:#f59e0b" title="SteamAnalyst 7d avg">SA $' + r.saAvg7d.toFixed(2) + '</span>' : '') + '</div>' : ''}</div></td>
+  <td><div>$${r.currentPrice.toFixed(2)}${r.skinportPriceAdj > 0 ? '<div style="font-size:9px;color:#666;line-height:1.3;margin-top:2px"><span style="color:#c084fc" title="Skinport +15%">SP $' + r.skinportPriceAdj.toFixed(2) + '</span></div>' : ''}</div></td>
   <td>$${r.totalValue.toFixed(2)}</td>
   <td class="${plClass}">${r.profitLoss >= 0 ? '+' : ''}$${r.profitLoss.toFixed(2)}</td>
   <td><div class="roi-bar"><span class="${plClass}">${r.roi}</span><div class="roi-fill" style="width:${barW}px;background:${barColor}"></div></div></td>
@@ -4538,8 +4610,8 @@ const predLabels = ['Now', ${timeProjections.map(t => "'" + t.label + "'").join(
 const predValues = [${grandValue.toFixed(2)}, ${timeProjections.map(t => t.projectedValue.toFixed(2)).join(',')}];
 const predActual = ${JSON.stringify(actualDataForChart)};
 const predBestCase = [${grandValue.toFixed(2)}, ${timeProjections.map((t) => {
-  const ratio = t.months / ${bestModernMajor.monthsOld};
-  return (${grandCost} * (1 + ${bestModernMajor.roi} / 100 * ratio)).toFixed(2);
+  const ratio = t.months / bestModernMajor.monthsOld;
+  return (grandCost * (1 + bestModernMajor.roi / 100 * ratio)).toFixed(2);
 }).join(',')}];
 const pCtx = document.getElementById('predictionChart').getContext('2d');
 new Chart(pCtx, {
@@ -5077,8 +5149,6 @@ function downloadCSV() {
     <a href="https://steamcommunity.com/market/" target="_blank" style="color:#67c1f5;font-size:11px;text-decoration:none;">Steam Community Market</a>
     <span style="color:#2a475e;">|</span>
     <a href="https://skinport.com" target="_blank" style="color:#c084fc;font-size:11px;text-decoration:none;">Skinport <span style="color:#888;font-size:10px;">(prices include +15% Steam fee markup)</span></a>
-    <span style="color:#2a475e;">|</span>
-    <a href="https://steamanalyst.com" target="_blank" style="color:#f59e0b;font-size:11px;text-decoration:none;">SteamAnalyst</a>
     <span style="color:#2a475e;">|</span>
     <a href="https://swap.gg/blog/cs-major-sticker-sale-returns" target="_blank" style="color:#60a5fa;font-size:11px;text-decoration:none;">Swap.gg</a>
     <span style="color:#2a475e;">|</span>
