@@ -1720,7 +1720,8 @@ async function main() {
 
   // ── Weekly Snapshots ──────────────────────────────────────────────────
   function getISOWeek(dateStr: string): string {
-    const d = new Date(dateStr);
+    const normalized = dateStr.replace(/^(\d{4}-\d{2}-\d{2})-\d{2}$/, '$1');
+    const d = new Date(normalized);
     d.setHours(0, 0, 0, 0);
     d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7));
     const week1 = new Date(d.getFullYear(), 0, 4);
@@ -1728,7 +1729,10 @@ async function main() {
     return `${d.getFullYear()}-W${String(weekNum).padStart(2, '0')}`;
   }
   function weekLabel(dateStr: string): string {
-    const d = new Date(dateStr);
+    // Handle "YYYY-MM-DD-HH" format by trimming the hour suffix
+    const normalized = dateStr.replace(/^(\d{4}-\d{2}-\d{2})-\d{2}$/, '$1');
+    const d = new Date(normalized);
+    if (isNaN(d.getTime())) return dateStr; // fallback
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }
 
@@ -1884,7 +1888,7 @@ async function main() {
   const historicalMajors: HistoricalMajor[] = [
     // Pre-2019 majors — weighted MUCH lower (1-10%) due to completely different market dynamics
     // Katowice 2014: Only ~350 sticker capsules existed. Paper avg $1,443 USD, Holo avg $22,031 USD. Extreme outlier.
-    { name: "Katowice 2014", date: "2014-03-16", monthsOld: monthsSince("2014-03-16"), avgPaper: 2236, avgMidTier: 2236, avgHolo: 34148, avgGold: 0, saleDays: 30, capsulePrice: 0, weight: 0.003, notes: "Only ~350 capsules existed — extreme scarcity. iBUYPOWER Holo reached $75K. Titan Holo $55-85K. Not comparable to modern supply levels." },
+    { name: "Katowice 2014", date: "2014-03-16", monthsOld: monthsSince("2014-03-16"), avgPaper: 2236, avgMidTier: 2236, avgHolo: 34148, avgGold: 0, saleDays: 30, capsulePrice: 0, weight: 0.001, notes: "Only ~350 capsules existed — extreme scarcity. iBUYPOWER Holo $75K+, Titan Holo $55-85K. Pre-modern era with no in-game store, no 75% sale, no Gold tier. Completely incomparable to any modern major — effectively zero predictive value." },
     { name: "Cologne 2014", date: "2014-08-17", monthsOld: monthsSince("2014-08-17"), avgPaper: 17.46, avgMidTier: 17.46, avgHolo: 100.25, avgGold: 0, saleDays: 45, capsulePrice: 0, weight: 0.05, notes: "Tiny player base (~200K concurrent). Iconic Holo designs. Dignitas Holo reached $820. Capsules now $3 from $0.25 (1,100%)." },
     { name: "Katowice 2015", date: "2015-03-15", monthsOld: monthsSince("2015-03-15"), avgPaper: 50.22, avgMidTier: 223.14, avgHolo: 128.47, avgGold: 0, saleDays: 45, capsulePrice: 0, weight: 0.02, notes: "Katowice brand carries collector premium. Foil stickers introduced. Short 45-day sale kept supply low. Capsules now ~$450." },
     { name: "Cologne 2015", date: "2015-08-23", monthsOld: monthsSince("2015-08-23"), avgPaper: 11.06, avgMidTier: 58.59, avgHolo: 58.59, avgGold: 0, saleDays: 60, capsulePrice: 0, weight: 0.08, notes: "Growing player base drove demand. 60-day sale was standard. Solid designs appreciated steadily over 5+ years." },
@@ -4368,7 +4372,7 @@ new Chart(hCtx, {
     },
     scales: {
       x: { ticks: { color: '#666', font: { family: 'Inter', size: 10 }, maxRotation: 55, minRotation: 35 }, grid: { display: false } },
-      y: { ticks: { color: '#444', callback: v => '$' + v, font: { family: 'Inter' } }, grid: { color: '#111' } },
+      y: { type: 'logarithmic', ticks: { color: '#444', callback: v => '$' + Number(v).toLocaleString(), font: { family: 'Inter' } }, grid: { color: '#111' } },
     }
   }
 });
