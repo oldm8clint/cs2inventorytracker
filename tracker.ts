@@ -2119,22 +2119,13 @@ async function main() {
     }
   }
 
-  // Override projections for past/current months with actual observed data
-  // This fixes the issue where no historical major is young enough for short-term predictions
+  // Override projections for past/current months with actual snapshot data only
+  // Don't fabricate interpolated values — only use real observed snapshots
   for (const tp of timeProjections) {
-    if (tp.months <= currentAgeMonths) {
-      if (tp.actualValue !== undefined) {
-        // Use actual snapshot value
-        tp.projectedValue = tp.actualValue;
-        tp.avgROI = tp.actualROI!;
-        tp.projectedPerSticker = tp.projectedValue / userTotal;
-      } else {
-        // Interpolate linearly between cost basis (month 0) and current value
-        const t = tp.months / currentAgeMonths;
-        tp.projectedValue = grandCost + (grandValue - grandCost) * t;
-        tp.avgROI = ((tp.projectedValue - grandCost) / grandCost) * 100;
-        tp.projectedPerSticker = tp.projectedValue / userTotal;
-      }
+    if (tp.months <= currentAgeMonths && tp.actualValue !== undefined) {
+      tp.projectedValue = tp.actualValue;
+      tp.avgROI = tp.actualROI!;
+      tp.projectedPerSticker = tp.projectedValue / userTotal;
     }
   }
 
@@ -2291,9 +2282,9 @@ async function main() {
   const currentROIpct = ((grandValue - grandCost) / grandCost) * 100;
   for (const sw of sellWindows) {
     // For past/current months, use actual observed trajectory instead of historical major interpolation
-    if (sw.months <= currentAgeMonths) {
-      const t = sw.months / currentAgeMonths;
-      sw.avgROI = currentROIpct * t;
+    if (sw.months <= currentAgeMonths && Math.abs(sw.months - currentAgeMonths) < 0.5) {
+      // Only mark as "Actual" for the current month (not interpolated past months)
+      sw.avgROI = currentROIpct;
       sw.majorsInRange = ['Actual'];
     } else {
       // Tighter radius for early windows so they produce different values
