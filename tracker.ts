@@ -10,12 +10,16 @@ const CSV_FILE = `${SCRIPT_DIR}/budapest2025_stickers.csv`;
 const IMAGES_FILE = `${SCRIPT_DIR}/sticker_images.json`;
 const CONFIG_FILE = `${SCRIPT_DIR}/config.json`;
 const STICKERS_FILE = `${SCRIPT_DIR}/stickers.json`;
+const CSGOSKINS_FILE = `${SCRIPT_DIR}/csgoskins_data.json`;
 const DELAY_MS = 1800;
 
 // ── Config ──────────────────────────────────────────────────────────
 interface TrackerConfig {
   event: string;
   eventReleaseDate: string;
+  saleStartDate?: string;
+  saleEndDate?: string;
+  saleDays?: number;
   costPerUnit: number;
   currency: string;
   currencyCode: number;
@@ -63,6 +67,33 @@ async function loadStickersFromFile(): Promise<StickerEntry[] | null> {
       }
     }
   } catch (e) { console.log(`Warning: Could not load stickers.json: ${e}`); }
+  return null;
+}
+
+// ── CSGOSkins.gg data ───────────────────────────────────────────────
+interface CsgoSkinsItem {
+  slug: string;
+  prices: Record<string, number>;
+  listings?: Record<string, number>;
+  lowestMarket: string;
+  lowestPrice: number;
+  currency: string;
+}
+interface CsgoSkinsData {
+  lastScraped: string;
+  items: Record<string, CsgoSkinsItem>;
+  scrapedCount: number;
+  failedSlugs: string[];
+}
+async function loadCsgoSkinsData(): Promise<CsgoSkinsData | null> {
+  try {
+    const file = Bun.file(CSGOSKINS_FILE);
+    if (await file.exists()) {
+      const data: CsgoSkinsData = await file.json();
+      console.log(`Loaded CSGOSkins.gg data: ${data.scrapedCount} items (scraped ${data.lastScraped})`);
+      return data;
+    }
+  } catch (e) { console.log(`Warning: Could not load csgoskins_data.json: ${e}`); }
   return null;
 }
 
@@ -507,6 +538,12 @@ interface HistoryEntry {
   lastInvestmentScore?: number;
   lastInvestmentSignal?: string;
   deepFetch?: boolean;
+  skinportPrices?: Record<string, number>;      // USD min prices per sticker
+  steamAnalystPrices?: Record<string, number>;   // USD avg7d prices per sticker
+  steamAnalystSafe?: Record<string, number>;     // USD safe (manipulation-adjusted) prices
+  csgoSkinsPrices?: Record<string, number>;      // USD lowest cross-market prices (CSGOSkins.gg)
+  slabMedianPrices?: Record<string, number>;     // AUD median sale price per slab
+  slabVolumes?: Record<string, number>;          // 24h volume per slab
 }
 
 interface HistoryData {
@@ -742,7 +779,7 @@ async function sendDiscord(webhookUrl: string, embeds: object[]): Promise<void> 
 }
 
 // ── Fetch prices ────────────────────────────────────────────────────
-interface PriceResult { price: number; volume: number; }
+interface PriceResult { price: number; volume: number; medianPrice: number; }
 
 async function fetchPrice(hashName: string, retries = 2): Promise<PriceResult> {
   for (let attempt = 0; attempt <= retries; attempt++) {
@@ -757,7 +794,8 @@ async function fetchPrice(hashName: string, retries = 2): Promise<PriceResult> {
       const data = await res.json() as any;
       if (data.lowest_price) {
         const volume = data.volume ? parseInt(data.volume.replace(/,/g, ''), 10) : 0;
-        return { price: parsePrice(data.lowest_price), volume };
+        const medianPrice = data.median_price ? parsePrice(data.median_price) : 0;
+        return { price: parsePrice(data.lowest_price), volume, medianPrice };
       }
       if (attempt < retries) {
         await new Promise(r => setTimeout(r, 5000));
@@ -770,7 +808,7 @@ async function fetchPrice(hashName: string, retries = 2): Promise<PriceResult> {
       }
     }
   }
-  return { price: 0, volume: 0 };
+  return { price: 0, volume: 0, medianPrice: 0 };
 }
 
 // Batch-fetch ALL prices + listings from Steam search/render API
@@ -1205,6 +1243,8 @@ async function main() {
 
       // Fetch slab prices individually (deep mode only gets volume from individual API)
       const slabPrices: Record<string, number> = {};
+      const slabMedianPrices: Record<string, number> = {};
+      const slabVolumes: Record<string, number> = {};
       console.log(`\nFetching slab prices for ${stickers.length} variants...`);
       for (let i = 0; i < stickers.length; i++) {
         const s = stickers[i];
@@ -1214,7 +1254,9 @@ async function main() {
         process.stdout.write(`[SLAB ${i + 1}/${stickers.length}] ${slabHash}...`);
         const slabResult = await fetchPrice(slabHash, 1);
         slabPrices[key] = slabResult.price;
-        console.log(slabResult.price === 0 ? ` NO LISTING` : ` ${config.currencySymbol}${slabResult.price.toFixed(2)}`);
+        if (slabResult.medianPrice > 0) slabMedianPrices[key] = slabResult.medianPrice;
+        if (slabResult.volume > 0) slabVolumes[key] = slabResult.volume;
+        console.log(slabResult.price === 0 ? ` NO LISTING` : ` ${config.currencySymbol}${slabResult.price.toFixed(2)}${slabResult.medianPrice > 0 ? ' (sold: $' + slabResult.medianPrice.toFixed(2) + ')' : ''}`);
         if (i < stickers.length - 1) await new Promise(r => setTimeout(r, DELAY_MS));
       }
 
@@ -1237,7 +1279,7 @@ async function main() {
 
       // Save to history
       const { top, bottom } = computePerformers(prices);
-      history.entries.push({ date: today, prices, totalValue, totalCost, topPerformers: top, bottomPerformers: bottom, slabPrices, volumes, listings, deepFetch: true });
+      history.entries.push({ date: today, prices, totalValue, totalCost, topPerformers: top, bottomPerformers: bottom, slabPrices, volumes, listings, deepFetch: true, slabMedianPrices: Object.keys(slabMedianPrices).length > 0 ? slabMedianPrices : undefined, slabVolumes: Object.keys(slabVolumes).length > 0 ? slabVolumes : undefined });
       await Bun.write(HISTORY_FILE, JSON.stringify(history, null, 2));
       console.log(`\nSaved DEEP price snapshot for ${today}`);
 
@@ -1310,6 +1352,12 @@ async function main() {
   const currentVolumes = todayEntry.volumes || {};
   const currentListings = todayEntry.listings || {};
 
+  // Fetch blank Sticker Slab price (needed for slab premium calculation)
+  console.log('\nFetching blank Sticker Slab price...');
+  const blankSlabResult = await fetchPrice('Sticker Slab | Factory Sealed', 1);
+  const blankSlabPrice = blankSlabResult.price;
+  console.log(`  Blank slab: ${blankSlabPrice > 0 ? config.currencySymbol + blankSlabPrice.toFixed(2) : 'unavailable'}`);
+
   // ── Fetch exchange rates + Skinport third-party data ──
   console.log('\nFetching exchange rates (fiat + crypto)...');
   exchangeRates = await fetchExchangeRates();
@@ -1320,6 +1368,44 @@ async function main() {
   console.log('Fetching SteamAnalyst pricing data...');
   const steamAnalystData = await fetchSteamAnalyst();
 
+  // ── Load CSGOSkins.gg scraped data (if available) ──
+  const csgoSkinsData = await loadCsgoSkinsData();
+  const csgoSkinsAge = csgoSkinsData ? Math.floor((Date.now() - new Date(csgoSkinsData.lastScraped).getTime()) / 86400000) : -1;
+  if (csgoSkinsData) console.log(`CSGOSkins.gg data: ${csgoSkinsData.scrapedCount} items, ${csgoSkinsAge}d old`);
+
+  // ── Save per-source prices to today's history entry ──
+  {
+    const entry = history.entries[history.entries.length - 1];
+    if (entry && entry.date === today) {
+      const spPrices: Record<string, number> = {};
+      const saPrices: Record<string, number> = {};
+      const saSafe: Record<string, number> = {};
+      for (const s of stickers) {
+        const key = stickerKey(s.name, s.quality);
+        const hashName = getMarketHashName(s.name, s.quality);
+        const spData = skinportListings[hashName];
+        if (spData && spData.minPrice > 0) spPrices[key] = spData.minPrice;
+        const saData = steamAnalystData[hashName];
+        if (saData && saData.avg7d > 0) saPrices[key] = saData.avg7d;
+        if (saData && saData.safePrice > 0) saSafe[key] = saData.safePrice;
+      }
+      if (Object.keys(spPrices).length > 0) entry.skinportPrices = spPrices;
+      if (Object.keys(saPrices).length > 0) entry.steamAnalystPrices = saPrices;
+      if (Object.keys(saSafe).length > 0) entry.steamAnalystSafe = saSafe;
+      // Save CSGOSkins.gg lowest prices (USD) to history
+      if (csgoSkinsData) {
+        const csgoPrices: Record<string, number> = {};
+        for (const s of stickers) {
+          const key = stickerKey(s.name, s.quality);
+          const csgoItem = csgoSkinsData.items[key];
+          if (csgoItem && csgoItem.lowestPrice > 0) csgoPrices[key] = csgoItem.lowestPrice;
+        }
+        if (Object.keys(csgoPrices).length > 0) entry.csgoSkinsPrices = csgoPrices;
+      }
+      await Bun.write(HISTORY_FILE, JSON.stringify(history, null, 2));
+      console.log(`Saved per-source prices: Skinport=${Object.keys(spPrices).length}, SteamAnalyst=${Object.keys(saPrices).length}, SA Safe=${Object.keys(saSafe).length}${csgoSkinsData ? ', CSGOSkins=' + Object.keys(entry.csgoSkinsPrices || {}).length : ''}`);
+    }
+  }
 
   // ── Build data rows ───────────────────────────────────────────────
   interface Row {
@@ -1350,6 +1436,9 @@ async function main() {
     saSafePrice: number;    // AUD — manipulation-adjusted
     saAvg7d1yr: number;     // AUD — 7d avg from 1 year ago
     saYoYChange: number;    // % change year-over-year
+    // CSGOSkins.gg multi-marketplace data (USD, converted to AUD for display)
+    csgoPrices: Record<string, number>; // marketplace → AUD price
+    csgoLowest: { market: string; price: number } | null;
   }
 
   const data: Row[] = [];
@@ -1403,6 +1492,18 @@ async function main() {
     const saAvg7d1yr = saItem.avg7d1yr * USD_TO_AUD;
     const saYoYChange = saAvg7d1yr > 0 && saAvg7d > 0 ? ((saAvg7d - saAvg7d1yr) / saAvg7d1yr * 100) : 0;
 
+    // CSGOSkins.gg multi-marketplace data (USD → AUD)
+    const csgoItem = csgoSkinsData?.items[key];
+    const csgoPricesAud: Record<string, number> = {};
+    if (csgoItem) {
+      for (const [mkt, usdPrice] of Object.entries(csgoItem.prices)) {
+        if (usdPrice > 0) csgoPricesAud[mkt] = usdPrice * USD_TO_AUD;
+      }
+    }
+    const csgoLowest = csgoItem && csgoItem.lowestPrice > 0
+      ? { market: csgoItem.lowestMarket, price: csgoItem.lowestPrice * USD_TO_AUD }
+      : null;
+
     data.push({
       name: s.name, quality: s.quality, qty: s.qty, costPerUnit: config.costPerUnit,
       totalCost, currentPrice: price, totalValue, profitLoss: pl,
@@ -1422,6 +1523,8 @@ async function main() {
       saVol24h: saItem.vol24h, saVol7d: saItem.vol7d, saAvgDailyVol: saItem.avgDailyVol,
       saManipulation: saItem.manipulation, saSuspicious: saItem.suspicious,
       saSafePrice, saAvg7d1yr, saYoYChange,
+      csgoPrices: csgoPricesAud,
+      csgoLowest,
     });
 
     grandQty += s.qty;
@@ -2078,9 +2181,13 @@ async function main() {
 
   // ── Investment Score (1-10) ──────────────────────────────────────
   const budapestMonths = monthsSince("2025-09-15");
-  // Factor 1: Cycle position (early = bullish accumulation phase)
-  const cycleScore = budapestMonths <= 6 ? 8 : budapestMonths <= 18 ? 7 : budapestMonths <= 48 ? 5 : 3;
-  const cycleLabel = budapestMonths <= 6 ? 'Accumulation Phase' : budapestMonths <= 18 ? 'Early Growth' : budapestMonths <= 48 ? 'Appreciation' : 'Mature';
+  // Post-sale age is the real appreciation timer — price growth starts when capsules leave the store
+  const saleEndDate = config.saleEndDate ? new Date(config.saleEndDate) : null;
+  const monthsSinceSaleEnd = saleEndDate ? Math.max(0, (refDate.getTime() - saleEndDate.getTime()) / (30.44 * 86400000)) : budapestMonths;
+  const saleActive = saleEndDate ? refDate < saleEndDate : false;
+  // Factor 1: Cycle position (based on post-sale age, not event age)
+  const cycleScore = saleActive ? 9 : monthsSinceSaleEnd <= 3 ? 9 : monthsSinceSaleEnd <= 12 ? 8 : monthsSinceSaleEnd <= 24 ? 6 : monthsSinceSaleEnd <= 48 ? 5 : 3;
+  const cycleLabel = saleActive ? 'Sale Active — Max Accumulation' : monthsSinceSaleEnd <= 1 ? 'Just Off Sale — Launch Phase' : monthsSinceSaleEnd <= 6 ? 'Early Post-Sale Growth' : monthsSinceSaleEnd <= 18 ? 'Growth Phase' : monthsSinceSaleEnd <= 48 ? 'Appreciation' : 'Mature';
   // Factor 2: Performance vs history at same age
   const nearbyForScore = projections.filter(p => (majorWeightMap[p.name] || 0) >= 0.10 && Math.abs(p.monthsOld - budapestMonths) <= 12);
   const avgHistROI = nearbyForScore.length > 0 ? nearbyForScore.reduce((a, p) => a + p.roi, 0) / nearbyForScore.length : 0;
@@ -2105,7 +2212,7 @@ async function main() {
   const investmentSignal = investmentScore >= 7 ? 'BUY MORE' : investmentScore >= 4 ? 'HOLD' : 'WAIT';
   const signalColor = investmentScore >= 7 ? '#22c55e' : investmentScore >= 4 ? '#f59e0b' : '#ef4444';
   const scoreFactors = [
-    { name: 'Cycle Position', score: cycleScore, detail: `${cycleLabel} (${budapestMonths} months)` },
+    { name: 'Cycle Position', score: cycleScore, detail: `${cycleLabel} (${monthsSinceSaleEnd.toFixed(1)} mo post-sale)` },
     { name: 'Performance vs History', score: perfScore, detail: `${currentROI.toFixed(1)}% vs avg ${avgHistROI.toFixed(1)}%` },
     { name: 'Quality Mix', score: qualityMixScore, detail: `${(premiumPct * 100).toFixed(1)}% premium (Holo+Gold)` },
     { name: 'Price Momentum', score: momentumScore, detail: history.entries.length >= 2 ? 'Based on last 2 snapshots' : 'Need more data' },
@@ -2224,7 +2331,9 @@ async function main() {
   // Focus: should you sell stickers individually or encase in a slab (5 stickers) to sell?
   // Slab premium > 0 means slabs sell for MORE than 5x individual = better to slab & sell
   const currentSlabPrices = todayEntry.slabPrices || {};
-  interface SlabRow { name: string; quality: string; stickerPrice: number; fiveXPrice: number; slabPrice: number; premiumPct: number; verdict: string; verdictColor: string; hashName: string; heldQty: number; canSlab: boolean; }
+  const currentSlabMedians = todayEntry.slabMedianPrices || {};
+  const currentSlabVolumes = todayEntry.slabVolumes || {};
+  interface SlabRow { name: string; quality: string; stickerPrice: number; fiveXPrice: number; slabPrice: number; premiumPct: number; verdict: string; verdictColor: string; hashName: string; heldQty: number; canSlab: boolean; medianPrice: number; slabVolume: number; totalCostToSlab: number; }
   const slabRows: SlabRow[] = [];
   let slabsWithPremium = 0, slabsAvailable = 0, totalPremium = 0;
   for (const s of stickers) {
@@ -2232,21 +2341,24 @@ async function main() {
     const stickerPrice = currentPrices[key] || 0;
     const slabPrice = currentSlabPrices[key] || 0;
     const fiveX = stickerPrice * 5;
+    const totalCostToSlab = fiveX + blankSlabPrice; // 5 stickers + blank slab
     const hashName = getSlabMarketHashName(s.name, s.quality);
     const canSlab = s.qty >= 5;
+    const medianPrice = currentSlabMedians[key] || 0;
+    const slabVolume = currentSlabVolumes[key] || 0;
     if (slabPrice > 0 && stickerPrice > 0) {
       slabsAvailable++;
-      const premium = ((slabPrice - fiveX) / fiveX) * 100;
+      const premium = totalCostToSlab > 0 ? ((slabPrice - totalCostToSlab) / totalCostToSlab) * 100 : 0;
       totalPremium += premium;
       if (premium > 5) slabsWithPremium++;
       slabRows.push({
         name: s.name, quality: s.quality, stickerPrice, fiveXPrice: fiveX, slabPrice,
-        premiumPct: premium, hashName, heldQty: s.qty, canSlab,
+        premiumPct: premium, hashName, heldQty: s.qty, canSlab, medianPrice, slabVolume, totalCostToSlab,
         verdict: premium > 20 ? 'Slab & Sell' : premium > 5 ? 'Slab Preferred' : premium > -5 ? 'Either Way' : 'Sell Individual',
         verdictColor: premium > 20 ? '#22c55e' : premium > 5 ? '#5ba32b' : premium > -5 ? '#888' : '#f59e0b',
       });
     } else if (stickerPrice > 0) {
-      slabRows.push({ name: s.name, quality: s.quality, stickerPrice, fiveXPrice: fiveX, slabPrice: 0, premiumPct: 0, hashName, heldQty: s.qty, canSlab, verdict: 'No Slab Data', verdictColor: '#555' });
+      slabRows.push({ name: s.name, quality: s.quality, stickerPrice, fiveXPrice: fiveX, slabPrice: 0, premiumPct: 0, hashName, heldQty: s.qty, canSlab, verdict: 'No Slab Data', verdictColor: '#555', medianPrice, slabVolume, totalCostToSlab });
     }
   }
   // Deduplicate slab rows (same name+quality appears once)
@@ -2260,7 +2372,7 @@ async function main() {
   const avgPremium = slabsAvailable > 0 ? totalPremium / slabsAvailable : 0;
   const slabsCheaper = uniqueSlabRows.filter(r => r.slabPrice > 0 && r.premiumPct < -5).length;
   const slabbableItems = uniqueSlabRows.filter(r => r.canSlab && r.slabPrice > 0 && r.premiumPct > 5);
-  const slabProfitPotential = slabbableItems.reduce((acc, r) => acc + (r.slabPrice - r.fiveXPrice), 0);
+  const slabProfitPotential = slabbableItems.reduce((acc, r) => acc + (r.slabPrice - r.totalCostToSlab), 0);
 
   // Helper to generate strength bar HTML
   function strengthBarsHtml(strength: string): string {
@@ -2515,6 +2627,68 @@ async function main() {
   const saAvgSAPrice = saComparisonItems.length > 0 ? saComparisonItems.reduce((a, r) => a + r.saAvg7d, 0) / saComparisonItems.length : 0;
   const saSteamHigherCount = saComparisonItems.filter(r => r.currentPrice > r.saAvg7d).length;
   const saSAHigherCount = saComparisonItems.filter(r => r.saAvg7d > r.currentPrice).length;
+
+  // ── Multi-source price comparison aggregates ──────────────────────
+  interface SourceCompRow {
+    name: string; quality: string; hashName: string;
+    steamAud: number; skinportAud: number; saAud: number;
+    csgoLowestAud: number; csgoLowestMarket: string;
+    consensus: number; divergencePct: number; sourceCount: number;
+    lowestSource: string; highestSource: string;
+  }
+  const sourceCompData: SourceCompRow[] = [];
+  for (const r of data) {
+    const steamAud = r.currentPrice;
+    const skinportAud = r.skinportPriceAdj; // already AUD with 15% markup
+    const saAud = r.saAvg7d; // already AUD
+    const csgoLowestAud = r.csgoLowest?.price || 0;
+    const csgoLowestMarket = r.csgoLowest?.market || '';
+    const sources: { name: string; price: number }[] = [];
+    if (steamAud > 0) sources.push({ name: 'Steam', price: steamAud });
+    if (skinportAud > 0) sources.push({ name: 'Skinport', price: skinportAud });
+    if (saAud > 0) sources.push({ name: 'SteamAnalyst', price: saAud });
+    if (csgoLowestAud > 0) sources.push({ name: 'CSGOSkins', price: csgoLowestAud });
+    if (sources.length < 2) continue; // need at least 2 sources to compare
+    const avg = sources.reduce((a, s) => a + s.price, 0) / sources.length;
+    const minS = sources.reduce((a, s) => s.price < a.price ? s : a, sources[0]);
+    const maxS = sources.reduce((a, s) => s.price > a.price ? s : a, sources[0]);
+    const divPct = minS.price > 0 ? ((maxS.price - minS.price) / minS.price * 100) : 0;
+    sourceCompData.push({
+      name: r.name, quality: r.quality, hashName: r.hashName,
+      steamAud, skinportAud, saAud, csgoLowestAud, csgoLowestMarket,
+      consensus: avg, divergencePct: divPct, sourceCount: sources.length,
+      lowestSource: minS.name, highestSource: maxS.name,
+    });
+  }
+  sourceCompData.sort((a, b) => b.divergencePct - a.divergencePct);
+  const avgConsensus = sourceCompData.length > 0 ? sourceCompData.reduce((a, r) => a + r.consensus, 0) / sourceCompData.length : 0;
+  const maxDivergence = sourceCompData.length > 0 ? sourceCompData[0].divergencePct : 0;
+  const agreeCount = sourceCompData.filter(r => r.divergencePct <= 5).length;
+  // Historical divergence from saved per-source data
+  const histDivergence: { date: string; avgSpread: number }[] = [];
+  for (const entry of history.entries) {
+    if (!entry.skinportPrices && !entry.steamAnalystPrices && !entry.csgoSkinsPrices) continue;
+    let totalSpread = 0, count = 0;
+    for (const key of Object.keys(entry.prices)) {
+      const steamP = entry.prices[key] || 0;
+      if (steamP <= 0) continue;
+      const sources: number[] = [steamP];
+      // Skinport USD→AUD with 15% markup
+      if (entry.skinportPrices?.[key]) sources.push(entry.skinportPrices[key] * USD_TO_AUD * 1.15);
+      // SteamAnalyst USD→AUD
+      if (entry.steamAnalystPrices?.[key]) sources.push(entry.steamAnalystPrices[key] * USD_TO_AUD);
+      // CSGOSkins.gg USD→AUD
+      if (entry.csgoSkinsPrices?.[key]) sources.push(entry.csgoSkinsPrices[key] * USD_TO_AUD);
+      if (sources.length < 2) continue;
+      const minP = Math.min(...sources);
+      const maxP = Math.max(...sources);
+      if (minP > 0) { totalSpread += (maxP - minP) / minP * 100; count++; }
+    }
+    if (count > 0) histDivergence.push({ date: entry.date, avgSpread: totalSpread / count });
+  }
+  // Last deep fetch timestamp
+  const lastDeepFetchEntry = [...history.entries].reverse().find(e => e.deepFetch === true);
+  const lastDeepFetchDate = lastDeepFetchEntry?.date || null;
 
   // ── Generate HTML ─────────────────────────────────────────────────
   const html = `<!DOCTYPE html>
@@ -2843,6 +3017,7 @@ async function main() {
   <a href="#market-section">Market</a>
   <a href="#thirdparty-section">Skinport</a>
   <a href="#steamanalyst-section">SteamAnalyst</a>
+  <a href="#source-comparison-section">Sources</a>
   <a href="#history-section">History</a>
   <a href="#weekly-section">Weekly</a>
   <a href="#predictions-section">Predictions</a>
@@ -2899,7 +3074,7 @@ async function main() {
 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
   <div>
     <h1>${config.event} Major Sticker Investments</h1>
-<div class="subtitle">All prices ${config.currency} &middot; Buy price ${config.currencySymbol}${config.costPerUnit}/ea &middot; <span>${data.length} items, ${grandQty} stickers</span> &middot; Prices last updated <strong style="color:#67c1f5"><span class="local-time" data-utc="${now.toISOString()}">${todayFull}</span></strong></div>
+<div class="subtitle">All prices ${config.currency} &middot; Buy price ${config.currencySymbol}${config.costPerUnit}/ea &middot; <span>${data.length} items, ${grandQty} stickers</span> &middot; Prices last updated <strong style="color:#67c1f5"><span class="local-time" data-utc="${now.toISOString()}">${todayFull}</span></strong>${lastDeepFetchDate ? ' &middot; <span style="color:#888;font-size:11px" title="Last comprehensive fetch with volume data">Deep fetch: ' + lastDeepFetchDate + '</span>' : ''}</div>
   </div>
 </div>
 
@@ -3084,16 +3259,17 @@ ${portfolioHistory.length > 1 ? `
 </div>
 
 <h3>Slab Sell Strategy</h3>
-<p style="color:#888;font-size:13px;margin-bottom:16px;">Should you sell your stickers individually or encase 5 into a slab? When slab price > 5x individual price, slabbing earns more. Sorted by best slab premium first.</p>
+<p style="color:#888;font-size:13px;margin-bottom:16px;">Should you sell your stickers individually or encase 5 into a slab? Premium accounts for the blank slab cost (${blankSlabPrice > 0 ? '$' + blankSlabPrice.toFixed(2) : 'unknown'}). When premium &gt; 0%, slabbing earns more. "Last Sold" = median recent sale price on Steam.</p>
 <div class="slab-summary">
   <div class="card"><div class="card-label">Slabs Tracked</div><div class="card-value neutral">${slabsAvailable}</div><div class="card-sub">of ${uniqueSlabRows.length} variants</div></div>
-  <div class="card"><div class="card-label">Avg Slab Premium</div><div class="card-value ${avgPremium > 0 ? 'positive' : 'negative'}">${avgPremium >= 0 ? '+' : ''}${avgPremium.toFixed(1)}%</div><div class="card-sub">slab price vs 5x individual</div></div>
+  <div class="card"><div class="card-label">Blank Slab Cost</div><div class="card-value neutral">${blankSlabPrice > 0 ? '$' + blankSlabPrice.toFixed(2) : '—'}</div><div class="card-sub">Factory Sealed slab item</div></div>
+  <div class="card"><div class="card-label">Avg Slab Premium</div><div class="card-value ${avgPremium > 0 ? 'positive' : 'negative'}">${avgPremium >= 0 ? '+' : ''}${avgPremium.toFixed(1)}%</div><div class="card-sub">vs 5x sticker + slab cost</div></div>
   <div class="card"><div class="card-label">Worth Slabbing</div><div class="card-value positive">${slabsWithPremium}</div><div class="card-sub">${slabsAvailable > 0 ? ((slabsWithPremium / slabsAvailable) * 100).toFixed(0) + '% have slab premium' : 'No data yet'}</div></div>
   <div class="card"><div class="card-label">You Can Slab</div><div class="card-value ${slabbableItems.length > 0 ? 'positive' : 'dimmed'}">${slabbableItems.length}</div><div class="card-sub">${slabbableItems.length > 0 ? 'You hold 5+ of these, +$' + slabProfitPotential.toFixed(2) + ' extra' : 'Need 5+ of same sticker'}</div></div>
 </div>
 ${slabbableItems.length > 0 ? `<p style="color:#22c55e;font-size:13px;margin-bottom:16px;font-weight:600;">${slabbableItems.length} sticker${slabbableItems.length > 1 ? 's' : ''} you hold 5+ of would earn more sold as slabs &mdash; potential extra profit: A$${slabProfitPotential.toFixed(2)}</p>` : ''}
 <table class="history-table" style="max-width: 1100px;">
-<thead><tr><th>Sticker</th><th>Quality</th><th>Held</th><th>Individual</th><th>5x Price</th><th>Slab Price</th><th>Premium</th><th>Strategy</th></tr></thead>
+<thead><tr><th>Sticker</th><th>Quality</th><th>Held</th><th>Individual</th><th>Total Cost</th><th>Slab Price</th><th>Last Sold</th><th>Vol</th><th>Premium</th><th>Strategy</th></tr></thead>
 <tbody>
 ${uniqueSlabRows.filter(r => r.slabPrice > 0).sort((a, b) => b.premiumPct - a.premiumPct).slice(0, 30).map(r => {
   const qc = r.quality.toLowerCase();
@@ -3106,8 +3282,10 @@ ${uniqueSlabRows.filter(r => r.slabPrice > 0).sort((a, b) => b.premiumPct - a.pr
     <td><span class="quality-badge q-${cls}">${r.quality}</span></td>
     <td style="font-weight:600">${r.heldQty}${canSlabBadge}</td>
     <td>$${r.stickerPrice.toFixed(2)}</td>
-    <td>$${r.fiveXPrice.toFixed(2)}</td>
+    <td title="5x sticker + blank slab ($${blankSlabPrice.toFixed(2)})">$${r.totalCostToSlab.toFixed(2)}</td>
     <td style="font-weight:600">$${r.slabPrice.toFixed(2)}</td>
+    <td style="color:${r.medianPrice > 0 ? '#67c1f5' : '#555'}">${r.medianPrice > 0 ? '$' + r.medianPrice.toFixed(2) : '—'}</td>
+    <td>${r.slabVolume > 0 ? r.slabVolume.toLocaleString() : '<span style="color:#555">—</span>'}</td>
     <td class="${r.premiumPct > 0 ? 'positive' : 'negative'}" style="font-weight:700">${r.premiumPct >= 0 ? '+' : ''}${r.premiumPct.toFixed(1)}%</td>
     <td style="color:${r.verdictColor};font-weight:600">${r.verdict}</td>
   </tr>`;
@@ -3115,7 +3293,7 @@ ${uniqueSlabRows.filter(r => r.slabPrice > 0).sort((a, b) => b.premiumPct - a.pr
 </tbody>
 </table>
 ${uniqueSlabRows.filter(r => r.slabPrice > 0).length > 30 ? `<p style="color:#555;font-size:11px;margin-top:8px;">Showing top 30 by slab premium. ${uniqueSlabRows.filter(r => r.slabPrice > 0).length - 30} more tracked.</p>` : ''}
-<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Slab = 5 identical stickers encased together. "CAN SLAB" means you hold 5+ of that sticker. Premium shows how much more (or less) the slab sells for vs 5 individual sales. Positive = slab earns more.</p>
+<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Slab = 5 identical stickers encased in a blank slab ($${blankSlabPrice > 0 ? blankSlabPrice.toFixed(2) : '?'}). Total Cost = 5x sticker + blank slab. "Last Sold" = median recent sale price. Premium = (slab price - total cost) / total cost. Positive = slabbing earns more.</p>
 
 <h3 id="quality-section">Quality Breakdown</h3>
 <div style="background:rgba(75,105,255,0.05);border:1px solid rgba(75,105,255,0.15);border-radius:4px;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#acb2b8;">
@@ -3469,6 +3647,76 @@ ${saTopYoYLosers.length > 0 ? `
 <p style="color:#555;text-align:center;padding:20px;">No SteamAnalyst data available. Set the <code>STEAMANALYST_API_KEY</code> environment variable to enable. Free tier: 100 requests/day. <a href="https://steamanalyst.com/api-info" target="_blank" style="color:#67c1f5">Get your API key</a></p>
 `}
 
+${sourceCompData.length > 0 ? `
+<h3 id="source-comparison-section">Price Source Comparison (${sourceCompData.length} items)</h3>
+<p style="color:#888;font-size:12px;margin-bottom:12px;">
+Cross-source price analysis comparing Steam Market, Skinport (+15% fee adjustment), SteamAnalyst 7-day average${csgoSkinsData ? ', and CSGOSkins.gg cross-market lowest' : ''}. All prices in AUD. Consensus = average across available sources. Divergence = gap between cheapest and most expensive source.
+${csgoSkinsData ? '<br><span style="color:' + (csgoSkinsAge <= 7 ? '#22c55e' : csgoSkinsAge <= 14 ? '#f59e0b' : '#ef4444') + '">CSGOSkins.gg data: ' + (csgoSkinsAge === 0 ? 'today' : csgoSkinsAge + 'd old') + ' (' + csgoSkinsData.scrapedCount + ' items)</span>' : ''}
+</p>
+<div class="market-summary">
+  <div class="card"><div class="card-label">Consensus Avg Price</div><div class="card-value" style="color:#67c1f5">$${avgConsensus.toFixed(3)}</div><div class="card-sub">Average across all sources</div></div>
+  <div class="card"><div class="card-label">Max Divergence</div><div class="card-value" style="color:${maxDivergence > 20 ? '#ef4444' : maxDivergence > 10 ? '#f59e0b' : '#22c55e'}">${maxDivergence.toFixed(1)}%</div><div class="card-sub">Biggest gap between sources</div></div>
+  <div class="card"><div class="card-label">Sources Agree (&le;5%)</div><div class="card-value positive">${agreeCount}</div><div class="card-sub">of ${sourceCompData.length} items</div></div>
+  <div class="card"><div class="card-label">High Divergence (&gt;20%)</div><div class="card-value" style="color:#ef4444">${sourceCompData.filter(r => r.divergencePct > 20).length}</div><div class="card-sub">Items with major discrepancy</div></div>
+</div>
+
+<details open>
+<summary style="cursor:pointer;color:#67c1f5;font-weight:600;padding:8px 0;user-select:none;">Per-Sticker Source Comparison &mdash; sorted by divergence</summary>
+<div style="max-height:500px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a475e transparent;">
+<table>
+<thead><tr>
+  <th>Sticker</th><th>Quality</th>
+  <th style="color:#67c1f5">Steam (AUD)</th>
+  <th style="color:#c084fc">Skinport adj (AUD)</th>
+  <th style="color:#f59e0b">SA 7d (AUD)</th>
+  ${csgoSkinsData ? '<th style="color:#10b981">CSGOSkins (AUD)</th>' : ''}
+  <th>Consensus</th>
+  <th>Divergence</th>
+  <th>Best Buy</th>
+</tr></thead>
+<tbody>
+${sourceCompData.map(r => {
+  const qc = r.quality.toLowerCase();
+  const cls = qc.includes('holo') ? 'holo' : qc.includes('embroidered') ? 'embroidered' : qc.includes('gold') ? 'gold' : qc.includes('champion') ? 'champion' : 'normal';
+  const prices = [
+    { src: 'Steam', val: r.steamAud },
+    { src: 'Skinport', val: r.skinportAud },
+    { src: 'SA', val: r.saAud },
+    { src: 'CSGOSkins', val: r.csgoLowestAud },
+  ].filter(p => p.val > 0);
+  const minP = Math.min(...prices.map(p => p.val));
+  const maxP = Math.max(...prices.map(p => p.val));
+  const colorFor = (val: number) => val > 0 ? (val === minP ? '#22c55e' : val === maxP ? '#ef4444' : '#c6d4df') : '#555';
+  const steamColor = colorFor(r.steamAud);
+  const spColor = colorFor(r.skinportAud);
+  const saColor = colorFor(r.saAud);
+  const csgoColor = colorFor(r.csgoLowestAud);
+  const divColor = r.divergencePct > 20 ? '#ef4444' : r.divergencePct > 10 ? '#f59e0b' : '#22c55e';
+  return '<tr>' +
+    '<td>' + r.name + '</td>' +
+    '<td><span class="quality-badge q-' + cls + '">' + r.quality + '</span></td>' +
+    '<td style="color:' + steamColor + '">' + (r.steamAud > 0 ? '$' + r.steamAud.toFixed(3) : '—') + '</td>' +
+    '<td style="color:' + spColor + '">' + (r.skinportAud > 0 ? '$' + r.skinportAud.toFixed(3) : '—') + '</td>' +
+    '<td style="color:' + saColor + '">' + (r.saAud > 0 ? '$' + r.saAud.toFixed(3) : '—') + '</td>' +
+    (csgoSkinsData ? '<td style="color:' + csgoColor + '">' + (r.csgoLowestAud > 0 ? '$' + r.csgoLowestAud.toFixed(3) + ' <span style="font-size:10px;color:#888">(' + r.csgoLowestMarket + ')</span>' : '—') + '</td>' : '') +
+    '<td style="color:#67c1f5;font-weight:600">$' + r.consensus.toFixed(3) + '</td>' +
+    '<td style="color:' + divColor + ';font-weight:700">' + r.divergencePct.toFixed(1) + '%</td>' +
+    '<td style="color:#22c55e">' + r.lowestSource + '</td>' +
+    '</tr>';
+}).join('\n')}
+</tbody>
+</table>
+</div>
+</details>
+
+${histDivergence.length > 1 ? `
+<div class="chart-container" style="margin-top:24px;">
+  <h4 style="color:#fff;font-size:14px;margin-bottom:12px;">Source Divergence Over Time</h4>
+  <canvas id="sourceDivergenceChart"></canvas>
+</div>
+` : ''}
+` : ''}
+
 <h3 id="history-section">Snapshot History (${history.entries.length} snapshots)</h3>
 <p style="color:#888;font-size:12px;margin-bottom:12px;">Every time prices are fetched, a snapshot is saved. Charts show day-to-day changes and cumulative P/L. The table includes <span style="color:#c084fc">predicted value</span> at each date (based on weighted major projections) vs <span style="color:#67c1f5">actual value</span> — showing how well the prediction model tracks reality.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
@@ -3624,7 +3872,7 @@ ${projections.map(p => {
 </table>
 
 <h3 id="predictions-section">${config.event} Price Predictions</h3>
-<p style="color:#888;font-size:13px;margin-bottom:16px;">Based on how previous major stickers appreciated over time, here's a projection for your ${config.event} portfolio. Best-performing major: <span style="color:#ffd700;font-weight:600">${bestMajor.name}</span> at <span class="positive">+${bestMajor.roiStr}</span> after ${(bestMajor.monthsOld/12).toFixed(1)} years.</p>
+<p style="color:#888;font-size:13px;margin-bottom:16px;">Based on how previous major stickers appreciated over time, here's a projection for your ${config.event} portfolio. Best-performing major: <span style="color:#ffd700;font-weight:600">${bestMajor.name}</span> at <span class="positive">+${bestMajor.roiStr}</span> after ${(bestMajor.monthsOld/12).toFixed(1)} years.${saleEndDate ? ` <span style="color:#22c55e;font-weight:600;">${saleActive ? '75% sale is LIVE — accumulate now!' : monthsSinceSaleEnd < 1 ? 'Sale ended ' + Math.round(monthsSinceSaleEnd * 30.44) + ' days ago — appreciation just starting. Budapest&#39;s 53-day sale (2nd shortest ever) mirrors Austin 2025&#39;s scarcity profile.' : monthsSinceSaleEnd.toFixed(1) + ' months post-sale removal.'}</span>` : ''}</p>
 
 <div class="chart-container">
   <canvas id="predictionChart"></canvas>
@@ -3837,7 +4085,7 @@ ${capsuleHistory.map(c => {
 }).join('\n')}
 <tr style="border-top:2px solid #ffd700;font-weight:600;">
   <td>${config.event}</td>
-  <td>~120 days</td>
+  <td>53 days</td>
   <td>Now</td>
   <td>$${CAPSULE_COST_EACH.toFixed(2)}</td>
   <td>$${CAPSULE_COST_EACH.toFixed(2)}</td>
@@ -3846,7 +4094,7 @@ ${capsuleHistory.map(c => {
 </tr>
 </tbody>
 </table>
-<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Capsule prices are approximate. Sale duration is the strongest predictor of capsule ROI — shorter sales = less supply = better returns. Austin 2025's 49-day sale vs Paris 2023's 146 days illustrates this clearly. Budapest's ~120-day sale window is moderate.</p>
+<p style="color:#555;font-size:11px;margin-top:8px;font-style:italic;">Capsule prices are approximate. Sale duration is the strongest predictor of capsule ROI — shorter sales = less supply = better returns. Austin 2025's 49-day sale vs Paris 2023's 146 days illustrates this clearly. Budapest's 53-day sale window (Jan 22 – Mar 15, 2026) is the 2nd shortest modern sale after Austin 2025 (49 days) — very bullish for scarcity.</p>
 
 <h3 id="quick-stats-section">Quick Stats</h3>
 <div class="summary" style="margin-bottom:16px;">
@@ -3971,7 +4219,7 @@ ${data.map((r, idx) => {
   <td><div class="sticker-name-cell">${thumb}<span class="sticker-modal-trigger" data-idx="${idx}" style="cursor:pointer;font-weight:500">${r.name}</span></div></td>
   <td><span class="quality-badge q-${cls}">${r.quality}</span></td>
   <td>${r.qty}</td>
-  <td>$${r.currentPrice.toFixed(2)}</td>
+  <td><div>$${r.currentPrice.toFixed(2)}${r.skinportPriceAdj > 0 || r.saAvg7d > 0 ? '<div style="font-size:9px;color:#666;line-height:1.3;margin-top:2px">' + (r.skinportPriceAdj > 0 ? '<span style="color:#c084fc" title="Skinport +15%">SP $' + r.skinportPriceAdj.toFixed(2) + '</span>' : '') + (r.skinportPriceAdj > 0 && r.saAvg7d > 0 ? ' · ' : '') + (r.saAvg7d > 0 ? '<span style="color:#f59e0b" title="SteamAnalyst 7d avg">SA $' + r.saAvg7d.toFixed(2) + '</span>' : '') + '</div>' : ''}</div></td>
   <td>$${r.totalValue.toFixed(2)}</td>
   <td class="${plClass}">${r.profitLoss >= 0 ? '+' : ''}$${r.profitLoss.toFixed(2)}</td>
   <td><div class="roi-bar"><span class="${plClass}">${r.roi}</span><div class="roi-fill" style="width:${barW}px;background:${barColor}"></div></div></td>
@@ -4710,6 +4958,40 @@ function selectWeek(idx) {
 }
 if (WEEKLY_DATA.length > 0) selectWeek(0);
 
+// ── Source Divergence Chart ──
+${histDivergence.length > 1 ? `
+{
+  const sdEl = document.getElementById('sourceDivergenceChart');
+  if (sdEl) {
+    new Chart(sdEl.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: ${JSON.stringify(histDivergence.map(h => h.date))},
+        datasets: [{
+          label: 'Avg Source Spread (%)',
+          data: ${JSON.stringify(histDivergence.map(h => +h.avgSpread.toFixed(1)))},
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245, 158, 11, 0.08)',
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: '#f59e0b',
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#888', font: { family: 'Inter' } } } },
+        scales: {
+          x: { ticks: { color: '#444', font: { family: 'Inter' } }, grid: { color: '#111' } },
+          y: { ticks: { color: '#444', callback: v => v + '%', font: { family: 'Inter' } }, grid: { color: '#111' }, beginAtZero: true },
+        }
+      }
+    });
+  }
+}
+` : ''}
+
 // ── CSV Download ──
 function downloadCSV() {
   const csv = ${JSON.stringify(csvOut.replace(/\n/g, '\r\n'))};
@@ -4909,9 +5191,10 @@ function downloadCSV() {
         title: `\u{1F4B0} Slab Sell Opportunity: ${r.name} (${r.quality})`,
         color: 0x22c55e,
         fields: [
-          { name: '5x Individual', value: `A$${r.fiveXPrice.toFixed(2)}`, inline: true },
+          { name: 'Total Cost to Slab', value: `A$${r.totalCostToSlab.toFixed(2)}`, inline: true },
           { name: 'Slab Price', value: `A$${r.slabPrice.toFixed(2)}`, inline: true },
-          { name: 'Slab Premium', value: `+${r.premiumPct.toFixed(1)}% more as slab`, inline: true },
+          { name: 'Last Sold For', value: r.medianPrice > 0 ? `A$${r.medianPrice.toFixed(2)}` : '—', inline: true },
+          { name: 'Slab Premium', value: `+${r.premiumPct.toFixed(1)}% profit`, inline: true },
           { name: 'You Hold', value: `${r.heldQty} (can slab)`, inline: true },
         ],
         url: getMarketUrl(r.hashName),

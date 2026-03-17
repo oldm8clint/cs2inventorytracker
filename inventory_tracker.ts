@@ -660,7 +660,7 @@ async function main() {
   const grandPL = grandCost > 0 ? trackedValue - grandCost : 0;
   const grandROI = grandCost > 0 ? ((grandPL / grandCost) * 100).toFixed(1) : 'N/A';
 
-  const localTimeStr = now.toLocaleString('en-AU', { timeZone: 'Australia/Sydney', dateStyle: 'medium', timeStyle: 'short' });
+  const localTimeStr = now.toLocaleString('en-AU', { timeZone: 'Australia/Perth', dateStyle: 'medium', timeStyle: 'short' });
 
   // Category colors for charts
   const categoryColors: Record<string, string> = {
@@ -943,7 +943,7 @@ async function main() {
     <a href="https://steamcommunity.com/id/${config.steamProfile.vanityUrl}" target="_blank"><img class="steam-avatar" src="${escHtml(config.steamProfile.avatarUrl)}" alt="${escHtml(config.steamProfile.displayName)}"></a>
     <div class="steam-profile-info">
       <div class="steam-profile-name"><a href="https://steamcommunity.com/id/${config.steamProfile.vanityUrl}" target="_blank">${escHtml(config.steamProfile.displayName)}</a></div>
-      <div class="steam-profile-sub">CS2 Portfolio &mdash; ${totalItems} items &mdash; Last updated: <span style="color:#acb2b8">${localTimeStr} AEST</span></div>
+      <div class="steam-profile-sub">CS2 Portfolio &mdash; ${totalItems} items &mdash; Last updated: <span style="color:#acb2b8">${localTimeStr} AWST</span></div>
     </div>
     <div class="steam-profile-links">
       <a class="steam-link-btn" href="https://steamcommunity.com/id/${config.steamProfile.vanityUrl}/inventory/#730" target="_blank">Steam Inventory</a>
