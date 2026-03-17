@@ -4661,6 +4661,63 @@
         "Sealed Graffiti | Toasted (Blood Red)": 0.04,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.04
       }
+    },
+    {
+      "date": "2026-03-17-19",
+      "totalValue": 2036.55,
+      "totalItems": 50,
+      "categoryValues": {
+        "Skins": {
+          "count": 8,
+          "value": 1366.5899999999997
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 342.7400000000002
+        },
+        "Cases": {
+          "count": 19,
+          "value": 325.66
+        },
+        "Stickers": {
+          "count": 1,
+          "value": 1.12
+        },
+        "Graffiti": {
+          "count": 15,
+          "value": 0.43999999999999995
+        },
+        "Music Kits": {
+          "count": 1,
+          "value": 0
+        },
+        "Collectibles": {
+          "count": 5,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 793.75,
+        "M4A4 | X-Ray (Factory New)": 571.93,
+        "__budapest_sticker_lot__": 342.7400000000002,
+        "Operation Breakout Weapon Case": 17.14,
+        "Sticker | Co Co Co": 1.12,
+        "Souvenir AUG | Colony (Field-Tested)": 0.52,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.26,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.09,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
+        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
+        "Sealed Graffiti | Double (Jungle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04
+      }
     }
   ]
 }
