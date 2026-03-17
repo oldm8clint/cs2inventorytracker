@@ -345,10 +345,17 @@ async function main() {
 
   const today = new Date().toISOString().slice(0, 10);
 
-  // Check if we already have an entry for today
-  if (history.entries.some(e => e.date === today)) {
-    console.log(`Already have data for ${today}, skipping.`);
-    return;
+  // Check if we already have an entry for today with same sticker count
+  const todayEntry = history.entries.find(e => e.date === today);
+  if (todayEntry) {
+    const existingCount = Object.keys(todayEntry.stickers || {}).length;
+    if (existingCount >= trackedStickers.length) {
+      console.log(`Already have data for ${today} (${existingCount} stickers), skipping.`);
+      return;
+    }
+    // Sticker list expanded — remove old entry and re-fetch
+    console.log(`Sticker list expanded (${existingCount} → ${trackedStickers.length}), re-fetching for ${today}...`);
+    history.entries = history.entries.filter(e => e.date !== today);
   }
 
   console.log(`Fetching prices for ${trackedStickers.length} stickers from ${new Set(trackedStickers.map(s => s.major)).size} majors...`);
