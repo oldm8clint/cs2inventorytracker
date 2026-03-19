@@ -6846,20 +6846,20 @@
     },
     {
       "date": "2026-03-19-22",
-      "totalValue": 2539.0899999999997,
+      "totalValue": 2528.5600000000004,
       "totalItems": 52,
       "categoryValues": {
         "Skins": {
           "count": 9,
-          "value": 1903.1299999999997
+          "value": 1903.1199999999997
         },
         "Cases": {
           "count": 20,
-          "value": 347.18999999999994
+          "value": 346.61
         },
         "Sticker Investments": {
           "count": 1,
-          "value": 287.20000000000016
+          "value": 277.26000000000045
         },
         "Stickers": {
           "count": 1,
@@ -6882,11 +6882,11 @@
         "★ Specialist Gloves | Field Agent (Minimal Wear)": 863.6,
         "M4A4 | X-Ray (Factory New)": 580,
         "★ Navaja Knife | Doppler Ruby (Factory New)": 459.12,
-        "Operation Breakout Weapon Case": 18.24,
-        "__budapest_sticker_lot__": 287.20000000000016,
+        "Operation Breakout Weapon Case": 18.21,
+        "__budapest_sticker_lot__": 277.26000000000045,
         "Sticker | Co Co Co": 1.12,
-        "Revolution Case": 0.63,
-        "SCAR-20 | Carbon Fiber (Factory New)": 0.25,
+        "Revolution Case": 0.62,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.24,
         "M4A4 | Aeolian Dark (Battle-Scarred)": 0.08,
         "Sealed Graffiti | Still Happy (Battle Green)": 0.05,
         "Dual Berettas | BorDeux (Field-Tested)": 0.04,
