@@ -109,11 +109,18 @@ function categorizeItem(desc: SteamDescription): string {
   return 'Other';
 }
 
-async function fetchFullInventory(steamId64: string): Promise<InventoryItem[]> {
+interface InventoryResult {
+  items: InventoryItem[];
+  steamTotalCount: number;  // What Steam reports as total (includes cooldown items)
+  fetchedCount: number;     // How many we actually got back
+}
+
+async function fetchFullInventory(steamId64: string): Promise<InventoryResult> {
   const descMap = new Map<string, SteamDescription>();
   const assetCounts = new Map<string, number>();
   let lastAssetId: string | undefined;
   let page = 0;
+  let steamTotalCount = 0;
 
   console.log(`Fetching CS2 inventory for ${steamId64}...`);
 
@@ -145,7 +152,8 @@ async function fetchFullInventory(steamId64: string): Promise<InventoryItem[]> {
     }
 
     if (!data || !data.success) throw new Error("Steam API returned unsuccessful response");
-    console.log(`  Page ${page}: ${data.assets?.length || 0} assets (${data.total_inventory_count} total)`);
+    steamTotalCount = data.total_inventory_count;
+    console.log(`  Page ${page}: ${data.assets?.length || 0} assets (${steamTotalCount} total)`);
 
     // Use classid+instanceid as key for counting
     for (const asset of data.assets || []) {
@@ -185,8 +193,12 @@ async function fetchFullInventory(steamId64: string): Promise<InventoryItem[]> {
     });
   }
 
-  console.log(`  Total: ${items.length} unique items (${items.reduce((s, i) => s + i.qty, 0)} total)`);
-  return items;
+  const fetchedCount = items.reduce((s, i) => s + i.qty, 0);
+  console.log(`  Total: ${items.length} unique items (${fetchedCount} total)`);
+  if (steamTotalCount > fetchedCount) {
+    console.log(`  ⚠ Steam reports ${steamTotalCount} items but API only returned ${fetchedCount} — ${steamTotalCount - fetchedCount} items on market/trade cooldown`);
+  }
+  return { items, steamTotalCount, fetchedCount };
 }
 
 // ── Price Fetching ──────────────────────────────────────────────────
@@ -486,7 +498,11 @@ async function main() {
 
   // 2. Fetch full inventory
   console.log("\n2. Fetching inventory...");
-  const inventory = await fetchFullInventory(steamId64);
+  const inventoryResult = await fetchFullInventory(steamId64);
+  const inventory = inventoryResult.items;
+  const cooldownItems = Math.max(0, inventoryResult.steamTotalCount - inventoryResult.fetchedCount);
+  const steamTotalCount = inventoryResult.steamTotalCount;
+  const steamFetchedCount = inventoryResult.fetchedCount;
 
   // 2b. Merge manual items (trade hold, etc.)
   const manualItems = config.portfolio?.manualItems || [];
@@ -1022,7 +1038,7 @@ async function main() {
   <div class="card">
     <div class="card-label">Total Items</div>
     <div class="card-value" style="color:#fff">${totalItems}</div>
-    <div class="card-sub">${uniqueItems} unique</div>
+    <div class="card-sub">${uniqueItems} unique${cooldownItems > 0 ? ` + ${cooldownItems} on cooldown` : ''}</div>
   </div>
   ${grandCost > 0 ? `<div class="card">
     <div class="card-label">Total Invested</div>
@@ -1055,6 +1071,17 @@ async function main() {
     <div class="card-sub">${sortedCategories[0]?.[0] || '-'} is largest</div>
   </div>
 </div>
+
+${cooldownItems > 0 ? `
+<!-- Cooldown Items Notice -->
+<div style="background:linear-gradient(135deg,#1a2a3a 0%,#1b2838 100%);border:1px solid #f59e0b44;border-radius:0;padding:12px 20px;display:flex;align-items:center;gap:12px;margin-top:0;">
+  <span style="font-size:20px;">&#9203;</span>
+  <div>
+    <div style="color:#f59e0b;font-weight:600;font-size:14px;">${cooldownItems} items on market/trade cooldown</div>
+    <div style="color:#8f98a0;font-size:12px;margin-top:2px;">Steam reports ${steamTotalCount} total items but only ${steamFetchedCount} are visible via the public API. Items on market/trade cooldown will appear automatically once their hold expires.</div>
+  </div>
+</div>
+` : ''}
 
 <!-- Sub-page links -->
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:32px;">
