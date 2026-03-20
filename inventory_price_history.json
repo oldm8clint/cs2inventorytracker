@@ -8082,6 +8082,65 @@
         "Sealed Graffiti | Toasted (Blood Red)": 0.04,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.04
       }
+    },
+    {
+      "date": "2026-03-20-22",
+      "totalValue": 2454.7699999999995,
+      "totalItems": 52,
+      "categoryValues": {
+        "Skins": {
+          "count": 9,
+          "value": 1828.4199999999996
+        },
+        "Cases": {
+          "count": 20,
+          "value": 340.16
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 284.76000000000045
+        },
+        "Stickers": {
+          "count": 1,
+          "value": 0.99
+        },
+        "Graffiti": {
+          "count": 15,
+          "value": 0.43999999999999995
+        },
+        "Music Kits": {
+          "count": 1,
+          "value": 0
+        },
+        "Collectibles": {
+          "count": 5,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 799.87,
+        "M4A4 | X-Ray (Factory New)": 569.75,
+        "★ Navaja Knife | Doppler Ruby (Factory New)": 458.32,
+        "Operation Breakout Weapon Case": 17.87,
+        "__budapest_sticker_lot__": 284.76000000000045,
+        "Sticker | Co Co Co": 0.99,
+        "Revolution Case": 0.63,
+        "SCAR-20 | Carbon Fiber (Factory New)": 0.29,
+        "M4A4 | Aeolian Dark (Battle-Scarred)": 0.11,
+        "Dual Berettas | BorDeux (Field-Tested)": 0.04,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
+        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
+        "Sealed Graffiti | Double (Jungle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | GGWP (Bazooka Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04
+      }
     }
   ]
 }
