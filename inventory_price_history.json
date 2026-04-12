@@ -46020,24 +46020,24 @@
     },
     {
       "date": "2026-04-12-23",
-      "totalValue": 2798.5099999999993,
+      "totalValue": 2801.3099999999995,
       "totalItems": 84,
       "categoryValues": {
         "Skins": {
           "count": 34,
-          "value": 2074.4500000000003
+          "value": 2073.92
         },
         "Cases": {
           "count": 22,
-          "value": 399.0199999999999
+          "value": 402.37999999999994
         },
         "Sticker Investments": {
           "count": 1,
-          "value": 319.44000000000017
+          "value": 319.46000000000015
         },
         "Charm": {
           "count": 6,
-          "value": 5.17
+          "value": 5.120000000000001
         },
         "Graffiti": {
           "count": 14,
@@ -46060,29 +46060,29 @@
         "★ Specialist Gloves | Field Agent (Minimal Wear)": 761.58,
         "M4A4 | X-Ray (Factory New)": 505.14,
         "★ Navaja Knife | Doppler Ruby (Factory New)": 502.69,
-        "Operation Breakout Weapon Case": 18.83,
-        "__budapest_sticker_lot__": 319.44000000000017,
-        "★ Navaja Knife | Doppler (Factory New)": 179.41,
-        "Glock-18 | Water Elemental (Minimal Wear)": 39.14,
+        "Operation Breakout Weapon Case": 18.99,
+        "__budapest_sticker_lot__": 319.46000000000015,
+        "★ Navaja Knife | Doppler (Factory New)": 179.99,
+        "Glock-18 | Water Elemental (Minimal Wear)": 39.02,
         "Tec-9 | Decimator (Field-Tested)": 34.87,
         "StatTrak™ AK-47 | Searing Rage (Battle-Scarred)": 20.83,
-        "MAC-10 | Disco Tech (Field-Tested)": 12.37,
+        "MAC-10 | Disco Tech (Field-Tested)": 11.59,
         "Souvenir USP-S | Check Engine (Field-Tested)": 7.42,
-        "StatTrak™ M4A1-S | Night Terror (Field-Tested)": 4.38,
+        "StatTrak™ M4A1-S | Night Terror (Field-Tested)": 4.21,
         "X-Ray P250 Package": 3.59,
         "Charm | Pocket Pop": 2.73,
-        "Nova | Rising Sun (Battle-Scarred)": 1.04,
-        "Charm | Bomb Tag": 1.51,
+        "Nova | Rising Sun (Battle-Scarred)": 0.99,
+        "Charm | Bomb Tag": 1.43,
         "StatTrak™ G3SG1 | Dream Glade (Well-Worn)": 1.23,
-        "Galil AR | Control (Battle-Scarred)": 0.96,
+        "Galil AR | Control (Battle-Scarred)": 1,
         "Souvenir PP-Bizon | Candy Apple (Minimal Wear)": 0.88,
         "Charm | Splatter Cat": 0.38,
         "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.32,
-        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.26,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.28,
+        "Charm | Whittle Guy": 0.2,
         "Souvenir AUG | Sweeper (Well-Worn)": 0.2,
-        "Charm | Whittle Guy": 0.19,
-        "Charm | Gritty": 0.18,
-        "Charm | Fluffy": 0.18,
+        "Charm | Gritty": 0.19,
+        "Charm | Fluffy": 0.19,
         "Souvenir PP-Bizon | Facility Sketch (Field-Tested)": 0.08,
         "Souvenir AUG | Sweeper (Field-Tested)": 0.06,
         "Souvenir P250 | Facility Draft (Field-Tested)": 0.05,
