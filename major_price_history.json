@@ -52357,6 +52357,1592 @@
           "skinportListings": 9
         }
       }
+    },
+    {
+      "date": "2026-05-21",
+      "stickers": {
+        "Sticker | FaZe Clan | Boston 2018": {
+          "price": 6.05,
+          "volume": 1,
+          "medianPrice": 6.05
+        },
+        "Sticker | Astralis (Holo) | Boston 2018": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Cloud9 (Holo) | Boston 2018": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | FaZe Clan (Foil) | Boston 2018": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Astralis | London 2018": {
+          "price": 2.22,
+          "volume": 2,
+          "medianPrice": 2.16
+        },
+        "Sticker | Natus Vincere (Holo) | London 2018": {
+          "price": 0,
+          "volume": 1,
+          "medianPrice": 31.77
+        },
+        "Sticker | Astralis (Foil) | London 2018": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Astralis | Katowice 2019": {
+          "price": 2.48,
+          "volume": 5,
+          "medianPrice": 2.46
+        },
+        "Sticker | Natus Vincere (Holo) | Katowice 2019": {
+          "price": 20.81,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | s1mple (Gold) | Katowice 2019": {
+          "price": 739.13,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Astralis (Gold) | Katowice 2019": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Astralis | Berlin 2019": {
+          "price": 0,
+          "volume": 3,
+          "medianPrice": 1.03
+        },
+        "Sticker | Natus Vincere (Holo) | Berlin 2019": {
+          "price": 2.2,
+          "volume": 7,
+          "medianPrice": 1.99
+        },
+        "Sticker | s1mple (Gold) | Berlin 2019": {
+          "price": 106.26,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Natus Vincere | Stockholm 2021": {
+          "price": 0,
+          "volume": 67,
+          "medianPrice": 0.14
+        },
+        "Sticker | FaZe Clan (Holo) | Stockholm 2021": {
+          "price": 0,
+          "volume": 19,
+          "medianPrice": 9.57
+        },
+        "Sticker | s1mple (Gold) | Stockholm 2021": {
+          "price": 63.21,
+          "volume": 1,
+          "medianPrice": 57.28
+        },
+        "Sticker | Natus Vincere (Gold) | Stockholm 2021": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | FaZe Clan | Antwerp 2022": {
+          "price": 0.12,
+          "volume": 40,
+          "medianPrice": 0.14
+        },
+        "Sticker | Natus Vincere (Holo) | Antwerp 2022": {
+          "price": 7.76,
+          "volume": 4,
+          "medianPrice": 8.24
+        },
+        "Sticker | s1mple (Gold) | Antwerp 2022": {
+          "price": 0,
+          "volume": 3,
+          "medianPrice": 73.7
+        },
+        "Sticker | FURIA | Rio 2022": {
+          "price": 0.04,
+          "volume": 45,
+          "medianPrice": 0.05
+        },
+        "Sticker | Natus Vincere | Rio 2022": {
+          "price": 0.05,
+          "volume": 35,
+          "medianPrice": 0.05
+        },
+        "Sticker | FaZe Clan | Rio 2022": {
+          "price": 0,
+          "volume": 30,
+          "medianPrice": 0.09
+        },
+        "Sticker | Outsiders | Rio 2022": {
+          "price": 0.04,
+          "volume": 170,
+          "medianPrice": 0.05
+        },
+        "Sticker | Natus Vincere (Holo) | Rio 2022": {
+          "price": 4.33,
+          "volume": 5,
+          "medianPrice": 4.32
+        },
+        "Sticker | FURIA (Holo) | Rio 2022": {
+          "price": 7.73,
+          "volume": 2,
+          "medianPrice": 6.79
+        },
+        "Sticker | FaZe Clan (Holo) | Rio 2022": {
+          "price": 5.4,
+          "volume": 5,
+          "medianPrice": 4.84
+        },
+        "Sticker | s1mple (Holo) | Rio 2022": {
+          "price": 16.69,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | s1mple (Gold) | Rio 2022": {
+          "price": 120.11,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | FaZe Clan (Gold) | Rio 2022": {
+          "price": 9.03,
+          "volume": 1,
+          "medianPrice": 9.04
+        },
+        "Sticker | FURIA (Gold) | Rio 2022": {
+          "price": 8.25,
+          "volume": 1,
+          "medianPrice": 8.21
+        },
+        "Sticker | Vitality | Paris 2023": {
+          "price": 0.03,
+          "volume": 140,
+          "medianPrice": 0.05
+        },
+        "Sticker | Natus Vincere | Paris 2023": {
+          "price": 0.06,
+          "volume": 859,
+          "medianPrice": 0.08
+        },
+        "Sticker | FaZe Clan | Paris 2023": {
+          "price": 0,
+          "volume": 384,
+          "medianPrice": 0.05
+        },
+        "Sticker | G2 Esports | Paris 2023": {
+          "price": 0.03,
+          "volume": 76,
+          "medianPrice": 0.05
+        },
+        "Sticker | Heroic | Paris 2023": {
+          "price": 0.03,
+          "volume": 71,
+          "medianPrice": 0.06
+        },
+        "Sticker | NiKo (Glitter) | Paris 2023": {
+          "price": 0.55,
+          "volume": 13,
+          "medianPrice": 0.45
+        },
+        "Sticker | m0NESY (Glitter) | Paris 2023": {
+          "price": 0.4,
+          "volume": 17,
+          "medianPrice": 0.38
+        },
+        "Sticker | Vitality (Glitter) | Paris 2023": {
+          "price": 0.08,
+          "volume": 259,
+          "medianPrice": 0.1
+        },
+        "Sticker | NiKo (Holo) | Paris 2023": {
+          "price": 0,
+          "volume": 4,
+          "medianPrice": 5.98
+        },
+        "Sticker | m0NESY (Holo) | Paris 2023": {
+          "price": 6.72,
+          "volume": 3,
+          "medianPrice": 5.87
+        },
+        "Sticker | Vitality (Holo) | Paris 2023": {
+          "price": 2.13,
+          "volume": 48,
+          "medianPrice": 1.94
+        },
+        "Sticker | Natus Vincere (Holo) | Paris 2023": {
+          "price": 0,
+          "volume": 53,
+          "medianPrice": 5.18
+        },
+        "Sticker | NiKo (Gold) | Paris 2023": {
+          "price": 38.91,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | s1mple (Gold) | Paris 2023": {
+          "price": 54.23,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | m0NESY (Gold) | Paris 2023": {
+          "price": 52.15,
+          "volume": 1,
+          "medianPrice": 43.6
+        },
+        "Sticker | Vitality (Gold) | Paris 2023": {
+          "price": 3.75,
+          "volume": 8,
+          "medianPrice": 3.71
+        },
+        "Sticker | G2 Esports (Gold) | Paris 2023": {
+          "price": 2.88,
+          "volume": 5,
+          "medianPrice": 2.41
+        },
+        "Sticker | Vitality | Copenhagen 2024": {
+          "price": 0.08,
+          "volume": 171,
+          "medianPrice": 0.09
+        },
+        "Sticker | Natus Vincere | Copenhagen 2024": {
+          "price": 0.12,
+          "volume": 188,
+          "medianPrice": 0.14
+        },
+        "Sticker | FaZe Clan | Copenhagen 2024": {
+          "price": 0,
+          "volume": 140,
+          "medianPrice": 0.19
+        },
+        "Sticker | G2 Esports | Copenhagen 2024": {
+          "price": 0,
+          "volume": 111,
+          "medianPrice": 0.05
+        },
+        "Sticker | MOUZ | Copenhagen 2024": {
+          "price": 0.04,
+          "volume": 48,
+          "medianPrice": 0.05
+        },
+        "Sticker | Natus Vincere (Embroidered) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Vitality (Embroidered) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | donk (Embroidered) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | NiKo (Embroidered) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | donk (Holo) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 3,
+          "medianPrice": 32.17
+        },
+        "Sticker | NiKo (Holo) | Copenhagen 2024": {
+          "price": 11.54,
+          "volume": 1,
+          "medianPrice": 10.61
+        },
+        "Sticker | m0NESY (Holo) | Copenhagen 2024": {
+          "price": 13.06,
+          "volume": 3,
+          "medianPrice": 10.32
+        },
+        "Sticker | s1mple (Holo) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Natus Vincere (Holo) | Copenhagen 2024": {
+          "price": 11.27,
+          "volume": 2,
+          "medianPrice": 11.23
+        },
+        "Sticker | FaZe Clan (Holo) | Copenhagen 2024": {
+          "price": 17.19,
+          "volume": 6,
+          "medianPrice": 16.69
+        },
+        "Sticker | donk (Gold) | Copenhagen 2024": {
+          "price": 138.99,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | NiKo (Gold) | Copenhagen 2024": {
+          "price": 45.16,
+          "volume": 1,
+          "medianPrice": 43.58
+        },
+        "Sticker | m0NESY (Gold) | Copenhagen 2024": {
+          "price": 54.4,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | s1mple (Gold) | Copenhagen 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Natus Vincere (Gold) | Copenhagen 2024": {
+          "price": 16.85,
+          "volume": 1,
+          "medianPrice": 18.68
+        },
+        "Sticker | Team Spirit | Shanghai 2024": {
+          "price": 0.04,
+          "volume": 137,
+          "medianPrice": 0.05
+        },
+        "Sticker | FaZe Clan | Shanghai 2024": {
+          "price": 0,
+          "volume": 133,
+          "medianPrice": 0.07
+        },
+        "Sticker | Vitality | Shanghai 2024": {
+          "price": 0,
+          "volume": 44,
+          "medianPrice": 0.05
+        },
+        "Sticker | G2 Esports | Shanghai 2024": {
+          "price": 0,
+          "volume": 14,
+          "medianPrice": 0.05
+        },
+        "Sticker | Natus Vincere | Shanghai 2024": {
+          "price": 0.04,
+          "volume": 103,
+          "medianPrice": 0.05
+        },
+        "Sticker | Team Spirit (Embroidered) | Shanghai 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | donk (Embroidered) | Shanghai 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | NiKo (Embroidered) | Shanghai 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | m0NESY (Embroidered) | Shanghai 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | donk (Holo) | Shanghai 2024": {
+          "price": 15.41,
+          "volume": 2,
+          "medianPrice": 14.06
+        },
+        "Sticker | NiKo (Holo) | Shanghai 2024": {
+          "price": 0,
+          "volume": 6,
+          "medianPrice": 6.34
+        },
+        "Sticker | m0NESY (Holo) | Shanghai 2024": {
+          "price": 9.03,
+          "volume": 5,
+          "medianPrice": 9.21
+        },
+        "Sticker | s1mple (Holo) | Shanghai 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Team Spirit (Holo) | Shanghai 2024": {
+          "price": 12.32,
+          "volume": 8,
+          "medianPrice": 11.11
+        },
+        "Sticker | FaZe Clan (Holo) | Shanghai 2024": {
+          "price": 9.17,
+          "volume": 1,
+          "medianPrice": 5.93
+        },
+        "Sticker | donk (Gold) | Shanghai 2024": {
+          "price": 107.67,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | NiKo (Gold) | Shanghai 2024": {
+          "price": 49.27,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | m0NESY (Gold) | Shanghai 2024": {
+          "price": 39.01,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | s1mple (Gold) | Shanghai 2024": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Team Spirit (Gold) | Shanghai 2024": {
+          "price": 13.48,
+          "volume": 4,
+          "medianPrice": 12.94
+        },
+        "Sticker | Vitality | Austin 2025": {
+          "price": 0,
+          "volume": 116,
+          "medianPrice": 0.05
+        },
+        "Sticker | FaZe Clan | Austin 2025": {
+          "price": 0.05,
+          "volume": 111,
+          "medianPrice": 0.05
+        },
+        "Sticker | Natus Vincere | Austin 2025": {
+          "price": 0.03,
+          "volume": 238,
+          "medianPrice": 0.05
+        },
+        "Sticker | Team Spirit | Austin 2025": {
+          "price": 0,
+          "volume": 197,
+          "medianPrice": 0.05
+        },
+        "Sticker | G2 Esports | Austin 2025": {
+          "price": 0,
+          "volume": 63,
+          "medianPrice": 0.05
+        },
+        "Sticker | Vitality (Embroidered) | Austin 2025": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | donk (Embroidered) | Austin 2025": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | NiKo (Embroidered) | Austin 2025": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | m0NESY (Embroidered) | Austin 2025": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | TYLOO (Holo) | Austin 2025": {
+          "price": 11.8,
+          "volume": 10,
+          "medianPrice": 9.83
+        },
+        "Sticker | NiKo (Holo) | Austin 2025": {
+          "price": 18.07,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | donk (Holo) | Austin 2025": {
+          "price": 16.01,
+          "volume": 1,
+          "medianPrice": 15.52
+        },
+        "Sticker | m0NESY (Holo) | Austin 2025": {
+          "price": 14.62,
+          "volume": 2,
+          "medianPrice": 14.54
+        },
+        "Sticker | s1mple (Holo) | Austin 2025": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | Vitality (Holo) | Austin 2025": {
+          "price": 4.02,
+          "volume": 11,
+          "medianPrice": 3.8
+        },
+        "Sticker | NiKo (Gold) | Austin 2025": {
+          "price": 82.24,
+          "volume": 1,
+          "medianPrice": 62.86
+        },
+        "Sticker | donk (Gold) | Austin 2025": {
+          "price": 0,
+          "volume": 1,
+          "medianPrice": 60.84
+        },
+        "Sticker | m0NESY (Gold) | Austin 2025": {
+          "price": 123.19,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | s1mple (Gold) | Austin 2025": {
+          "price": 0,
+          "volume": 0,
+          "medianPrice": 0
+        },
+        "Sticker | TYLOO (Gold) | Austin 2025": {
+          "price": 13.31,
+          "volume": 3,
+          "medianPrice": 12.22
+        }
+      },
+      "skinportData": {
+        "Sticker | Astralis | Berlin 2019": {
+          "listings": 1,
+          "minPrice": 0.61,
+          "suggestedPrice": 0.71,
+          "vol7d": 2,
+          "vol30d": 16,
+          "vol90d": 30,
+          "avg7d": 0.53,
+          "avg30d": 0.52
+        },
+        "Sticker | Astralis | Katowice 2019": {
+          "listings": 2,
+          "minPrice": 1.32,
+          "suggestedPrice": 1.65,
+          "vol7d": 0,
+          "vol30d": 7,
+          "vol90d": 25,
+          "avg7d": 0,
+          "avg30d": 1.34
+        },
+        "Sticker | Astralis | London 2018": {
+          "listings": 1,
+          "minPrice": 1.22,
+          "suggestedPrice": 1.49,
+          "vol7d": 0,
+          "vol30d": 7,
+          "vol90d": 24,
+          "avg7d": 0,
+          "avg30d": 1.48
+        },
+        "Sticker | Cloud9 (Holo) | Boston 2018": {
+          "listings": 3,
+          "minPrice": 97.04,
+          "suggestedPrice": 123.95,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 116.3
+        },
+        "Sticker | donk (Gold) | Copenhagen 2024": {
+          "listings": 1,
+          "minPrice": 104.29,
+          "suggestedPrice": 93.2,
+          "vol7d": 0,
+          "vol30d": 3,
+          "vol90d": 9,
+          "avg7d": 0,
+          "avg30d": 77.87
+        },
+        "Sticker | donk (Holo) | Copenhagen 2024": {
+          "listings": 2,
+          "minPrice": 16.83,
+          "suggestedPrice": 21.47,
+          "vol7d": 1,
+          "vol30d": 16,
+          "vol90d": 56,
+          "avg7d": 15.99,
+          "avg30d": 16.19
+        },
+        "Sticker | donk (Holo) | Shanghai 2024": {
+          "listings": 1,
+          "minPrice": 7.38,
+          "suggestedPrice": 8.91,
+          "vol7d": 0,
+          "vol30d": 3,
+          "vol90d": 13,
+          "avg7d": 0,
+          "avg30d": 8.86
+        },
+        "Sticker | FaZe Clan | Boston 2018": {
+          "listings": 3,
+          "minPrice": 3.55,
+          "suggestedPrice": 3.95,
+          "vol7d": 0,
+          "vol30d": 3,
+          "vol90d": 5,
+          "avg7d": 0,
+          "avg30d": 3.05
+        },
+        "Sticker | FaZe Clan (Holo) | Copenhagen 2024": {
+          "listings": 2,
+          "minPrice": 9.19,
+          "suggestedPrice": 10.69,
+          "vol7d": 6,
+          "vol30d": 14,
+          "vol90d": 72,
+          "avg7d": 10.06,
+          "avg30d": 14.29
+        },
+        "Sticker | FaZe Clan (Holo) | Shanghai 2024": {
+          "listings": 1,
+          "minPrice": 6.13,
+          "suggestedPrice": 5.44,
+          "vol7d": 0,
+          "vol30d": 3,
+          "vol90d": 38,
+          "avg7d": 0,
+          "avg30d": 6.26
+        },
+        "Sticker | FaZe Clan (Holo) | Stockholm 2021": {
+          "listings": 2,
+          "minPrice": 5.44,
+          "suggestedPrice": 6.29,
+          "vol7d": 6,
+          "vol30d": 20,
+          "vol90d": 164,
+          "avg7d": 5.92,
+          "avg30d": 6.44
+        },
+        "Sticker | G2 Esports (Gold) | Paris 2023": {
+          "listings": 1,
+          "minPrice": 1.8,
+          "suggestedPrice": 2.07,
+          "vol7d": 0,
+          "vol30d": 16,
+          "vol90d": 45,
+          "avg7d": 0,
+          "avg30d": 1.91
+        },
+        "Sticker | m0NESY (Gold) | Austin 2025": {
+          "listings": 0,
+          "minPrice": null,
+          "suggestedPrice": 52.75,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 0,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | m0NESY (Gold) | Paris 2023": {
+          "listings": 3,
+          "minPrice": 28.45,
+          "suggestedPrice": 32.86,
+          "vol7d": 1,
+          "vol30d": 3,
+          "vol90d": 6,
+          "avg7d": 26.96,
+          "avg30d": 28.17
+        },
+        "Sticker | m0NESY (Gold) | Shanghai 2024": {
+          "listings": 1,
+          "minPrice": 28.16,
+          "suggestedPrice": 24.49,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 6,
+          "avg7d": 0,
+          "avg30d": 22.32
+        },
+        "Sticker | m0NESY (Holo) | Copenhagen 2024": {
+          "listings": 1,
+          "minPrice": 7.41,
+          "suggestedPrice": 8.16,
+          "vol7d": 2,
+          "vol30d": 11,
+          "vol90d": 24,
+          "avg7d": 6.34,
+          "avg30d": 6.23
+        },
+        "Sticker | m0NESY (Holo) | Paris 2023": {
+          "listings": 10,
+          "minPrice": 3.6,
+          "suggestedPrice": 4.33,
+          "vol7d": 7,
+          "vol30d": 24,
+          "vol90d": 59,
+          "avg7d": 3.11,
+          "avg30d": 3
+        },
+        "Sticker | m0NESY (Holo) | Shanghai 2024": {
+          "listings": 2,
+          "minPrice": 5.15,
+          "suggestedPrice": 5.85,
+          "vol7d": 0,
+          "vol30d": 20,
+          "vol90d": 27,
+          "avg7d": 0,
+          "avg30d": 4.55
+        },
+        "Sticker | Natus Vincere (Gold) | Copenhagen 2024": {
+          "listings": 2,
+          "minPrice": 9.6,
+          "suggestedPrice": 10.12,
+          "vol7d": 2,
+          "vol30d": 9,
+          "vol90d": 24,
+          "avg7d": 9.13,
+          "avg30d": 9.42
+        },
+        "Sticker | Natus Vincere (Holo) | Antwerp 2022": {
+          "listings": 11,
+          "minPrice": 4.57,
+          "suggestedPrice": 5.15,
+          "vol7d": 4,
+          "vol30d": 25,
+          "vol90d": 79,
+          "avg7d": 4.56,
+          "avg30d": 4.48
+        },
+        "Sticker | Natus Vincere (Holo) | Copenhagen 2024": {
+          "listings": 1,
+          "minPrice": 5.74,
+          "suggestedPrice": 7.45,
+          "vol7d": 9,
+          "vol30d": 22,
+          "vol90d": 68,
+          "avg7d": 9.09,
+          "avg30d": 8.12
+        },
+        "Sticker | Natus Vincere (Holo) | Paris 2023": {
+          "listings": 20,
+          "minPrice": 2.82,
+          "suggestedPrice": 3.76,
+          "vol7d": 33,
+          "vol30d": 166,
+          "vol90d": 695,
+          "avg7d": 3.24,
+          "avg30d": 3.22
+        },
+        "Sticker | NiKo (Gold) | Austin 2025": {
+          "listings": 1,
+          "minPrice": 38.41,
+          "suggestedPrice": 46.24,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 0,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | NiKo (Gold) | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": null,
+          "suggestedPrice": 31.29,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 1,
+          "avg7d": 0,
+          "avg30d": 35.68
+        },
+        "Sticker | NiKo (Holo) | Copenhagen 2024": {
+          "listings": 1,
+          "minPrice": 5.93,
+          "suggestedPrice": 7.23,
+          "vol7d": 0,
+          "vol30d": 5,
+          "vol90d": 11,
+          "avg7d": 0,
+          "avg30d": 5.29
+        },
+        "Sticker | NiKo (Holo) | Paris 2023": {
+          "listings": 2,
+          "minPrice": 3.82,
+          "suggestedPrice": 4.27,
+          "vol7d": 4,
+          "vol30d": 15,
+          "vol90d": 30,
+          "avg7d": 2.84,
+          "avg30d": 2.93
+        },
+        "Sticker | NiKo (Holo) | Shanghai 2024": {
+          "listings": 1,
+          "minPrice": 3.64,
+          "suggestedPrice": 4.29,
+          "vol7d": 0,
+          "vol30d": 4,
+          "vol90d": 9,
+          "avg7d": 0,
+          "avg30d": 2.97
+        },
+        "Sticker | s1mple (Gold) | Stockholm 2021": {
+          "listings": 2,
+          "minPrice": 41.19,
+          "suggestedPrice": 41.2,
+          "vol7d": 1,
+          "vol30d": 8,
+          "vol90d": 31,
+          "avg7d": 39.2,
+          "avg30d": 38.35
+        },
+        "Sticker | TYLOO (Holo) | Austin 2025": {
+          "listings": 4,
+          "minPrice": 6.98,
+          "suggestedPrice": 7.49,
+          "vol7d": 4,
+          "vol30d": 5,
+          "vol90d": 24,
+          "avg7d": 7.41,
+          "avg30d": 7.3
+        },
+        "Sticker | Vitality (Gold) | Paris 2023": {
+          "listings": 2,
+          "minPrice": 1.94,
+          "suggestedPrice": 2.45,
+          "vol7d": 5,
+          "vol30d": 17,
+          "vol90d": 49,
+          "avg7d": 2.81,
+          "avg30d": 2.87
+        },
+        "Sticker | Vitality (Holo) | Austin 2025": {
+          "listings": 2,
+          "minPrice": 2.38,
+          "suggestedPrice": 2.58,
+          "vol7d": 3,
+          "vol30d": 12,
+          "vol90d": 73,
+          "avg7d": 2.34,
+          "avg30d": 2.38
+        },
+        "Sticker | Vitality (Holo) | Paris 2023": {
+          "listings": 31,
+          "minPrice": 1.08,
+          "suggestedPrice": 1.49,
+          "vol7d": 26,
+          "vol30d": 61,
+          "vol90d": 261,
+          "avg7d": 1.37,
+          "avg30d": 1.34
+        },
+        "Sticker | Natus Vincere | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 2,
+          "vol30d": 32,
+          "vol90d": 164,
+          "avg7d": 0.09,
+          "avg30d": 0.1
+        },
+        "Sticker | G2 Esports | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 3,
+          "vol30d": 323,
+          "vol90d": 364,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | MOUZ | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 6,
+          "vol30d": 28,
+          "vol90d": 164,
+          "avg7d": 0.06,
+          "avg30d": 0.1
+        },
+        "Sticker | Astralis (Foil) | London 2018": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 29.52
+        },
+        "Sticker | Natus Vincere | Stockholm 2021": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 15,
+          "vol90d": 32,
+          "avg7d": 0,
+          "avg30d": 0.15
+        },
+        "Sticker | Natus Vincere (Gold) | Stockholm 2021": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 2,
+          "vol90d": 25,
+          "avg7d": 12.21,
+          "avg30d": 11.5
+        },
+        "Sticker | Natus Vincere | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 7,
+          "vol30d": 11,
+          "vol90d": 24,
+          "avg7d": 0.12,
+          "avg30d": 0.09
+        },
+        "Sticker | Natus Vincere (Holo) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 7,
+          "vol90d": 16,
+          "avg7d": 0,
+          "avg30d": 2.51
+        },
+        "Sticker | FaZe Clan (Holo) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 3,
+          "vol90d": 19,
+          "avg7d": 0,
+          "avg30d": 3.45
+        },
+        "Sticker | FURIA (Holo) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 2,
+          "vol90d": 15,
+          "avg7d": 0,
+          "avg30d": 3.56
+        },
+        "Sticker | FaZe Clan (Gold) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 1,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | FaZe Clan | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 4,
+          "vol90d": 15,
+          "avg7d": 0,
+          "avg30d": 0.07
+        },
+        "Sticker | Outsiders | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 12,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | Natus Vincere | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 14,
+          "vol30d": 77,
+          "vol90d": 731,
+          "avg7d": 0.12,
+          "avg30d": 0.1
+        },
+        "Sticker | Vitality | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 9,
+          "vol30d": 116,
+          "vol90d": 259,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | Heroic | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 11,
+          "vol30d": 35,
+          "vol90d": 210,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | FaZe Clan | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 46,
+          "vol30d": 147,
+          "vol90d": 553,
+          "avg7d": 0.03,
+          "avg30d": 0.02
+        },
+        "Sticker | NiKo (Gold) | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 2,
+          "vol90d": 3,
+          "avg7d": 0,
+          "avg30d": 22.64
+        },
+        "Sticker | FURIA | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 29,
+          "avg7d": 0,
+          "avg30d": 0.02
+        },
+        "Sticker | s1mple (Gold) | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 2,
+          "vol90d": 5,
+          "avg7d": 0,
+          "avg30d": 32.84
+        },
+        "Sticker | FaZe Clan | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 6,
+          "vol30d": 49,
+          "vol90d": 218,
+          "avg7d": 0.16,
+          "avg30d": 0.15
+        },
+        "Sticker | Vitality | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 8,
+          "vol30d": 303,
+          "vol90d": 1514,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | NiKo (Gold) | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 24.86
+        },
+        "Sticker | Natus Vincere | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 18,
+          "vol30d": 133,
+          "vol90d": 265,
+          "avg7d": 0.02,
+          "avg30d": 0.03
+        },
+        "Sticker | Team Spirit | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 22,
+          "vol30d": 85,
+          "vol90d": 256,
+          "avg7d": 0.02,
+          "avg30d": 0.03
+        },
+        "Sticker | FaZe Clan | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 25,
+          "vol30d": 69,
+          "vol90d": 184,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | Vitality | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 2,
+          "vol30d": 9,
+          "vol90d": 128,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | Team Spirit | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 49,
+          "vol90d": 60,
+          "avg7d": 0.03,
+          "avg30d": 0.05
+        },
+        "Sticker | FaZe Clan | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 20,
+          "vol90d": 99,
+          "avg7d": 0,
+          "avg30d": 0.26
+        },
+        "Sticker | Natus Vincere | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 21,
+          "vol30d": 36,
+          "vol90d": 94,
+          "avg7d": 0.03,
+          "avg30d": 0.03
+        },
+        "Sticker | Vitality | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 5,
+          "vol90d": 56,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | donk (Holo) | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 4,
+          "vol30d": 4,
+          "vol90d": 17,
+          "avg7d": 7.43,
+          "avg30d": 7.43
+        },
+        "Sticker | TYLOO (Gold) | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 1,
+          "vol90d": 1,
+          "avg7d": 6.56,
+          "avg30d": 6.56
+        },
+        "Sticker | NiKo (Holo) | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | FaZe Clan (Foil) | Boston 2018": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 106.2
+        },
+        "Sticker | Natus Vincere (Holo) | London 2018": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 1,
+          "vol90d": 5,
+          "avg7d": 13.89,
+          "avg30d": 13.89
+        },
+        "Sticker | Astralis (Holo) | Boston 2018": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 5,
+          "avg7d": 0,
+          "avg30d": 40.7
+        },
+        "Sticker | Natus Vincere (Holo) | Katowice 2019": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 9,
+          "vol90d": 21,
+          "avg7d": 0,
+          "avg30d": 8.7
+        },
+        "Sticker | s1mple (Gold) | Katowice 2019": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 1,
+          "avg7d": 0,
+          "avg30d": 465.18
+        },
+        "Sticker | Natus Vincere (Holo) | Berlin 2019": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 3,
+          "vol90d": 16,
+          "avg7d": 1.8,
+          "avg30d": 1.33
+        },
+        "Sticker | s1mple (Gold) | Berlin 2019": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 1,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | s1mple (Gold) | Antwerp 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 3,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | FaZe Clan | Antwerp 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 88,
+          "avg7d": 0,
+          "avg30d": 0.07
+        },
+        "Sticker | s1mple (Gold) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | FURIA (Gold) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 7,
+          "vol90d": 12,
+          "avg7d": 0,
+          "avg30d": 4.57
+        },
+        "Sticker | G2 Esports | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 55,
+          "vol90d": 139,
+          "avg7d": 0.02,
+          "avg30d": 0.02
+        },
+        "Sticker | Vitality (Glitter) | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 1,
+          "vol30d": 21,
+          "vol90d": 60,
+          "avg7d": 0.58,
+          "avg30d": 0.33
+        },
+        "Sticker | NiKo (Glitter) | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 6,
+          "avg7d": 0,
+          "avg30d": 0.24
+        },
+        "Sticker | m0NESY (Glitter) | Paris 2023": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 3,
+          "vol30d": 5,
+          "vol90d": 12,
+          "avg7d": 0.33,
+          "avg30d": 0.33
+        },
+        "Sticker | s1mple (Holo) | Rio 2022": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 1,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | m0NESY (Gold) | Copenhagen 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 3,
+          "vol90d": 9,
+          "avg7d": 0,
+          "avg30d": 24.05
+        },
+        "Sticker | G2 Esports | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 0,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 0
+        },
+        "Sticker | Team Spirit (Holo) | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 2,
+          "vol30d": 7,
+          "vol90d": 24,
+          "avg7d": 7.2,
+          "avg30d": 7.65
+        },
+        "Sticker | donk (Gold) | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 2,
+          "vol90d": 4,
+          "avg7d": 0,
+          "avg30d": 52.33
+        },
+        "Sticker | Team Spirit (Gold) | Shanghai 2024": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 9,
+          "vol90d": 13,
+          "avg7d": 0,
+          "avg30d": 8.8
+        },
+        "Sticker | G2 Esports | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 2,
+          "vol90d": 14,
+          "avg7d": 0,
+          "avg30d": 0.02
+        },
+        "Sticker | m0NESY (Holo) | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 2,
+          "avg7d": 0,
+          "avg30d": 7.93
+        },
+        "Sticker | donk (Gold) | Austin 2025": {
+          "listings": 0,
+          "minPrice": 0,
+          "suggestedPrice": 0,
+          "vol7d": 0,
+          "vol30d": 1,
+          "vol90d": 7,
+          "avg7d": 0,
+          "avg30d": 36.87
+        }
+      },
+      "averages": {
+        "Boston 2018": {
+          "avgNormal": 6.05,
+          "avgMidTier": 0,
+          "avgHolo": 0,
+          "avgGold": 0,
+          "totalVolume": 1,
+          "stickerCount": 1,
+          "skinportTotalVol7d": 0,
+          "skinportTotalVol30d": 6,
+          "skinportAvgPrice": 57.83925,
+          "skinportListings": 6
+        },
+        "London 2018": {
+          "avgNormal": 2.22,
+          "avgMidTier": 0,
+          "avgHolo": 0,
+          "avgGold": 0,
+          "totalVolume": 2,
+          "stickerCount": 1,
+          "skinportTotalVol7d": 1,
+          "skinportTotalVol30d": 9,
+          "skinportAvgPrice": 1.4029999999999998,
+          "skinportListings": 1
+        },
+        "Katowice 2019": {
+          "avgNormal": 2.48,
+          "avgMidTier": 0,
+          "avgHolo": 20.81,
+          "avgGold": 739.13,
+          "totalVolume": 5,
+          "stickerCount": 3,
+          "skinportTotalVol7d": 0,
+          "skinportTotalVol30d": 17,
+          "skinportAvgPrice": 1.518,
+          "skinportListings": 2
+        },
+        "Berlin 2019": {
+          "avgNormal": 0,
+          "avgMidTier": 0,
+          "avgHolo": 2.2,
+          "avgGold": 106.26,
+          "totalVolume": 7,
+          "stickerCount": 2,
+          "skinportTotalVol7d": 3,
+          "skinportTotalVol30d": 19,
+          "skinportAvgPrice": 0.7014999999999999,
+          "skinportListings": 1
+        },
+        "Stockholm 2021": {
+          "avgNormal": 0,
+          "avgMidTier": 0,
+          "avgHolo": 0,
+          "avgGold": 63.21,
+          "totalVolume": 1,
+          "stickerCount": 1,
+          "skinportTotalVol7d": 8,
+          "skinportTotalVol30d": 45,
+          "skinportAvgPrice": 26.812249999999995,
+          "skinportListings": 4
+        },
+        "Antwerp 2022": {
+          "avgNormal": 0.12,
+          "avgMidTier": 0,
+          "avgHolo": 7.76,
+          "avgGold": 0,
+          "totalVolume": 44,
+          "stickerCount": 2,
+          "skinportTotalVol7d": 4,
+          "skinportTotalVol30d": 26,
+          "skinportAvgPrice": 5.2555,
+          "skinportListings": 11
+        },
+        "Rio 2022": {
+          "avgNormal": 0.043333333333333335,
+          "avgMidTier": 0,
+          "avgHolo": 8.537500000000001,
+          "avgGold": 45.79666666666666,
+          "totalVolume": 264,
+          "stickerCount": 10,
+          "skinportTotalVol7d": 7,
+          "skinportTotalVol30d": 35,
+          "skinportAvgPrice": 0,
+          "skinportListings": 0
+        },
+        "Paris 2023": {
+          "avgNormal": 0.0375,
+          "avgMidTier": 0.3433333333333333,
+          "avgHolo": 4.425,
+          "avgGold": 30.383999999999997,
+          "totalVolume": 1500,
+          "stickerCount": 14,
+          "skinportTotalVol7d": 161,
+          "skinportTotalVol30d": 763,
+          "skinportAvgPrice": 7.148071428571427,
+          "skinportListings": 69
+        },
+        "Copenhagen 2024": {
+          "avgNormal": 0.08,
+          "avgMidTier": 0,
+          "avgHolo": 13.265,
+          "avgGold": 63.85,
+          "totalVolume": 421,
+          "stickerCount": 11,
+          "skinportTotalVol7d": 45,
+          "skinportTotalVol30d": 819,
+          "skinportAvgPrice": 26.11978571428571,
+          "skinportListings": 10
+        },
+        "Shanghai 2024": {
+          "avgNormal": 0.04,
+          "avgMidTier": 0,
+          "avgHolo": 11.4825,
+          "avgGold": 52.357499999999995,
+          "totalVolume": 260,
+          "stickerCount": 10,
+          "skinportTotalVol7d": 69,
+          "skinportTotalVol30d": 346,
+          "skinportAvgPrice": 11.605799999999999,
+          "skinportListings": 6
+        },
+        "Austin 2025": {
+          "avgNormal": 0.04,
+          "avgMidTier": 0,
+          "avgHolo": 12.904,
+          "avgGold": 72.91333333333334,
+          "totalVolume": 377,
+          "stickerCount": 10,
+          "skinportTotalVol7d": 35,
+          "skinportTotalVol30d": 136,
+          "skinportAvgPrice": 18.31183333333333,
+          "skinportListings": 7
+        }
+      }
     }
   ]
 }
