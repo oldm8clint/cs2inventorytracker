@@ -117408,6 +117408,101 @@
         "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
         "Sealed Graffiti | Toasted (Blood Red)": 0.03
       }
+    },
+    {
+      "date": "2026-06-15-05",
+      "totalValue": 3361.999999999999,
+      "totalItems": 93,
+      "categoryValues": {
+        "Skins": {
+          "count": 39,
+          "value": 2483.4199999999996
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 390.8100000000002
+        },
+        "Cases": {
+          "count": 23,
+          "value": 375.43
+        },
+        "Collectibles": {
+          "count": 6,
+          "value": 95.86
+        },
+        "Music Kits": {
+          "count": 2,
+          "value": 12.12
+        },
+        "Charm": {
+          "count": 7,
+          "value": 3.93
+        },
+        "Graffiti": {
+          "count": 14,
+          "value": 0.42999999999999994
+        },
+        "C4": {
+          "count": 1,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 658.56,
+        "M4A4 | X-Ray (Factory New)": 562.21,
+        "StatTrak™ CZ75-Auto | Victoria (Factory New)": 529.16,
+        "★ Navaja Knife | Doppler Ruby (Factory New)": 414.85,
+        "__budapest_sticker_lot__": 390.8100000000002,
+        "Operation Breakout Weapon Case": 17.75,
+        "★ Navaja Knife | Doppler (Factory New)": 175.85,
+        "Howl Pin": 95.86,
+        "Glock-18 | Water Elemental (Minimal Wear)": 38.36,
+        "Tec-9 | Decimator (Field-Tested)": 36.17,
+        "G3SG1 | Orange Kimono (Factory New)": 26.48,
+        "StatTrak™ AK-47 | Searing Rage (Battle-Scarred)": 13.23,
+        "StatTrak™ Music Kit | Denzel Curry, ULTIMATE": 12.12,
+        "MAC-10 | Disco Tech (Field-Tested)": 10.62,
+        "Souvenir USP-S | Check Engine (Field-Tested)": 8.31,
+        "StatTrak™ M4A1-S | Night Terror (Field-Tested)": 2.78,
+        "X-Ray P250 Package": 2.22,
+        "Charm | Pocket Pop": 1.8,
+        "Nova | Rising Sun (Battle-Scarred)": 0.86,
+        "StatTrak™ G3SG1 | Dream Glade (Well-Worn)": 1.15,
+        "Charm | Bomb Tag": 0.98,
+        "Galil AR | Control (Battle-Scarred)": 0.93,
+        "Souvenir PP-Bizon | Candy Apple (Minimal Wear)": 0.65,
+        "Revolution Case": 0.46,
+        "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.41,
+        "Charm | Splatter Cat": 0.35,
+        "Souvenir PP-Bizon | Facility Sketch (Field-Tested)": 0.16,
+        "Charm | Gritty": 0.23,
+        "Charm | Fluffy": 0.21,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.2,
+        "Souvenir MP9 | Slide (Battle-Scarred)": 0.16,
+        "Charm | Whittle Guy": 0.15,
+        "Souvenir Nova | Mandrel (Field-Tested)": 0.14,
+        "Souvenir MP5-SD | Dirt Drop (Field-Tested)": 0.14,
+        "Souvenir AUG | Sweeper (Well-Worn)": 0.13,
+        "Souvenir MAG-7 | Rust Coat (Field-Tested)": 0.12,
+        "Souvenir AUG | Sweeper (Field-Tested)": 0.1,
+        "Souvenir P250 | Facility Draft (Field-Tested)": 0.1,
+        "Souvenir MAG-7 | Rust Coat (Well-Worn)": 0.09,
+        "P2000 | Marsh (Field-Tested)": 0.07,
+        "Negev | Wall Bang (Field-Tested)": 0.07,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.07,
+        "P250 | Boreal Forest (Field-Tested)": 0.05,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.05,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "SG 553 | Waves Perforated (Well-Worn)": 0.04,
+        "Sealed Graffiti | Double (Jungle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
+        "Dual Berettas | BorDeux (Field-Tested)": 0.03,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.03
+      }
     }
   ]
 }
