@@ -153939,6 +153939,110 @@
         "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
         "Sealed Graffiti | Double (Jungle Green)": 0.03
       }
+    },
+    {
+      "date": "2026-07-24-23",
+      "totalValue": 2380.09,
+      "totalItems": 93,
+      "categoryValues": {
+        "Skins": {
+          "count": 34,
+          "value": 1766.4399999999998
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 307.4200000000003
+        },
+        "Cases": {
+          "count": 21,
+          "value": 226.9
+        },
+        "Collectibles": {
+          "count": 6,
+          "value": 67.66
+        },
+        "Music Kits": {
+          "count": 2,
+          "value": 8.62
+        },
+        "Charm": {
+          "count": 6,
+          "value": 1.6
+        },
+        "Stickers": {
+          "count": 8,
+          "value": 1.11
+        },
+        "Graffiti": {
+          "count": 14,
+          "value": 0.3400000000000001
+        },
+        "C4": {
+          "count": 1,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 512.7,
+        "★ Navaja Knife | Doppler Ruby (Factory New)": 469.42,
+        "__budapest_sticker_lot__": 307.4200000000003,
+        "M4A4 | X-Ray (Factory New)": 263.24,
+        "StatTrak™ CZ75-Auto | Victoria (Factory New)": 261.45,
+        "Operation Breakout Weapon Case": 11.79,
+        "★ Navaja Knife | Doppler (Factory New)": 162.56,
+        "Howl Pin": 67.66,
+        "Glock-18 | Water Elemental (Minimal Wear)": 27.45,
+        "Tec-9 | Decimator (Field-Tested)": 23.64,
+        "G3SG1 | Orange Kimono (Factory New)": 17.43,
+        "StatTrak™ Music Kit | Denzel Curry, ULTIMATE": 8.62,
+        "StatTrak™ AK-47 | Searing Rage (Battle-Scarred)": 8.53,
+        "MAC-10 | Disco Tech (Field-Tested)": 7.63,
+        "Souvenir USP-S | Check Engine (Field-Tested)": 6.22,
+        "X-Ray P250 Package": 2.49,
+        "StatTrak™ M4A1-S | Night Terror (Field-Tested)": 1.75,
+        "Nova | Rising Sun (Battle-Scarred)": 0.61,
+        "StatTrak™ G3SG1 | Dream Glade (Well-Worn)": 0.77,
+        "Charm | Bomb Tag": 0.75,
+        "Galil AR | Control (Battle-Scarred)": 0.63,
+        "Souvenir PP-Bizon | Candy Apple (Minimal Wear)": 0.61,
+        "Sticker | Assterisk (Foil)": 0.57,
+        "Revolution Case": 0.4,
+        "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.34,
+        "Charm | Fluffy": 0.15,
+        "Charm | Splatter Cat": 0.26,
+        "Sticker | Neo-Hold (Holo)": 0.2,
+        "Sticker | Boner Snap": 0.15,
+        "Charm | Whittle Guy": 0.15,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.14,
+        "Charm | Gritty": 0.14,
+        "Souvenir AUG | Sweeper (Well-Worn)": 0.11,
+        "Souvenir MAG-7 | Rust Coat (Well-Worn)": 0.09,
+        "Souvenir MP9 | Slide (Battle-Scarred)": 0.09,
+        "Souvenir AUG | Sweeper (Field-Tested)": 0.07,
+        "P2000 | Marsh (Field-Tested)": 0.06,
+        "Negev | Wall Bang (Field-Tested)": 0.06,
+        "PP-Bizon | Traitor (Field-Tested)": 0.05,
+        "SG 553 | Basket Halftone (Field-Tested)": 0.05,
+        "Sticker | Airhorn": 0.05,
+        "Sticker | Gonna Leave A Mark": 0.05,
+        "P250 | Boreal Forest (Field-Tested)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
+        "CZ75-Auto | Pink Pearl (Field-Tested)": 0.03,
+        "M249 | Sleet (Minimal Wear)": 0.03,
+        "Sticker | Run Boost Lift Kits": 0.03,
+        "G3SG1 | Green Cell (Minimal Wear)": 0.03,
+        "Sticker | Rocket Skates": 0.03,
+        "Sticker | Golf Cart": 0.03,
+        "Sealed Graffiti | GTG (Cash Green)": 0.03,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
+        "Sealed Graffiti | Double (Jungle Green)": 0.03,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.03,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.03,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.03
+      }
     }
   ]
 }
