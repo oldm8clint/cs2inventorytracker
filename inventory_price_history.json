@@ -157371,6 +157371,108 @@
         "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
         "Sealed Graffiti | Double (Jungle Green)": 0.03
       }
+    },
+    {
+      "date": "2026-07-27-15",
+      "totalValue": 2975.9999999999995,
+      "totalItems": 90,
+      "categoryValues": {
+        "Skins": {
+          "count": 31,
+          "value": 2253.0800000000004
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 383.58999999999986
+        },
+        "Cases": {
+          "count": 21,
+          "value": 226.04
+        },
+        "Collectibles": {
+          "count": 6,
+          "value": 97.68
+        },
+        "Music Kits": {
+          "count": 2,
+          "value": 11.52
+        },
+        "Charm": {
+          "count": 6,
+          "value": 2.27
+        },
+        "Stickers": {
+          "count": 8,
+          "value": 1.4200000000000002
+        },
+        "Graffiti": {
+          "count": 14,
+          "value": 0.4
+        },
+        "C4": {
+          "count": 1,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 735.45,
+        "★ Navaja Knife | Doppler Ruby (Factory New)": 469.26,
+        "__budapest_sticker_lot__": 383.58999999999986,
+        "M4A4 | X-Ray (Factory New)": 383.23,
+        "StatTrak™ CZ75-Auto | Victoria (Factory New)": 375.05,
+        "Operation Breakout Weapon Case": 11.68,
+        "★ Navaja Knife | Doppler (Factory New)": 153.46,
+        "Howl Pin": 97.68,
+        "Glock-18 | Water Elemental (Minimal Wear)": 42.2,
+        "Tec-9 | Decimator (Field-Tested)": 35.84,
+        "G3SG1 | Orange Kimono (Factory New)": 25,
+        "StatTrak™ AK-47 | Searing Rage (Battle-Scarred)": 12.48,
+        "StatTrak™ Music Kit | Denzel Curry, ULTIMATE": 11.52,
+        "Souvenir USP-S | Check Engine (Field-Tested)": 9.08,
+        "MAC-10 | Disco Tech (Field-Tested)": 7.7,
+        "X-Ray P250 Package": 3.57,
+        "Charm | Bomb Tag": 1.16,
+        "StatTrak™ G3SG1 | Dream Glade (Well-Worn)": 1.08,
+        "Galil AR | Control (Battle-Scarred)": 0.89,
+        "Sticker | Assterisk (Foil)": 0.86,
+        "Souvenir PP-Bizon | Candy Apple (Minimal Wear)": 0.81,
+        "Revolution Case": 0.55,
+        "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.51,
+        "Charm | Fluffy": 0.19,
+        "Charm | Splatter Cat": 0.34,
+        "Charm | Gritty": 0.2,
+        "Charm | Whittle Guy": 0.19,
+        "Sticker | Neo-Hold (Holo)": 0.17,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.17,
+        "Sticker | Boner Snap": 0.16,
+        "Souvenir AUG | Sweeper (Well-Worn)": 0.13,
+        "Souvenir MP9 | Slide (Battle-Scarred)": 0.12,
+        "Souvenir AUG | Sweeper (Field-Tested)": 0.11,
+        "Souvenir MAG-7 | Rust Coat (Well-Worn)": 0.1,
+        "Negev | Wall Bang (Field-Tested)": 0.08,
+        "PP-Bizon | Traitor (Field-Tested)": 0.07,
+        "P250 | Boreal Forest (Field-Tested)": 0.07,
+        "Sticker | Airhorn": 0.06,
+        "Sticker | Gonna Leave A Mark": 0.06,
+        "P2000 | Marsh (Field-Tested)": 0.05,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.05,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.05,
+        "Sticker | Run Boost Lift Kits": 0.04,
+        "G3SG1 | Green Cell (Minimal Wear)": 0.04,
+        "SG 553 | Basket Halftone (Field-Tested)": 0.04,
+        "Sticker | Rocket Skates": 0.04,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
+        "CZ75-Auto | Pink Pearl (Field-Tested)": 0.03,
+        "M249 | Sleet (Minimal Wear)": 0.03,
+        "Sticker | Golf Cart": 0.03,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
+        "Sealed Graffiti | Double (Jungle Green)": 0.03
+      }
     }
   ]
 }
