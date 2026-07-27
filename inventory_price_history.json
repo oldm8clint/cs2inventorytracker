@@ -157779,6 +157779,108 @@
         "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
         "Sealed Graffiti | Double (Jungle Green)": 0.03
       }
+    },
+    {
+      "date": "2026-07-27-21",
+      "totalValue": 2937.2199999999993,
+      "totalItems": 90,
+      "categoryValues": {
+        "Skins": {
+          "count": 31,
+          "value": 2259.7000000000003
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 366.6899999999998
+        },
+        "Cases": {
+          "count": 21,
+          "value": 225.37
+        },
+        "Collectibles": {
+          "count": 6,
+          "value": 67.5
+        },
+        "Music Kits": {
+          "count": 2,
+          "value": 13.93
+        },
+        "Charm": {
+          "count": 6,
+          "value": 2.1999999999999997
+        },
+        "Stickers": {
+          "count": 8,
+          "value": 1.4000000000000001
+        },
+        "Graffiti": {
+          "count": 14,
+          "value": 0.42999999999999994
+        },
+        "C4": {
+          "count": 1,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 732.46,
+        "★ Navaja Knife | Doppler Ruby (Factory New)": 469.26,
+        "StatTrak™ CZ75-Auto | Victoria (Factory New)": 374.29,
+        "__budapest_sticker_lot__": 366.6899999999998,
+        "M4A4 | X-Ray (Factory New)": 361.94,
+        "Operation Breakout Weapon Case": 11.7,
+        "★ Navaja Knife | Doppler (Factory New)": 183.14,
+        "Howl Pin": 67.5,
+        "Glock-18 | Water Elemental (Minimal Wear)": 40.66,
+        "Tec-9 | Decimator (Field-Tested)": 35.69,
+        "G3SG1 | Orange Kimono (Factory New)": 24.93,
+        "StatTrak™ Music Kit | Denzel Curry, ULTIMATE": 13.93,
+        "StatTrak™ AK-47 | Searing Rage (Battle-Scarred)": 13.15,
+        "MAC-10 | Disco Tech (Field-Tested)": 11.01,
+        "Souvenir USP-S | Check Engine (Field-Tested)": 8.93,
+        "X-Ray P250 Package": 2.49,
+        "Charm | Bomb Tag": 1.17,
+        "StatTrak™ G3SG1 | Dream Glade (Well-Worn)": 1.08,
+        "Sticker | Assterisk (Foil)": 0.82,
+        "Souvenir PP-Bizon | Candy Apple (Minimal Wear)": 0.81,
+        "Galil AR | Control (Battle-Scarred)": 0.78,
+        "Revolution Case": 0.58,
+        "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.51,
+        "Charm | Fluffy": 0.19,
+        "Charm | Splatter Cat": 0.34,
+        "Sticker | Neo-Hold (Holo)": 0.25,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.18,
+        "Charm | Whittle Guy": 0.18,
+        "Charm | Gritty": 0.13,
+        "Souvenir AUG | Sweeper (Well-Worn)": 0.13,
+        "Sticker | Boner Snap": 0.12,
+        "Souvenir MP9 | Slide (Battle-Scarred)": 0.12,
+        "Souvenir MAG-7 | Rust Coat (Well-Worn)": 0.1,
+        "PP-Bizon | Traitor (Field-Tested)": 0.09,
+        "Souvenir AUG | Sweeper (Field-Tested)": 0.09,
+        "Negev | Wall Bang (Field-Tested)": 0.08,
+        "Sticker | Airhorn": 0.06,
+        "P2000 | Marsh (Field-Tested)": 0.06,
+        "P250 | Boreal Forest (Field-Tested)": 0.06,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.06,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.06,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.05,
+        "CZ75-Auto | Pink Pearl (Field-Tested)": 0.04,
+        "Sticker | Run Boost Lift Kits": 0.04,
+        "G3SG1 | Green Cell (Minimal Wear)": 0.04,
+        "SG 553 | Basket Halftone (Field-Tested)": 0.04,
+        "Sticker | Rocket Skates": 0.04,
+        "Sticker | Gonna Leave A Mark": 0.04,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.04,
+        "M249 | Sleet (Minimal Wear)": 0.03,
+        "Sticker | Golf Cart": 0.03,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.03,
+        "Sealed Graffiti | Double (Jungle Green)": 0.03
+      }
     }
   ]
 }
