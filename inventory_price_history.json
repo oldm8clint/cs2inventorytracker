@@ -161866,6 +161866,116 @@
         "Sealed Graffiti | Double (Jungle Green)": 0.03,
         "Sealed Graffiti | Sheriff (Dust Brown)": 0.03
       }
+    },
+    {
+      "date": "2026-07-31-04",
+      "totalValue": 3172.9099999999994,
+      "totalItems": 98,
+      "categoryValues": {
+        "Skins": {
+          "count": 37,
+          "value": 2378.2700000000004
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 346.33999999999975
+        },
+        "Cases": {
+          "count": 20,
+          "value": 330.5
+        },
+        "Collectibles": {
+          "count": 6,
+          "value": 100.56
+        },
+        "Music Kits": {
+          "count": 2,
+          "value": 13.18
+        },
+        "Charm": {
+          "count": 6,
+          "value": 2.1700000000000004
+        },
+        "Stickers": {
+          "count": 11,
+          "value": 1.4700000000000002
+        },
+        "Graffiti": {
+          "count": 14,
+          "value": 0.41999999999999993
+        },
+        "C4": {
+          "count": 1,
+          "value": 0
+        }
+      },
+      "itemPrices": {
+        "★ Specialist Gloves | Field Agent (Minimal Wear)": 733.93,
+        "★ Navaja Knife | Doppler Ruby (Factory New)": 469.35,
+        "StatTrak™ CZ75-Auto | Victoria (Factory New)": 378.38,
+        "M4A4 | X-Ray (Factory New)": 358.02,
+        "__budapest_sticker_lot__": 346.33999999999975,
+        "Operation Breakout Weapon Case": 17.2,
+        "★ Navaja Knife | Doppler (Factory New)": 254.19,
+        "Howl Pin": 100.56,
+        "Glock-18 | Water Elemental (Minimal Wear)": 42.13,
+        "Desert Eagle | Conspiracy (Minimal Wear)": 40.15,
+        "Tec-9 | Decimator (Field-Tested)": 39.64,
+        "G3SG1 | Orange Kimono (Factory New)": 22.59,
+        "StatTrak™ Music Kit | Denzel Curry, ULTIMATE": 13.18,
+        "StatTrak™ AK-47 | Searing Rage (Battle-Scarred)": 12.03,
+        "MAC-10 | Disco Tech (Field-Tested)": 11,
+        "Souvenir USP-S | Check Engine (Field-Tested)": 8.76,
+        "X-Ray P250 Package": 3.7,
+        "SSG 08 | Abyss (Minimal Wear)": 2.07,
+        "StatTrak™ UMP-45 | Labyrinth (Factory New)": 1.49,
+        "StatTrak™ G3SG1 | Dream Glade (Well-Worn)": 1.08,
+        "Charm | Bomb Tag": 1.07,
+        "Galil AR | Control (Battle-Scarred)": 0.94,
+        "Sticker | Assterisk (Foil)": 0.84,
+        "Souvenir PP-Bizon | Candy Apple (Minimal Wear)": 0.81,
+        "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.39,
+        "Charm | Fluffy": 0.19,
+        "Charm | Splatter Cat": 0.35,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.19,
+        "Charm | Whittle Guy": 0.19,
+        "MP9 | Dune Asp (Minimal Wear)": 0.18,
+        "Sticker | Neo-Hold (Holo)": 0.18,
+        "Charm | Gritty": 0.18,
+        "Sticker | Boner Snap": 0.16,
+        "Souvenir AUG | Sweeper (Well-Worn)": 0.14,
+        "Souvenir MAG-7 | Rust Coat (Well-Worn)": 0.1,
+        "Souvenir MP9 | Slide (Battle-Scarred)": 0.1,
+        "Nova | Morning Sun (Field-Tested)": 0.09,
+        "PP-Bizon | Traitor (Field-Tested)": 0.08,
+        "Souvenir AUG | Sweeper (Field-Tested)": 0.08,
+        "Negev | Wall Bang (Field-Tested)": 0.07,
+        "Sticker | Cubix Connexion": 0.05,
+        "P2000 | Marsh (Field-Tested)": 0.05,
+        "P250 | Boreal Forest (Field-Tested)": 0.05,
+        "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.05,
+        "Sealed Graffiti | Still Happy (Battle Green)": 0.05,
+        "Sealed Graffiti | Keep the Change (Frog Green)": 0.05,
+        "CZ75-Auto | Pink Pearl (Field-Tested)": 0.04,
+        "M249 | Sleet (Minimal Wear)": 0.04,
+        "G3SG1 | Green Cell (Minimal Wear)": 0.04,
+        "SG 553 | Basket Halftone (Field-Tested)": 0.04,
+        "Sticker | Rocket Skates": 0.04,
+        "Sticker | Airhorn": 0.04,
+        "Sticker | Gonna Leave A Mark": 0.04,
+        "Sealed Graffiti | GTG (Cash Green)": 0.04,
+        "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
+        "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
+        "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
+        "Sealed Graffiti | Toasted (Blood Red)": 0.04,
+        "SCAR-20 | Zinc (Field-Tested)": 0.03,
+        "Sticker | Blaze Breeze": 0.03,
+        "Sticker | B'nana Strike": 0.03,
+        "Sticker | Run Boost Lift Kits": 0.03,
+        "Sticker | Golf Cart": 0.03,
+        "Sealed Graffiti | Double (Jungle Green)": 0.03
+      }
     }
   ]
 }
