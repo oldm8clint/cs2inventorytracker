@@ -171725,20 +171725,20 @@
     },
     {
       "date": "2026-08-08-05",
-      "totalValue": 1378.3200000000002,
+      "totalValue": 1356.9100000000003,
       "totalItems": 98,
       "categoryValues": {
         "Skins": {
           "count": 32,
-          "value": 538.3900000000001
-        },
-        "Sticker Investments": {
-          "count": 1,
-          "value": 387.38999999999993
+          "value": 538.35
         },
         "Cases": {
           "count": 20,
-          "value": 305.72
+          "value": 336.88
+        },
+        "Sticker Investments": {
+          "count": 1,
+          "value": 334.8500000000002
         },
         "Collectibles": {
           "count": 6,
@@ -171758,7 +171758,7 @@
         },
         "Graffiti": {
           "count": 14,
-          "value": 0.41999999999999993
+          "value": 0.42999999999999994
         },
         "C4": {
           "count": 1,
@@ -171767,8 +171767,8 @@
       },
       "itemPrices": {
         "★ Navaja Knife | Doppler Ruby (Factory New)": 414,
-        "__budapest_sticker_lot__": 387.38999999999993,
-        "Operation Breakout Weapon Case": 15.9,
+        "__budapest_sticker_lot__": 334.8500000000002,
+        "Operation Breakout Weapon Case": 17.54,
         "Howl Pin": 93.78,
         "Desert Eagle | Conspiracy (Minimal Wear)": 40.04,
         "Tec-9 | Decimator (Field-Tested)": 33.02,
@@ -171780,7 +171780,7 @@
         "Charm | Lil' Squirt": 3.65,
         "X-Ray P250 Package": 3.62,
         "Sticker | jks (Holo) | Budapest 2025": 2.49,
-        "M249 | Nebula Crusader (Battle-Scarred)": 1.98,
+        "M249 | Nebula Crusader (Battle-Scarred)": 1.93,
         "SSG 08 | Abyss (Minimal Wear)": 1.88,
         "StatTrak™ UMP-45 | Labyrinth (Factory New)": 1.34,
         "Sticker Slab | Virtus.pro (Holo) | 2020 RMR": 1.23,
@@ -171792,7 +171792,7 @@
         "Sticker | Neo-Hold (Holo)": 0.17,
         "Souvenir Five-SeveN | Coolant (Minimal Wear)": 0.31,
         "MP9 | Dune Asp (Minimal Wear)": 0.2,
-        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.19,
+        "StatTrak™ XM1014 | Mockingbird (Field-Tested)": 0.2,
         "Charm | Whittle Guy": 0.19,
         "Charm | Gritty": 0.19,
         "Sticker | Boner Snap": 0.13,
@@ -171808,6 +171808,7 @@
         "Negev | Wall Bang (Field-Tested)": 0.07,
         "P2000 | Marsh (Field-Tested)": 0.05,
         "Sealed Graffiti | Mr. Teeth (Tiger Orange)": 0.05,
+        "Sealed Graffiti | Toasted (Princess Pink)": 0.05,
         "Sealed Graffiti | Toasted (Blood Red)": 0.05,
         "Sealed Graffiti | Keep the Change (Frog Green)": 0.05,
         "MP7 | Short Ochre (Battle-Scarred)": 0.04,
@@ -171823,7 +171824,6 @@
         "Sealed Graffiti | GTG (Cash Green)": 0.04,
         "Sealed Graffiti | Eat It (Violent Violet)": 0.04,
         "Sealed Graffiti | GTG (Monarch Blue)": 0.04,
-        "Sealed Graffiti | Toasted (Princess Pink)": 0.04,
         "Sealed Graffiti | Still Happy (Battle Green)": 0.04,
         "Sealed Graffiti | Sheriff (Dust Brown)": 0.04,
         "SCAR-20 | Zinc (Field-Tested)": 0.03,
